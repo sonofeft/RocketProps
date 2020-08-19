@@ -18,7 +18,7 @@ See the Docs at: `<http://rocketprops.readthedocs.org/en/latest/>`_
 See PyPI page at:`<https://pypi.python.org/pypi/rocketprops>`_
 
 
-RocketProps calculates the various propellant properties required
+RocketProps calculates the various liquid propellant properties required
 to analyse a liquid propellant thrust chamber. 
 This includes density, viscosity, vapor pressure,
 heat of vaporization, surface tension, heat capacity and thermal conductivity. 

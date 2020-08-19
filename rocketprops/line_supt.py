@@ -54,7 +54,7 @@ def calc_line_vel_dp( pObj, TdegR=530.0, Ppsia=1000.0,
                      wdotPPS=0.5, IDinches=0.335, 
                      roughness=5.0E-6,  Kfactors=2.0, len_inches=50.0):
     """
-    Calculate the inner diameter and pressure drop in propellant line.
+    Calculate the line velocity and pressure drop in propellant line.
 
     :param pObj: propellant object
     :param TdegR: temperature of propellant, degR

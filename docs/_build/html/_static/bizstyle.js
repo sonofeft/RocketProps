@@ -36,6 +36,6 @@ $(window).resize(function(){
         $("li.nav-item-0 a").text("Top");
     }
     else {
-        $("li.nav-item-0 a").text("RocketProps 0.1.0 documentation");
+        $("li.nav-item-0 a").text("RocketProps 0.1.1 documentation");
     }
 });

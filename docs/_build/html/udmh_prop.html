@@ -1,0 +1,465 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>UDMH &#8212; RocketProps 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Water" href="water_prop.html" />
+    <link rel="prev" title="RP1" href="rp1_prop.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="water_prop.html" title="Water"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rp1_prop.html" title="RP1"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">QuickStart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sources.html">Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a50_prop.html">A50</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clf5_prop.html">CLF5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethanol_prop.html">Ethanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="f2_prop.html">F2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="irfna_prop.html">IRFNA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lox_prop.html">LOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methane_prop.html">Methane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methanol_prop.html">Methanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mhf3_prop.html">MHF3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mmh_prop.html">MMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon10_prop.html">MON10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon25_prop.html">MON25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon30_prop.html">MON30</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2h4_prop.html">N2H4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o4_prop.html">N2O4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o_prop.html">N2O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nh3_prop.html">NH3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ph2_prop.html">PH2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propane_prop.html">Propane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rp1_prop.html">RP1</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">UDMH</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reference-points">Reference Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fluid-properties">Fluid Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vapor-pressure">Vapor Pressure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#density">Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heat-capacity">Heat Capacity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#viscosity">Viscosity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heat-of-vaporization">Heat of Vaporization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thermal-conductivity">Thermal Conductivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surface-tension">Surface Tension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="water_prop.html">Water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">RocketProps Code Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rp1_prop.html"
+                        title="previous chapter">RP1</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="water_prop.html"
+                        title="next chapter">Water</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/udmh_prop.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="udmh">
+<h1>UDMH<a class="headerlink" href="#udmh" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://www.astronautix.com/u/udmh.html">UDMH</a> or Unsymmetrical Dimethylhydrazine ((CH3)2NNH2)
+became the storable liquid fuel of choice by the mid-1950's.
+Development of UDMH in the Soviet Union began in 1949.
+It is used in virtually all storable liquid rocket engines except
+for some orbital maneuvering engines in the United States, where
+<a class="reference external" href="http://www.astronautix.com/m/mmh.html">MMH</a>
+has been preferred due to a slightly higher density and performance.</p>
+<div class="section" id="reference-points">
+<h2>Reference Points<a class="headerlink" href="#reference-points" title="Permalink to this headline">¶</a></h2>
+<p>UDMH == UnsymmetricDiMethylHydrazine</p>
+<p><cite>Hover over column headers to see definitions, values to see alternate units</cite></p>
+<table width="100%">
+<tr><th></th>
+    <th title="Reference Temperature">Tref</th>
+    <th title="Reference Pressure">Pref</th>
+    <th title="Specific Gravity">SG</th>
+    <th title="Specific Heat">Cp</th>
+    <th title="Heat of Vaporization">dHvap</th>
+    <th title="Viscosity">Visc</th>
+    <th title="Thermal Conductivity">Cond</th>
+    <th title="Surface Tension">Surf</th>
+<tr><th>Source</th><th>R</th><th>psia</th><th>g/ml</th><th>BTU/lbm-R</th><th>BTU/lbm</th><th>poise</th><th>BTU/hr-ft-R</th><th>lbf/in</th></tr>
+
+
+<tr  style="background-color:#FFFF00"><td><a class="reference external" href="https://pypi.python.org/pypi/rocketprops">RocketProps</a></td><td  title="527.67 degR
+293.15 degK
+68 degF
+20 degC">527.7</td><td  title="14.6959 psia
+0.999997 atm
+1.01325 bar
+0.101325 MPa">14.7</td><td  title="0.790444 SG
+49.3458 lbm/ft**3
+0.0285566 lbm/inch**3
+790.444 kg/m**3">0.7904</td><td  title="0.665112 BTU/lbm/F
+0.665557 cal/g/C
+0.000665557 kcal/g/C
+2784.69 J/kg/K">0.665</td><td  title="250.55 BTU/lbm
+139.288 cal/g
+0.139288 kcal/g
+582.779 J/g">250.5</td><td  title="0.00553308 poise
+0.553308 cpoise
+0.000553308 Pa*s
+3.09838e-05 lbm/s/inch
+0.111542 lbm/hr/inch
+1.99191 kg/hr/m
+0.0199191 kg/hr/cm">5.533e-03</td><td  title="0.0918907 BTU/hr/ft/delF
+2.1271e-06 BTU/s/inch/delF
+0.000380111 cal/s/cm/delC
+0.0380111 cal/s/m/delC
+0.00159038 W/cm/delC">0.0919</td><td  title="0.000140655 lbf/in
+0.0246325 N/m
+24.6325 mN/m
+24.6325 dyne/cm">1.407e-04</td></tr>
+<tr ><td><a class="reference external" href="./_static/AFRPL-TR-69-149Hydrazine fuels.pdf">AFRPL-TR-69-149</a></td><td  title="536.4 degR
+298 degK
+76.73 degF
+24.85 degC">536.4</td><td  title="14.7 psia
+1.00028 atm
+1.01353 bar
+0.101353 MPa">14.7</td><td  title="0.7861 SG
+49.0746 lbm/ft**3
+0.0283997 lbm/inch**3
+786.1 kg/m**3">0.7861</td><td  title="0.704 BTU/lbm/F
+0.704471 cal/g/C
+0.000704471 kcal/g/C
+2947.51 J/kg/K">0.704</td><td  title="233.51 BTU/lbm
+129.815 cal/g
+0.129815 kcal/g
+543.144 J/g">233.5</td><td  title="0.00492 poise
+0.492 cpoise
+0.000492 Pa*s
+2.75507e-05 lbm/s/inch
+0.0991826 lbm/hr/inch
+1.7712 kg/hr/m
+0.017712 kg/hr/cm">4.920e-03</td><td  title="0.0908969 BTU/hr/ft/delF
+2.10409e-06 BTU/s/inch/delF
+0.000376 cal/s/cm/delC
+0.0376 cal/s/m/delC
+0.00157318 W/cm/delC">0.0909</td><td  title="0.0001375 lbf/in
+0.0240799 N/m
+24.0799 mN/m
+24.0799 dyne/cm">1.375e-04</td></tr>
+<tr ><td><a class="reference external" href="./_static/Aerojet_Propellant_Properties.pdf">Aerojet</a></td><td  title="527.67 degR
+293.15 degK
+68 degF
+20 degC">527.7</td><td  title="14.6959 psia
+0.999997 atm
+1.01325 bar
+0.101325 MPa">14.7</td><td  title="0.790444 SG
+49.3458 lbm/ft**3
+0.0285566 lbm/inch**3
+790.444 kg/m**3">0.7904</td><td  title="0.665108 BTU/lbm/F
+0.665553 cal/g/C
+0.000665553 kcal/g/C
+2784.67 J/kg/K">0.665</td><td  title="250.55 BTU/lbm
+139.288 cal/g
+0.139288 kcal/g
+582.779 J/g">250.6</td><td  title="0.00553354 poise
+0.553354 cpoise
+0.000553354 Pa*s
+3.09864e-05 lbm/s/inch
+0.111551 lbm/hr/inch
+1.99207 kg/hr/m
+0.0199207 kg/hr/cm">5.534e-03</td><td  title="0.0918947 BTU/hr/ft/delF
+2.12719e-06 BTU/s/inch/delF
+0.000380128 cal/s/cm/delC
+0.0380128 cal/s/m/delC
+0.00159045 W/cm/delC">0.0919</td><td >---</td></tr>
+<tr ><td><a class="reference external" href="./_static/Vandenberg_Corrected_Properties.pdf">Vandenberg</a></td><td  title="527.67 degR
+293.15 degK
+68 degF
+20 degC">527.7</td><td  title="14.7 psia
+1.00028 atm
+1.01353 bar
+0.101353 MPa">14.7</td><td  title="0.791295 SG
+49.3989 lbm/ft**3
+0.0285873 lbm/inch**3
+791.295 kg/m**3">0.7913</td><td >---</td><td  title="245.89 BTU/lbm
+136.697 cal/g
+0.136697 kcal/g
+571.941 J/g">245.9</td><td >---</td><td  title="0.0947106 BTU/hr/ft/delF
+2.19237e-06 BTU/s/inch/delF
+0.000391776 cal/s/cm/delC
+0.0391776 cal/s/m/delC
+0.00163919 W/cm/delC">0.0947</td><td >---</td></tr>
+
+</table></div>
+<div class="section" id="fluid-properties">
+<h2>Fluid Properties<a class="headerlink" href="#fluid-properties" title="Permalink to this headline">¶</a></h2>
+<p>UDMH == UnsymmetricDiMethylHydrazine</p>
+<p><cite>Hover over column headers to see definitions, values to see alternate units</cite></p>
+<table width="100%">
+<tr><th></th>
+    <th title="Molecular Weight">MolWt</th>
+    <th title="Critical Temperature">Tc</th>
+    <th title="Critical Pressure">Pc</th>
+    <th title="Critical Density">SGc</th>
+    <th title="Critical Compressibility Factor">Zc</th>
+    <th title="Normal Boiling Point">Tnbp</th>
+    <th title="Melting/Freezing Point">Tmelt</th>
+    <th title="Pitzer Acentric Factor">omega</th></tr>
+<tr><th>Source</th><th>g/gmole</th><th>R</th><th>psia</th><th>g/ml</th><th>(-)</th><th>R</th><th>R</th><th>(-)</th></tr>
+
+
+<tr  style="background-color:#FFFF00"><td><a class="reference external" href="https://pypi.python.org/pypi/rocketprops">RocketProps</a></td><td>60.099</td><td  title="941.67 degR
+523.15 degK
+482 degF
+250 degC">941.7</td><td  title="867 psia
+58.9959 atm
+59.7775 bar
+5.97775 MPa">867.0</td><td  title="0.276748 SG
+17.2768 lbm/ft**3
+0.00999814 lbm/inch**3
+276.748 kg/m**3">0.2767</td><td>0.2985</td><td  title="603.85 degR
+335.472 degK
+144.18 degF
+62.3222 degC">603.9</td><td  title="388.73 degR
+215.961 degK
+-70.94 degF
+-57.1889 degC">388.7</td><td>0.34992</td></tr>
+<tr ><td><a class="reference external" href="./_static/AFRPL-TR-69-149Hydrazine fuels.pdf">AFRPL-TR-69-149</a></td><td>60.102</td><td  title="941 degR
+522.778 degK
+481.33 degF
+249.628 degC">941.0</td><td  title="867 psia
+58.9959 atm
+59.7775 bar
+5.97775 MPa">867.0</td><td  title="0.275 SG
+17.1677 lbm/ft**3
+0.00993501 lbm/inch**3
+275 kg/m**3">0.2750</td><td>0.3006</td><td  title="603.84 degR
+335.467 degK
+144.17 degF
+62.3167 degC">603.8</td><td  title="388.7 degR
+215.944 degK
+-70.97 degF
+-57.2056 degC">388.7</td><td>---</td></tr>
+<tr ><td><a class="reference external" href="./_static/Aerojet_Propellant_Properties.pdf">Aerojet</a></td><td>60.099</td><td  title="941.67 degR
+523.15 degK
+482 degF
+250 degC">941.7</td><td  title="867 psia
+58.9959 atm
+59.7775 bar
+5.97775 MPa">867.0</td><td  title="0.276748 SG
+17.2768 lbm/ft**3
+0.00999814 lbm/inch**3
+276.748 kg/m**3">0.2767</td><td>0.2985</td><td  title="603.85 degR
+335.472 degK
+144.18 degF
+62.3222 degC">603.9</td><td  title="388.73 degR
+215.961 degK
+-70.94 degF
+-57.1889 degC">388.7</td><td>0.36186</td></tr>
+<tr ><td><a class="reference external" href="./_static/Vandenberg_Corrected_Properties.pdf">Vandenberg</a></td><td>60.099</td><td  title="941.4 degR
+523 degK
+481.73 degF
+249.85 degC">941.4</td><td  title="787.703 psia
+53.6 atm
+54.3102 bar
+5.43102 MPa">787.7</td><td  title="0.261 SG
+16.2937 lbm/ft**3
+0.00942922 lbm/inch**3
+261 kg/m**3">0.2610</td><td>0.2877</td><td  title="606.69 degR
+337.05 degK
+147.02 degF
+63.9 degC">606.7</td><td  title="387.27 degR
+215.15 degK
+-72.4 degF
+-58 degC">387.3</td><td>0.34300</td></tr>
+
+</table></div>
+<div class="section" id="vapor-pressure">
+<h2>Vapor Pressure<a class="headerlink" href="#vapor-pressure" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/UDMH_Psat.png"><img alt="_images/UDMH_Psat.png" src="_images/UDMH_Psat.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#vandenberg-source"><span class="std std-ref">CPIA-LPM</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#wagner-fit-source"><span class="std std-ref">Wagner</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="density">
+<h2>Density<a class="headerlink" href="#density" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/UDMH_SG.png"><img alt="_images/UDMH_SG.png" src="_images/UDMH_SG.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#vandenberg-source"><span class="std std-ref">CPIA-LPM</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#rackett-scaling-source"><span class="std std-ref">Rackett</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="heat-capacity">
+<h2>Heat Capacity<a class="headerlink" href="#heat-capacity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/UDMH_Cp.png"><img alt="_images/UDMH_Cp.png" src="_images/UDMH_Cp.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#joback-source"><span class="std std-ref">Joback</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="viscosity">
+<h2>Viscosity<a class="headerlink" href="#viscosity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/UDMH_Visc.png"><img alt="_images/UDMH_Visc.png" src="_images/UDMH_Visc.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#squires-source"><span class="std std-ref">Squires</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="heat-of-vaporization">
+<h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/UDMH_Hvap.png"><img alt="_images/UDMH_Hvap.png" src="_images/UDMH_Hvap.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#pitzer-hvap-source"><span class="std std-ref">Pitzer</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#vandenberg-source"><span class="std std-ref">CPIA-LPM</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="thermal-conductivity">
+<h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/UDMH_Cond.png"><img alt="_images/UDMH_Cond.png" src="_images/UDMH_Cond.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#nicola-source"><span class="std std-ref">Nicola</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#vandenberg-source"><span class="std std-ref">CPIA-LPM</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="surface-tension">
+<h2>Surface Tension<a class="headerlink" href="#surface-tension" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/UDMH_Surf.png"><img alt="_images/UDMH_Surf.png" src="_images/UDMH_Surf.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#sastri-rao-source"><span class="std std-ref">Sastri-Rao</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#pitzer-surf-source"><span class="std std-ref">Pitzer</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="water_prop.html" title="Water"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rp1_prop.html" title="RP1"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.
+    </div>
+  </body>
+</html>

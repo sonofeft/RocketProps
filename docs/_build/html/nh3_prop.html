@@ -1,0 +1,494 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>NH3 &#8212; RocketProps 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="PH2" href="ph2_prop.html" />
+    <link rel="prev" title="N2O" href="n2o_prop.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ph2_prop.html" title="PH2"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="n2o_prop.html" title="N2O"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">QuickStart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sources.html">Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a50_prop.html">A50</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clf5_prop.html">CLF5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethanol_prop.html">Ethanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="f2_prop.html">F2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="irfna_prop.html">IRFNA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lox_prop.html">LOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methane_prop.html">Methane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methanol_prop.html">Methanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mhf3_prop.html">MHF3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mmh_prop.html">MMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon10_prop.html">MON10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon25_prop.html">MON25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon30_prop.html">MON30</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2h4_prop.html">N2H4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o4_prop.html">N2O4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o_prop.html">N2O</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NH3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reference-points">Reference Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fluid-properties">Fluid Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vapor-pressure">Vapor Pressure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#density">Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heat-capacity">Heat Capacity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#viscosity">Viscosity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heat-of-vaporization">Heat of Vaporization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thermal-conductivity">Thermal Conductivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surface-tension">Surface Tension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ph2_prop.html">PH2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propane_prop.html">Propane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rp1_prop.html">RP1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udmh_prop.html">UDMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="water_prop.html">Water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">RocketProps Code Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="n2o_prop.html"
+                        title="previous chapter">N2O</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ph2_prop.html"
+                        title="next chapter">PH2</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nh3_prop.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nh3">
+<h1>NH3<a class="headerlink" href="#nh3" title="Permalink to this headline">¶</a></h1>
+<p>Ammonia (NH3) was used as the fuel in the
+<a class="reference external" href="http://www.astronautix.com/x/index.html">XLR-99</a>
+engine that powered the X-15 manned spaceplane;
+used as the propellant in some electric engine designs;
+developed as the propellant in Russian nuclear-powered ICBM designs of the 1950's.</p>
+<div class="section" id="reference-points">
+<h2>Reference Points<a class="headerlink" href="#reference-points" title="Permalink to this headline">¶</a></h2>
+<p>NH3 == Ammonia</p>
+<p><cite>Hover over column headers to see definitions, values to see alternate units</cite></p>
+<table width="100%">
+<tr><th></th>
+    <th title="Reference Temperature">Tref</th>
+    <th title="Reference Pressure">Pref</th>
+    <th title="Specific Gravity">SG</th>
+    <th title="Specific Heat">Cp</th>
+    <th title="Heat of Vaporization">dHvap</th>
+    <th title="Viscosity">Visc</th>
+    <th title="Thermal Conductivity">Cond</th>
+    <th title="Surface Tension">Surf</th>
+<tr><th>Source</th><th>R</th><th>psia</th><th>g/ml</th><th>BTU/lbm-R</th><th>BTU/lbm</th><th>poise</th><th>BTU/hr-ft-R</th><th>lbf/in</th></tr>
+
+
+<tr  style="background-color:#FFFF00"><td><a class="reference external" href="https://pypi.python.org/pypi/rocketprops">RocketProps</a></td><td  title="431.681 degR
+239.823 degK
+-27.9886 degF
+-33.327 degC">431.7</td><td  title="14.6959 psia
+0.999997 atm
+1.01325 bar
+0.101325 MPa">14.7</td><td  title="0.681973 SG
+42.5742 lbm/ft**3
+0.0246378 lbm/inch**3
+681.973 kg/m**3">0.6820</td><td  title="1.06307 BTU/lbm/F
+1.06378 cal/g/C
+0.00106378 kcal/g/C
+4450.84 J/kg/K">1.063</td><td  title="589.173 BTU/lbm
+327.537 cal/g
+0.327537 kcal/g
+1370.42 J/g">589.2</td><td  title="0.00255484 poise
+0.255484 cpoise
+0.000255484 Pa*s
+1.43064e-05 lbm/s/inch
+0.0515032 lbm/hr/inch
+0.919742 kg/hr/m
+0.00919742 kg/hr/cm">2.555e-03</td><td  title="0.384883 BTU/hr/ft/delF
+8.90932e-06 BTU/s/inch/delF
+0.00159209 cal/s/cm/delC
+0.159209 cal/s/m/delC
+0.0066613 W/cm/delC">0.3849</td><td  title="0.000255547 lbf/in
+0.0447532 N/m
+44.7532 mN/m
+44.7532 dyne/cm">2.555e-04</td></tr>
+<tr ><td><a class="reference external" href="./_static/AFRPL-TR-69-149Hydrazine fuels.pdf">AFRPL-TR-69-149</a></td><td  title="431.64 degR
+239.8 degK
+-28.03 degF
+-33.35 degC">431.6</td><td  title="14.6959 psia
+0.999997 atm
+1.01325 bar
+0.101325 MPa">14.7</td><td  title="0.6819 SG
+42.5696 lbm/ft**3
+0.0246352 lbm/inch**3
+681.9 kg/m**3">0.6819</td><td  title="1.065 BTU/lbm/F
+1.06571 cal/g/C
+0.00106571 kcal/g/C
+4458.94 J/kg/K">1.065</td><td  title="588.16 BTU/lbm
+326.974 cal/g
+0.326974 kcal/g
+1368.06 J/g">588.2</td><td  title="0.002527 poise
+0.2527 cpoise
+0.0002527 Pa*s
+1.41505e-05 lbm/s/inch
+0.050942 lbm/hr/inch
+0.90972 kg/hr/m
+0.0090972 kg/hr/cm">2.527e-03</td><td  title="0.32778 BTU/hr/ft/delF
+7.5875e-06 BTU/s/inch/delF
+0.00135588 cal/s/cm/delC
+0.135588 cal/s/m/delC
+0.005673 W/cm/delC">0.3278</td><td  title="0.000194167 lbf/in
+0.0340038 N/m
+34.0038 mN/m
+34.0038 dyne/cm">1.942e-04</td></tr>
+<tr ><td><a class="reference external" href="https://www.nist.gov/srd/refprop">RefProp</a></td><td  title="431.681 degR
+239.823 degK
+-27.9886 degF
+-33.327 degC">431.7</td><td  title="14.6959 psia
+0.999997 atm
+1.01325 bar
+0.101325 MPa">14.7</td><td  title="0.681973 SG
+42.5742 lbm/ft**3
+0.0246378 lbm/inch**3
+681.973 kg/m**3">0.6820</td><td  title="1.06307 BTU/lbm/F
+1.06378 cal/g/C
+0.00106378 kcal/g/C
+4450.84 J/kg/K">1.063</td><td  title="589.173 BTU/lbm
+327.537 cal/g
+0.327537 kcal/g
+1370.42 J/g">589.2</td><td  title="0.00255484 poise
+0.255484 cpoise
+0.000255484 Pa*s
+1.43064e-05 lbm/s/inch
+0.0515032 lbm/hr/inch
+0.919742 kg/hr/m
+0.00919742 kg/hr/cm">2.555e-03</td><td  title="0.384883 BTU/hr/ft/delF
+8.90932e-06 BTU/s/inch/delF
+0.00159209 cal/s/cm/delC
+0.159209 cal/s/m/delC
+0.0066613 W/cm/delC">0.3849</td><td  title="0.000255547 lbf/in
+0.0447532 N/m
+44.7532 mN/m
+44.7532 dyne/cm">2.555e-04</td></tr>
+<tr ><td><a class="reference external" href="./_static/Aerojet_Propellant_Properties.pdf">Aerojet</a></td><td  title="431.573 degR
+239.763 degK
+-28.0969 degF
+-33.3871 degC">431.6</td><td  title="14.6959 psia
+0.999997 atm
+1.01325 bar
+0.101325 MPa">14.7</td><td  title="0.684902 SG
+42.757 lbm/ft**3
+0.0247437 lbm/inch**3
+684.902 kg/m**3">0.6849</td><td  title="1.06836 BTU/lbm/F
+1.06908 cal/g/C
+0.00106908 kcal/g/C
+4473.02 J/kg/K">1.068</td><td  title="596.2 BTU/lbm
+331.444 cal/g
+0.331444 kcal/g
+1386.76 J/g">596.2</td><td  title="0.00245291 poise
+0.245291 cpoise
+0.000245291 Pa*s
+1.37356e-05 lbm/s/inch
+0.0494483 lbm/hr/inch
+0.883046 kg/hr/m
+0.00883046 kg/hr/cm">2.453e-03</td><td  title="0.21709 BTU/hr/ft/delF
+5.02523e-06 BTU/s/inch/delF
+0.000898004 cal/s/cm/delC
+0.0898004 cal/s/m/delC
+0.00375725 W/cm/delC">0.2171</td><td >---</td></tr>
+
+</table></div>
+<div class="section" id="fluid-properties">
+<h2>Fluid Properties<a class="headerlink" href="#fluid-properties" title="Permalink to this headline">¶</a></h2>
+<p>NH3 == Ammonia</p>
+<p><cite>Hover over column headers to see definitions, values to see alternate units</cite></p>
+<table width="100%">
+<tr><th></th>
+    <th title="Molecular Weight">MolWt</th>
+    <th title="Critical Temperature">Tc</th>
+    <th title="Critical Pressure">Pc</th>
+    <th title="Critical Density">SGc</th>
+    <th title="Critical Compressibility Factor">Zc</th>
+    <th title="Normal Boiling Point">Tnbp</th>
+    <th title="Melting/Freezing Point">Tmelt</th>
+    <th title="Pitzer Acentric Factor">omega</th></tr>
+<tr><th>Source</th><th>g/gmole</th><th>R</th><th>psia</th><th>g/ml</th><th>(-)</th><th>R</th><th>R</th><th>(-)</th></tr>
+
+
+<tr  style="background-color:#FFFF00"><td><a class="reference external" href="https://pypi.python.org/pypi/rocketprops">RocketProps</a></td><td>17.030</td><td  title="729.72 degR
+405.4 degK
+270.05 degF
+132.25 degC">729.7</td><td  title="1643.71 psia
+111.848 atm
+113.33 bar
+11.333 MPa">1643.7</td><td  title="0.224997 SG
+14.0461 lbm/ft**3
+0.00812854 lbm/inch**3
+224.997 kg/m**3">0.2250</td><td>0.2545</td><td  title="431.681 degR
+239.823 degK
+-27.9886 degF
+-33.327 degC">431.7</td><td  title="351.891 degR
+195.495 degK
+-107.779 degF
+-77.655 degC">351.9</td><td>0.25601</td></tr>
+<tr ><td><a class="reference external" href="./_static/AFRPL-TR-69-149Hydrazine fuels.pdf">AFRPL-TR-69-149</a></td><td>17.032</td><td  title="730.1 degR
+405.611 degK
+270.43 degF
+132.461 degC">730.1</td><td  title="1647.5 psia
+112.106 atm
+113.591 bar
+11.3591 MPa">1647.5</td><td  title="0.235 SG
+14.6706 lbm/ft**3
+0.00848991 lbm/inch**3
+235 kg/m**3">0.2350</td><td>0.2442</td><td  title="431.64 degR
+239.8 degK
+-28.03 degF
+-33.35 degC">431.6</td><td  title="351.72 degR
+195.4 degK
+-107.95 degF
+-77.75 degC">351.7</td><td>---</td></tr>
+<tr ><td><a class="reference external" href="./sources.html#gas&liq-5th-ed">Gas&Liq 5th Ed</a></td><td>17.031</td><td  title="729.72 degR
+405.4 degK
+270.05 degF
+132.25 degC">729.7</td><td  title="1646.61 psia
+112.045 atm
+113.53 bar
+11.353 MPa">1646.6</td><td  title="0.235008 SG
+14.671 lbm/ft**3
+0.00849019 lbm/inch**3
+235.008 kg/m**3">0.2350</td><td>0.2441</td><td  title="431.676 degR
+239.82 degK
+-27.994 degF
+-33.33 degC">431.7</td><td  title="351.738 degR
+195.41 degK
+-107.932 degF
+-77.74 degC">351.7</td><td>0.25700</td></tr>
+<tr ><td><a class="reference external" href="https://www.nist.gov/srd/refprop">RefProp</a></td><td>17.030</td><td  title="729.72 degR
+405.4 degK
+270.05 degF
+132.25 degC">729.7</td><td  title="1643.71 psia
+111.848 atm
+113.33 bar
+11.333 MPa">1643.7</td><td  title="0.224997 SG
+14.0461 lbm/ft**3
+0.00812854 lbm/inch**3
+224.997 kg/m**3">0.2250</td><td>0.2545</td><td  title="431.681 degR
+239.823 degK
+-27.9886 degF
+-33.327 degC">431.7</td><td  title="351.891 degR
+195.495 degK
+-107.779 degF
+-77.655 degC">351.9</td><td>0.25601</td></tr>
+<tr ><td><a class="reference external" href="./_static/Aerojet_Propellant_Properties.pdf">Aerojet</a></td><td>17.032</td><td  title="729.77 degR
+405.428 degK
+270.1 degF
+132.278 degC">729.8</td><td  title="1636 psia
+111.323 atm
+112.798 bar
+11.2798 MPa">1636.0</td><td  title="0.248112 SG
+15.4891 lbm/ft**3
+0.00896362 lbm/inch**3
+248.112 kg/m**3">0.2481</td><td>0.2298</td><td  title="431.62 degR
+239.789 degK
+-28.05 degF
+-33.3611 degC">431.6</td><td  title="351.77 degR
+195.428 degK
+-107.9 degF
+-77.7222 degC">351.8</td><td>0.23259</td></tr>
+
+</table></div>
+<div class="section" id="vapor-pressure">
+<h2>Vapor Pressure<a class="headerlink" href="#vapor-pressure" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/NH3_Psat.png"><img alt="_images/NH3_Psat.png" src="_images/NH3_Psat.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#wagner-fit-source"><span class="std std-ref">Wagner</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="density">
+<h2>Density<a class="headerlink" href="#density" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/NH3_SG.png"><img alt="_images/NH3_SG.png" src="_images/NH3_SG.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#rackett-scaling-source"><span class="std std-ref">Rackett</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="heat-capacity">
+<h2>Heat Capacity<a class="headerlink" href="#heat-capacity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/NH3_Cp.png"><img alt="_images/NH3_Cp.png" src="_images/NH3_Cp.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="viscosity">
+<h2>Viscosity<a class="headerlink" href="#viscosity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/NH3_Visc.png"><img alt="_images/NH3_Visc.png" src="_images/NH3_Visc.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#squires-source"><span class="std std-ref">Squires</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="heat-of-vaporization">
+<h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/NH3_Hvap.png"><img alt="_images/NH3_Hvap.png" src="_images/NH3_Hvap.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#pitzer-hvap-source"><span class="std std-ref">Pitzer</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="thermal-conductivity">
+<h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/NH3_Cond.png"><img alt="_images/NH3_Cond.png" src="_images/NH3_Cond.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#aerojet-source"><span class="std std-ref">Aerojet</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#nicola-source"><span class="std std-ref">Nicola</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="surface-tension">
+<h2>Surface Tension<a class="headerlink" href="#surface-tension" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/NH3_Surf.png"><img alt="_images/NH3_Surf.png" src="_images/NH3_Surf.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-69-149-source"><span class="std std-ref">AFRPL-TR-69-149</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#pitzer-surf-source"><span class="std std-ref">Pitzer</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ph2_prop.html" title="PH2"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="n2o_prop.html" title="N2O"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.
+    </div>
+  </body>
+</html>

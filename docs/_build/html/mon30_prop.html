@@ -1,0 +1,396 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>MON30 &#8212; RocketProps 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="N2H4" href="n2h4_prop.html" />
+    <link rel="prev" title="MON25" href="mon25_prop.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="n2h4_prop.html" title="N2H4"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mon25_prop.html" title="MON25"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">QuickStart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sources.html">Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a50_prop.html">A50</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clf5_prop.html">CLF5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethanol_prop.html">Ethanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="f2_prop.html">F2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="irfna_prop.html">IRFNA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lox_prop.html">LOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methane_prop.html">Methane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methanol_prop.html">Methanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mhf3_prop.html">MHF3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mmh_prop.html">MMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon10_prop.html">MON10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon25_prop.html">MON25</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MON30</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reference-points">Reference Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fluid-properties">Fluid Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vapor-pressure">Vapor Pressure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#density">Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heat-capacity">Heat Capacity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#viscosity">Viscosity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heat-of-vaporization">Heat of Vaporization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thermal-conductivity">Thermal Conductivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surface-tension">Surface Tension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="n2h4_prop.html">N2H4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o4_prop.html">N2O4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o_prop.html">N2O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nh3_prop.html">NH3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ph2_prop.html">PH2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propane_prop.html">Propane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rp1_prop.html">RP1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udmh_prop.html">UDMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="water_prop.html">Water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">RocketProps Code Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="mon25_prop.html"
+                        title="previous chapter">MON25</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="n2h4_prop.html"
+                        title="next chapter">N2H4</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/mon30_prop.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mon30">
+<h1>MON30<a class="headerlink" href="#mon30" title="Permalink to this headline">¶</a></h1>
+<p>MON30 is in the family of
+<a class="reference external" href="http://www.astronautix.com/m/mon.html">Mixed Oxides of Nitrogen</a> ,
+in which Nitric oxide (NO),  a low boiling point cryogenic gas, is added to Nitrogen Tetroxide (N2O4).</p>
+<p>Solutions of NO in nitrogen tetroxide sharply depress the freezing point of N2O4.
+The mechanism of depression is believed to involve the formation of N2O3,
+which is soluble in nitrogen tetroxide.</p>
+<p>Various MON concentrations have been considered,
+however, the high vapor pressure of MON limits the concentration of
+NO in N2O4 to about 30 per cent. Aside from the high vapor pressure, MON
+is quite similar to nitrogen tetroxide.</p>
+<div class="section" id="reference-points">
+<h2>Reference Points<a class="headerlink" href="#reference-points" title="Permalink to this headline">¶</a></h2>
+<p>MON30 == 70% N2O4 + 30% NO</p>
+<p><cite>Hover over column headers to see definitions, values to see alternate units</cite></p>
+<table width="100%">
+<tr><th></th>
+    <th title="Reference Temperature">Tref</th>
+    <th title="Reference Pressure">Pref</th>
+    <th title="Specific Gravity">SG</th>
+    <th title="Specific Heat">Cp</th>
+    <th title="Heat of Vaporization">dHvap</th>
+    <th title="Viscosity">Visc</th>
+    <th title="Thermal Conductivity">Cond</th>
+    <th title="Surface Tension">Surf</th>
+<tr><th>Source</th><th>R</th><th>psia</th><th>g/ml</th><th>BTU/lbm-R</th><th>BTU/lbm</th><th>poise</th><th>BTU/hr-ft-R</th><th>lbf/in</th></tr>
+
+
+<tr  style="background-color:#FFFF00"><td><a class="reference external" href="https://pypi.python.org/pypi/rocketprops">RocketProps</a></td><td  title="527.7 degR
+293.167 degK
+68.03 degF
+20.0167 degC">527.7</td><td  title="86.3444 psia
+5.87539 atm
+5.95324 bar
+0.595324 MPa">86.3</td><td  title="1.38132 SG
+86.233 lbm/ft**3
+0.0499034 lbm/inch**3
+1381.32 kg/m**3">1.3813</td><td  title="0.470751 BTU/lbm/F
+0.471066 cal/g/C
+0.000471066 kcal/g/C
+1970.94 J/kg/K">0.471</td><td  title="149.728 BTU/lbm
+83.238 cal/g
+0.083238 kcal/g
+348.268 J/g">149.7</td><td  title="0.00485107 poise
+0.485107 cpoise
+0.000485107 Pa*s
+2.71647e-05 lbm/s/inch
+0.097793 lbm/hr/inch
+1.74638 kg/hr/m
+0.0174638 kg/hr/cm">4.851e-03</td><td  title="0.128195 BTU/hr/ft/delF
+2.96747e-06 BTU/s/inch/delF
+0.000530284 cal/s/cm/delC
+0.0530284 cal/s/m/delC
+0.00221871 W/cm/delC">0.1282</td><td  title="0.000222687 lbf/in
+0.0389985 N/m
+38.9985 mN/m
+38.9985 dyne/cm">2.227e-04</td></tr>
+<tr ><td><a class="reference external" href="./_static/MON-Mixed_Oxides_of_Nitrogen.pdf">CPIA-LPM</a></td><td  title="527.67 degR
+293.15 degK
+68 degF
+20 degC">527.7</td><td  title="86.2996 psia
+5.87234 atm
+5.95015 bar
+0.595015 MPa">86.3</td><td  title="1.38188 SG
+86.2677 lbm/ft**3
+0.0499234 lbm/inch**3
+1381.88 kg/m**3">1.3819</td><td >---</td><td >---</td><td  title="0.00485335 poise
+0.485335 cpoise
+0.000485335 Pa*s
+2.71775e-05 lbm/s/inch
+0.097839 lbm/hr/inch
+1.74721 kg/hr/m
+0.0174721 kg/hr/cm">4.853e-03</td><td >---</td><td >---</td></tr>
+<tr ><td><a class="reference external" href="./_static/AFRPL-TR_76-76_MON_propellants.pdf">AFRPL-TR-76-76</a></td><td  title="527.67 degR
+293.15 degK
+68 degF
+20 degC">527.7</td><td  title="86.3122 psia
+5.8732 atm
+5.95102 bar
+0.595102 MPa">86.3</td><td  title="1.38184 SG
+86.2656 lbm/ft**3
+0.0499222 lbm/inch**3
+1381.84 kg/m**3">1.3818</td><td >---</td><td >---</td><td >---</td><td >---</td><td >---</td></tr>
+
+</table></div>
+<div class="section" id="fluid-properties">
+<h2>Fluid Properties<a class="headerlink" href="#fluid-properties" title="Permalink to this headline">¶</a></h2>
+<p>MON30 == 70% N2O4 + 30% NO</p>
+<p><cite>Hover over column headers to see definitions, values to see alternate units</cite></p>
+<table width="100%">
+<tr><th></th>
+    <th title="Molecular Weight">MolWt</th>
+    <th title="Critical Temperature">Tc</th>
+    <th title="Critical Pressure">Pc</th>
+    <th title="Critical Density">SGc</th>
+    <th title="Critical Compressibility Factor">Zc</th>
+    <th title="Normal Boiling Point">Tnbp</th>
+    <th title="Melting/Freezing Point">Tmelt</th>
+    <th title="Pitzer Acentric Factor">omega</th></tr>
+<tr><th>Source</th><th>g/gmole</th><th>R</th><th>psia</th><th>g/ml</th><th>(-)</th><th>R</th><th>R</th><th>(-)</th></tr>
+
+
+<tr  style="background-color:#FFFF00"><td><a class="reference external" href="https://pypi.python.org/pypi/rocketprops">RocketProps</a></td><td>79.321</td><td  title="721 degR
+400.556 degK
+261.33 degF
+127.406 degC">721.0</td><td  title="2142.52 psia
+145.79 atm
+147.722 bar
+14.7722 MPa">2142.5</td><td  title="0.674145 SG
+42.0855 lbm/ft**3
+0.024355 lbm/inch**3
+674.145 kg/m**3">0.6741</td><td>0.5220</td><td  title="462.67 degR
+257.039 degK
+3 degF
+-16.1111 degC">462.7</td><td  title="345.87 degR
+192.15 degK
+-113.8 degF
+-81 degC">345.9</td><td>0.64117</td></tr>
+<tr ><td><a class="reference external" href="./_static/AFRPL-TR_76-76_MON_propellants.pdf">AFRPL-TR-76-76</a></td><td>79.321</td><td  title="721 degR
+400.556 degK
+261.33 degF
+127.406 degC">721.0</td><td  title="2142.52 psia
+145.79 atm
+147.722 bar
+14.7722 MPa">2142.5</td><td  title="0.674145 SG
+42.0855 lbm/ft**3
+0.024355 lbm/inch**3
+674.145 kg/m**3">0.6741</td><td>0.5220</td><td  title="462.67 degR
+257.039 degK
+3 degF
+-16.1111 degC">462.7</td><td  title="345.87 degR
+192.15 degK
+-113.8 degF
+-81 degC">345.9</td><td>0.64111</td></tr>
+
+</table><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Psudocritical properties are estimated from a molar mixing rules for critical temperature
+and molecular weight (see <a class="reference internal" href="models.html#tc-mixture"><span class="std std-ref">Tc Mixture</span></a>).
+The <a class="reference internal" href="models.html#wagner"><span class="std std-ref">Wagner</span></a> vapor pressure correlation is used for critical pressure, critical specific gravity,
+and critical compressibility.</p>
+<p>Because of the complex temperature-dependent
+equilibrium concentrations of N2O4, N2O3, NO2 and NO, using pseudocritical properties
+results in considerable uncertainty in corresponding states correlations.</p>
+</div>
+</div>
+<div class="section" id="vapor-pressure">
+<h2>Vapor Pressure<a class="headerlink" href="#vapor-pressure" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/MON30_Psat.png"><img alt="_images/MON30_Psat.png" src="_images/MON30_Psat.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-76-76-source"><span class="std std-ref">AFRPL-TR-76-76</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#cpia-lpm-source"><span class="std std-ref">CPIA-LPM</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#wagner-fit-source"><span class="std std-ref">Wagner</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="density">
+<h2>Density<a class="headerlink" href="#density" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice that critical specific gravity from
+<a class="reference internal" href="models.html#daubert"><span class="std std-ref">Daubert</span></a>
+equation differs significantly from
+the estimate made with mixing equations. This is likely due to complex temperature-dependent
+equilibrium concentrations of N2O4, N2O3, NO2 and NO</p>
+</div>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/MON30_SG.png"><img alt="_images/MON30_SG.png" src="_images/MON30_SG.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#afrpl-tr-76-76-source"><span class="std std-ref">AFRPL-TR-76-76</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#cpia-lpm-source"><span class="std std-ref">CPIA-LPM</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#daubert-source"><span class="std std-ref">Daubert</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="heat-capacity">
+<h2>Heat Capacity<a class="headerlink" href="#heat-capacity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/MON30_Cp.png"><img alt="_images/MON30_Cp.png" src="_images/MON30_Cp.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="models.html#joback-source"><span class="std std-ref">Joback</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="viscosity">
+<h2>Viscosity<a class="headerlink" href="#viscosity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/MON30_Visc.png"><img alt="_images/MON30_Visc.png" src="_images/MON30_Visc.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="models.html#squires-source"><span class="std std-ref">Squires</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#cpia-lpm-source"><span class="std std-ref">CPIA-LPM</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="heat-of-vaporization">
+<h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/MON30_Hvap.png"><img alt="_images/MON30_Hvap.png" src="_images/MON30_Hvap.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="models.html#pitzer-hvap-source"><span class="std std-ref">Pitzer</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="thermal-conductivity">
+<h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/MON30_Cond.png"><img alt="_images/MON30_Cond.png" src="_images/MON30_Cond.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="models.html#nicola-source"><span class="std std-ref">Nicola</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="surface-tension">
+<h2>Surface Tension<a class="headerlink" href="#surface-tension" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/MON30_Surf.png"><img alt="_images/MON30_Surf.png" src="_images/MON30_Surf.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="models.html#pitzer-surf-source"><span class="std std-ref">Pitzer</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="n2h4_prop.html" title="N2H4"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mon25_prop.html" title="MON25"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.
+    </div>
+  </body>
+</html>

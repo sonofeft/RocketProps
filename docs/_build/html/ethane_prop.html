@@ -1,0 +1,387 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ethane &#8212; RocketProps 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Ethanol" href="ethanol_prop.html" />
+    <link rel="prev" title="CLF5" href="clf5_prop.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ethanol_prop.html" title="Ethanol"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="clf5_prop.html" title="CLF5"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">QuickStart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sources.html">Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a50_prop.html">A50</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clf5_prop.html">CLF5</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ethane</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reference-points">Reference Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fluid-properties">Fluid Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vapor-pressure">Vapor Pressure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#density">Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heat-capacity">Heat Capacity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#viscosity">Viscosity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heat-of-vaporization">Heat of Vaporization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thermal-conductivity">Thermal Conductivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surface-tension">Surface Tension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ethanol_prop.html">Ethanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="f2_prop.html">F2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="irfna_prop.html">IRFNA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lox_prop.html">LOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methane_prop.html">Methane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methanol_prop.html">Methanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mhf3_prop.html">MHF3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mmh_prop.html">MMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon10_prop.html">MON10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon25_prop.html">MON25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon30_prop.html">MON30</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2h4_prop.html">N2H4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o4_prop.html">N2O4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o_prop.html">N2O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nh3_prop.html">NH3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ph2_prop.html">PH2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propane_prop.html">Propane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rp1_prop.html">RP1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udmh_prop.html">UDMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="water_prop.html">Water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">RocketProps Code Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="clf5_prop.html"
+                        title="previous chapter">CLF5</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ethanol_prop.html"
+                        title="next chapter">Ethanol</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/ethane_prop.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ethane">
+<h1>Ethane<a class="headerlink" href="#ethane" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="reference-points">
+<h2>Reference Points<a class="headerlink" href="#reference-points" title="Permalink to this headline">¶</a></h2>
+<p>Ethane == C2H6</p>
+<p><cite>Hover over column headers to see definitions, values to see alternate units</cite></p>
+<table width="100%">
+<tr><th></th>
+    <th title="Reference Temperature">Tref</th>
+    <th title="Reference Pressure">Pref</th>
+    <th title="Specific Gravity">SG</th>
+    <th title="Specific Heat">Cp</th>
+    <th title="Heat of Vaporization">dHvap</th>
+    <th title="Viscosity">Visc</th>
+    <th title="Thermal Conductivity">Cond</th>
+    <th title="Surface Tension">Surf</th>
+<tr><th>Source</th><th>R</th><th>psia</th><th>g/ml</th><th>BTU/lbm-R</th><th>BTU/lbm</th><th>poise</th><th>BTU/hr-ft-R</th><th>lbf/in</th></tr>
+
+
+<tr  style="background-color:#FFFF00"><td><a class="reference external" href="https://pypi.python.org/pypi/rocketprops">RocketProps</a></td><td  title="332.224 degR
+184.569 degK
+-127.446 degF
+-88.581 degC">332.2</td><td  title="14.6959 psia
+0.999997 atm
+1.01325 bar
+0.101325 MPa">14.7</td><td  title="0.543829 SG
+33.9501 lbm/ft**3
+0.0196471 lbm/inch**3
+543.829 kg/m**3">0.5438</td><td  title="0.582661 BTU/lbm/F
+0.583051 cal/g/C
+0.000583051 kcal/g/C
+2439.49 J/kg/K">0.583</td><td  title="210.547 BTU/lbm
+117.049 cal/g
+0.117049 kcal/g
+489.731 J/g">210.5</td><td  title="0.0016637 poise
+0.16637 cpoise
+0.00016637 Pa*s
+9.31631e-06 lbm/s/inch
+0.0335387 lbm/hr/inch
+0.598934 kg/hr/m
+0.00598934 kg/hr/cm">1.664e-03</td><td  title="0.0965368 BTU/hr/ft/delF
+2.23465e-06 BTU/s/inch/delF
+0.00039933 cal/s/cm/delC
+0.039933 cal/s/m/delC
+0.0016708 W/cm/delC">0.0965</td><td  title="9.15615e-05 lbf/in
+0.0160349 N/m
+16.0349 mN/m
+16.0349 dyne/cm">9.156e-05</td></tr>
+<tr ><td><a class="reference external" href="https://www.nist.gov/srd/refprop">RefProp</a></td><td  title="332.224 degR
+184.569 degK
+-127.446 degF
+-88.581 degC">332.2</td><td  title="14.6959 psia
+0.999997 atm
+1.01325 bar
+0.101325 MPa">14.7</td><td  title="0.543829 SG
+33.9501 lbm/ft**3
+0.0196471 lbm/inch**3
+543.829 kg/m**3">0.5438</td><td  title="0.582661 BTU/lbm/F
+0.583051 cal/g/C
+0.000583051 kcal/g/C
+2439.49 J/kg/K">0.583</td><td  title="210.547 BTU/lbm
+117.049 cal/g
+0.117049 kcal/g
+489.731 J/g">210.5</td><td  title="0.0016637 poise
+0.16637 cpoise
+0.00016637 Pa*s
+9.31631e-06 lbm/s/inch
+0.0335387 lbm/hr/inch
+0.598934 kg/hr/m
+0.00598934 kg/hr/cm">1.664e-03</td><td  title="0.0965368 BTU/hr/ft/delF
+2.23465e-06 BTU/s/inch/delF
+0.00039933 cal/s/cm/delC
+0.039933 cal/s/m/delC
+0.0016708 W/cm/delC">0.0965</td><td  title="9.15615e-05 lbf/in
+0.0160349 N/m
+16.0349 mN/m
+16.0349 dyne/cm">9.156e-05</td></tr>
+
+</table></div>
+<div class="section" id="fluid-properties">
+<h2>Fluid Properties<a class="headerlink" href="#fluid-properties" title="Permalink to this headline">¶</a></h2>
+<p>Ethane == C2H6</p>
+<p><cite>Hover over column headers to see definitions, values to see alternate units</cite></p>
+<table width="100%">
+<tr><th></th>
+    <th title="Molecular Weight">MolWt</th>
+    <th title="Critical Temperature">Tc</th>
+    <th title="Critical Pressure">Pc</th>
+    <th title="Critical Density">SGc</th>
+    <th title="Critical Compressibility Factor">Zc</th>
+    <th title="Normal Boiling Point">Tnbp</th>
+    <th title="Melting/Freezing Point">Tmelt</th>
+    <th title="Pitzer Acentric Factor">omega</th></tr>
+<tr><th>Source</th><th>g/gmole</th><th>R</th><th>psia</th><th>g/ml</th><th>(-)</th><th>R</th><th>R</th><th>(-)</th></tr>
+
+
+<tr  style="background-color:#FFFF00"><td><a class="reference external" href="https://pypi.python.org/pypi/rocketprops">RocketProps</a></td><td>30.069</td><td  title="549.58 degR
+305.322 degK
+89.9096 degF
+32.172 degC">549.6</td><td  title="706.653 psia
+48.0849 atm
+48.722 bar
+4.8722 MPa">706.7</td><td  title="0.206177 SG
+12.8712 lbm/ft**3
+0.00744862 lbm/inch**3
+206.177 kg/m**3">0.2062</td><td>0.2800</td><td  title="332.224 degR
+184.569 degK
+-127.446 degF
+-88.581 degC">332.2</td><td  title="162.662 degR
+90.368 degK
+-297.008 degF
+-182.782 degC">162.7</td><td>0.09951</td></tr>
+<tr ><td><a class="reference external" href="https://www.nist.gov/srd/refprop">RefProp</a></td><td>30.069</td><td  title="549.58 degR
+305.322 degK
+89.9096 degF
+32.172 degC">549.6</td><td  title="706.653 psia
+48.0849 atm
+48.722 bar
+4.8722 MPa">706.7</td><td  title="0.206177 SG
+12.8712 lbm/ft**3
+0.00744862 lbm/inch**3
+206.177 kg/m**3">0.2062</td><td>0.2800</td><td  title="332.224 degR
+184.569 degK
+-127.446 degF
+-88.581 degC">332.2</td><td  title="162.662 degR
+90.368 degK
+-297.008 degF
+-182.782 degC">162.7</td><td>0.09951</td></tr>
+<tr ><td><a class="reference external" href="./sources.html#gas&liq-5th-ed">Gas&Liq 5th Ed</a></td><td>30.070</td><td  title="549.576 degR
+305.32 degK
+89.906 degF
+32.17 degC">549.6</td><td  title="706.624 psia
+48.0829 atm
+48.72 bar
+4.872 MPa">706.6</td><td  title="0.206667 SG
+12.9018 lbm/ft**3
+0.00746631 lbm/inch**3
+206.667 kg/m**3">0.2067</td><td>0.2793</td><td  title="332.19 degR
+184.55 degK
+-127.48 degF
+-88.6 degC">332.2</td><td  title="162.63 degR
+90.35 degK
+-297.04 degF
+-182.8 degC">162.6</td><td>0.09900</td></tr>
+
+</table></div>
+<div class="section" id="vapor-pressure">
+<h2>Vapor Pressure<a class="headerlink" href="#vapor-pressure" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/Ethane_Psat.png"><img alt="_images/Ethane_Psat.png" src="_images/Ethane_Psat.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#wagner-fit-source"><span class="std std-ref">Wagner</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="density">
+<h2>Density<a class="headerlink" href="#density" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/Ethane_SG.png"><img alt="_images/Ethane_SG.png" src="_images/Ethane_SG.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#rackett-scaling-source"><span class="std std-ref">Rackett</span></a></div>
+<div class="line"><a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="heat-capacity">
+<h2>Heat Capacity<a class="headerlink" href="#heat-capacity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/Ethane_Cp.png"><img alt="_images/Ethane_Cp.png" src="_images/Ethane_Cp.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="viscosity">
+<h2>Viscosity<a class="headerlink" href="#viscosity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/Ethane_Visc.png"><img alt="_images/Ethane_Visc.png" src="_images/Ethane_Visc.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="heat-of-vaporization">
+<h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/Ethane_Hvap.png"><img alt="_images/Ethane_Hvap.png" src="_images/Ethane_Hvap.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#pitzer-hvap-source"><span class="std std-ref">Pitzer</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="thermal-conductivity">
+<h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/Ethane_Cond.png"><img alt="_images/Ethane_Cond.png" src="_images/Ethane_Cond.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+<div class="section" id="surface-tension">
+<h2>Surface Tension<a class="headerlink" href="#surface-tension" title="Permalink to this headline">¶</a></h2>
+<div class="columns">
+    <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/Ethane_Surf.png"><img alt="_images/Ethane_Surf.png" src="_images/Ethane_Surf.png" /></a>
+</div><div ><br><br><div class="line-block">
+<div class="line">RocketProps Selected Curve</div>
+<div class="line"><a class="reference internal" href="sources.html#refprop-source"><span class="std std-ref">RefProp</span></a></div>
+<div class="line"><a class="reference internal" href="models.html#pitzer-surf-source"><span class="std std-ref">Pitzer</span></a></div>
+</div>
+</div></div>
+<div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ethanol_prop.html" title="Ethanol"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="clf5_prop.html" title="CLF5"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.
+    </div>
+  </body>
+</html>

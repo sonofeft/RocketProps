@@ -1,0 +1,9 @@
+numpy
+scipy
+matplotlib
+
+[dev]
+check-manifest
+
+[test]
+coverage

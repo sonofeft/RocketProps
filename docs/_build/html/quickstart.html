@@ -1,0 +1,228 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>QuickStart &#8212; RocketProps 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="RocketProps" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="RocketProps"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QuickStart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-rocketprops">Install RocketProps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-from-source">Installation From Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-rocketprops">Running RocketProps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-quick-plots">Create Quick Plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sources.html">Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a50_prop.html">A50</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clf5_prop.html">CLF5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethanol_prop.html">Ethanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="f2_prop.html">F2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="irfna_prop.html">IRFNA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lox_prop.html">LOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methane_prop.html">Methane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methanol_prop.html">Methanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mhf3_prop.html">MHF3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mmh_prop.html">MMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon10_prop.html">MON10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon25_prop.html">MON25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon30_prop.html">MON30</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2h4_prop.html">N2H4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o4_prop.html">N2O4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o_prop.html">N2O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nh3_prop.html">NH3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ph2_prop.html">PH2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propane_prop.html">Propane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rp1_prop.html">RP1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udmh_prop.html">UDMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="water_prop.html">Water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">RocketProps Code Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">RocketProps</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="next chapter">Examples</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/quickstart.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="quickstart">
+<h1>QuickStart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-rocketprops">
+<h2>Install RocketProps<a class="headerlink" href="#install-rocketprops" title="Permalink to this headline">¶</a></h2>
+<p>The recommended way to install RocketProps is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">rocketprops</span>
+
+    <span class="n">OR</span> <span class="n">on</span> <span class="n">Linux</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">rocketprops</span>
+    <span class="n">OR</span> <span class="n">perhaps</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="n">rocketprops</span>
+</pre></div>
+</div>
+<p>Note that RocketProps relies on <a class="reference external" href="https://www.scipy.org/getting-started.html">scipy</a> which,
+in turn, depends on <a class="reference external" href="https://numpy.org/doc/stable/reference/">numpy</a> and
+<a class="reference external" href="https://matplotlib.org/contents.html">matplotlib</a>.</p>
+</div>
+<div class="section" id="installation-from-source">
+<span id="internal-source-install"></span><h2>Installation From Source<a class="headerlink" href="#installation-from-source" title="Permalink to this headline">¶</a></h2>
+<p>Much less common, but if installing from source, then
+<code class="docutils literal notranslate"><span class="pre">pip</span></code> is still a good option.</p>
+<p>After navigating to the directory holding RocketProps source code, do the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">full</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">rocketprops</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+
+    <span class="n">OR</span> <span class="n">on</span> <span class="n">Linux</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+    <span class="n">OR</span> <span class="n">perhaps</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>This will execute the local <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file and install RocketProps.</p>
+</div>
+<div class="section" id="running-rocketprops">
+<h2>Running RocketProps<a class="headerlink" href="#running-rocketprops" title="Permalink to this headline">¶</a></h2>
+<p>Test the installation by copying and pasting the following terminal command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;from rocketprops.rocket_prop import get_prop; p=get_prop(&#39;N2O4&#39;); p.summ_print()&quot;</span>
+</pre></div>
+</div>
+<p>The output should be a table of properties like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">======</span> <span class="n">RocketProps</span> <span class="n">State</span> <span class="n">Point</span> <span class="n">of</span> <span class="n">Liquid</span> <span class="n">N2O4</span> <span class="o">=====</span>
+<span class="n">Name</span>    <span class="o">=</span>       <span class="n">N2O4</span>  <span class="p">(</span><span class="n">MON</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">MON3</span><span class="p">)</span>
+<span class="n">T</span>       <span class="o">=</span>       <span class="mf">527.67</span> <span class="n">degR</span>
+<span class="n">P</span>       <span class="o">=</span>      <span class="mf">14.6959</span> <span class="n">psia</span>
+<span class="n">Pvap</span>    <span class="o">=</span>      <span class="mf">13.7843</span> <span class="n">psia</span>
+<span class="n">Pc</span>      <span class="o">=</span>       <span class="mf">1441.3</span> <span class="n">psia</span>
+<span class="n">Tc</span>      <span class="o">=</span>       <span class="mf">776.47</span> <span class="n">degR</span>
+<span class="n">SGliq</span>   <span class="o">=</span>      <span class="mf">1.44144</span> <span class="n">g</span><span class="o">/</span><span class="n">cc</span>
+<span class="n">SGvap</span>   <span class="o">=</span>   <span class="mf">0.00367439</span> <span class="n">g</span><span class="o">/</span><span class="n">cc</span>
+<span class="n">visc</span>    <span class="o">=</span>   <span class="mf">0.00420093</span> <span class="n">poise</span>
+<span class="n">cond</span>    <span class="o">=</span>    <span class="mf">0.0766961</span> <span class="n">BTU</span><span class="o">/</span><span class="n">hr</span><span class="o">/</span><span class="n">ft</span><span class="o">/</span><span class="n">delF</span>
+<span class="n">Tnbp</span>    <span class="o">=</span>       <span class="mf">530.07</span> <span class="n">degR</span>
+<span class="n">Tfreeze</span> <span class="o">=</span>       <span class="mf">471.42</span> <span class="n">degR</span>
+<span class="n">Cp</span>      <span class="o">=</span>     <span class="mf">0.374677</span> <span class="n">BTU</span><span class="o">/</span><span class="n">lbm</span><span class="o">/</span><span class="n">delF</span>
+<span class="n">MolWt</span>   <span class="o">=</span>       <span class="mf">92.011</span> <span class="n">g</span><span class="o">/</span><span class="n">gmole</span>
+<span class="n">Hvap</span>    <span class="o">=</span>        <span class="mf">178.2</span> <span class="n">BTU</span><span class="o">/</span><span class="n">lbm</span>
+<span class="n">surf</span>    <span class="o">=</span>  <span class="mf">0.000149673</span> <span class="n">lbf</span><span class="o">/</span><span class="ow">in</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-quick-plots">
+<h2>Create Quick Plots<a class="headerlink" href="#create-quick-plots" title="Permalink to this headline">¶</a></h2>
+<p>The following example will generate plots for Propane (C3H8) of its various liquid properties as a function of reduced temperature (Tr = T/Tc).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rocketprops.rocket_prop</span> <span class="kn">import</span> <span class="n">get_prop</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">get_prop</span><span class="p">(</span><span class="s1">&#39;c3h8&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">plot_sat_props</span><span class="p">(</span><span class="n">save_figures</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/Propane_TandP.png"><img alt="_images/Propane_TandP.png" src="_images/Propane_TandP.png" style="width: 45%;" /></a>
+<a class="reference internal image-reference" href="_images/Propane_SurfSG.png"><img alt="_images/Propane_SurfSG.png" src="_images/Propane_SurfSG.png" style="width: 45%;" /></a>
+<a class="reference internal image-reference" href="_images/Propane_CpHvap.png"><img alt="_images/Propane_CpHvap.png" src="_images/Propane_CpHvap.png" style="width: 45%;" /></a>
+<a class="reference internal image-reference" href="_images/Propane_ViscCond.png"><img alt="_images/Propane_ViscCond.png" src="_images/Propane_ViscCond.png" style="width: 45%;" /></a>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="RocketProps"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.
+    </div>
+  </body>
+</html>

@@ -52,13 +52,13 @@ if here not in sys.path[:2]:
 if up_one not in sys.path[:2]:
     sys.path.insert(0, up_one)
 
-from rocketprops.rocket_prop import Propellant
+from rocketprops.rocket_prop import get_prop; 
 
 class MyTest(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
-        self.myclass = Propellant()
+        self.myclass = get_prop('N2O4')
 
     def tearDown(self):
         unittest.TestCase.tearDown(self)

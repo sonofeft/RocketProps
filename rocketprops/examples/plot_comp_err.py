@@ -16,7 +16,6 @@ def get_pcstd( refL, sgL ):
 orderedL = []
 for name in ['Water','N2O','Fluorine','Oxygen','Propane','Ethane','Methane','Methanol','Ethanol','Ammonia','Hydrogen']:
 
-    ave_errL = []
 
     ec = EC_Fluid(name)
     p = get_prop(name)
@@ -56,15 +55,17 @@ for name in ['Water','N2O','Fluorine','Oxygen','Propane','Ethane','Methane','Met
         sg_p4L.append( p.SG_compressedNasrfar(T, P) )
 
 
+    ave_errL = []
     plt.plot( dpL, sg_ecL, '-', label='CoolProp', linewidth=7, color=COLORL[0], alpha=0.7)
     plt.plot( dpL, sg_p0L, '-', label='RocketProp '+get_pcstd( sg_ecL, sg_p0L ), linewidth=3, color=COLORL[5])
+    ave_errL = []
     plt.plot( dpL, sg_p1L, ':', label='COSTALD '+get_pcstd( sg_ecL, sg_p1L ), linewidth=3, color=COLORL[1])
     plt.plot( dpL, sg_p2L, '-', label='Chang Zhao 1 '+get_pcstd( sg_ecL, sg_p2L ), color=COLORL[2])
     plt.plot( dpL, sg_p3L, '-', label='Chang Zhao 2 '+get_pcstd( sg_ecL, sg_p3L ), color=COLORL[3])
     plt.plot( dpL, sg_p4L, '-', label='Nasrfar '+get_pcstd( sg_ecL, sg_p4L ), color=COLORL[4])
 
     ave_err = sum(ave_errL)/len(ave_errL) * 3.0
-    plt.title( p.pname + ' SG Model Comparison at T=%s, Tr=%g'%(Tstr,Tr) + '\nAve 3 sigma Error = %.2f%%'%ave_err )
+    plt.title( p.pname + ' SG Model Comparison at T=%s, Tr=%g'%(Tstr,Tr) + '\nAve 3 sigma model Error = %.2f%%'%ave_err )
 
     plt.xlabel('P - Psat (psid)')
     plt.ylabel( 'Specific Gravity (g/ml)' )

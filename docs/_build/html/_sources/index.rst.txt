@@ -18,6 +18,7 @@ Contents:
    examples
    sources
    models
+   high_press
    a50_prop   
    clf5_prop
    ethane_prop

@@ -18,7 +18,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="A50" href="a50_prop.html" />
+    <link rel="next" title="High Pressure" href="high_press.html" />
     <link rel="prev" title="Sources" href="sources.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="a50_prop.html" title="A50"
+          <a href="high_press.html" title="High Pressure"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="sources.html" title="Sources"
@@ -93,6 +93,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="high_press.html">High Pressure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="a50_prop.html">A50</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clf5_prop.html">CLF5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
@@ -126,8 +127,8 @@
   <p class="topless"><a href="sources.html"
                         title="previous chapter">Sources</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="a50_prop.html"
-                        title="next chapter">A50</a></p>
+  <p class="topless"><a href="high_press.html"
+                        title="next chapter">High Pressure</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -204,7 +205,7 @@ for use in RocketProps.:</p>
 </div>
 <div class="section" id="edalat">
 <span id="edalat-source"></span><h3>Edalat<a class="headerlink" href="#edalat" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.vapor_pressure.html">Edalat Vapor Pressure equation</a>
+<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.vapor_pressure.html#thermo.vapor_pressure.Edalat">Edalat Vapor Pressure equation</a>
 can estimate vapor pressure over a range of temperatures. It is taken from the
 <a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
 project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
@@ -277,7 +278,7 @@ temperature may be calculated.</p>
 <h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="pitzer">
 <span id="pitzer-hvap-source"></span><h3>Pitzer<a class="headerlink" href="#pitzer" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.phase_change.html">Pitzer Hvap equation</a>
+<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.phase_change.html#thermo.phase_change.Pitzer">Pitzer Hvap equation</a>
 calculates enthalpy of vaporization at arbitrary temperatures. It is taken from the
 <a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
 project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
@@ -289,7 +290,7 @@ and Contributors (2016-2020).</p>
 <h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nicola">
 <span id="nicola-source"></span><h3>Nicola<a class="headerlink" href="#nicola" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.thermal_conductivity.html">Nicola equation</a>
+<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.thermal_conductivity.html#thermo.thermal_conductivity.Nicola_original">Nicola equation</a>
 is taken from the
 <a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
 project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
@@ -321,13 +322,13 @@ Those values are:</p>
 </div>
 <div class="section" id="pitzer-surf-source">
 <span id="id12"></span><h3>Pitzer<a class="headerlink" href="#pitzer-surf-source" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.interface.html">Pitzer surface tension equation</a>
+<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.interface.html#thermo.interface.Pitzer">Pitzer surface tension equation</a>
 is taken from the
 <a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
 project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
 and Contributors (2016-2020).</p>
 <p>For propellants with no surface tension data available, the
-<a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.interface.html">Pitzer surface tension equation</a>
+<a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.interface.html#thermo.interface.Pitzer">Pitzer surface tension equation</a>
 can be used to predict surface tension.</p>
 <img alt="_images/surften_pitzer_eqn.jpg" src="_images/surften_pitzer_eqn.jpg" />
 </div>
@@ -389,7 +390,7 @@ by a mole fraction average (Joffe, 1971)</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="a50_prop.html" title="A50"
+          <a href="high_press.html" title="High Pressure"
              >next</a> |</li>
         <li class="right" >
           <a href="sources.html" title="Sources"

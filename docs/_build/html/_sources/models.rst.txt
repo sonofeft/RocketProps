@@ -72,7 +72,7 @@ Edalat
 ``````
 
 
-The `Edalat Vapor Pressure equation <https://thermo.readthedocs.io/en/latest/thermo.vapor_pressure.html>`_
+The `Edalat Vapor Pressure equation <https://thermo.readthedocs.io/en/latest/thermo.vapor_pressure.html#thermo.vapor_pressure.Edalat>`_
 can estimate vapor pressure over a range of temperatures. It is taken from the 
 `thermo <https://pypi.org/project/thermo/>`_  project which is an open-source 
 project on `pypi.org <https://pypi.org/>`_ developed by Caleb Bell 
@@ -182,7 +182,7 @@ Heat of Vaporization
 Pitzer
 ``````
 
-The `Pitzer Hvap equation <https://thermo.readthedocs.io/en/latest/thermo.phase_change.html>`_
+The `Pitzer Hvap equation <https://thermo.readthedocs.io/en/latest/thermo.phase_change.html#thermo.phase_change.Pitzer>`_
 calculates enthalpy of vaporization at arbitrary temperatures. It is taken from the 
 `thermo <https://pypi.org/project/thermo/>`_  project which is an open-source 
 project on `pypi.org <https://pypi.org/>`_ developed by Caleb Bell 
@@ -199,7 +199,7 @@ Thermal Conductivity
 Nicola
 ``````
 
-The `Nicola equation <https://thermo.readthedocs.io/en/latest/thermo.thermal_conductivity.html>`_
+The `Nicola equation <https://thermo.readthedocs.io/en/latest/thermo.thermal_conductivity.html#thermo.thermal_conductivity.Nicola_original>`_
 is taken from the 
 `thermo <https://pypi.org/project/thermo/>`_  project which is an open-source 
 project on `pypi.org <https://pypi.org/>`_ developed by Caleb Bell 
@@ -241,14 +241,14 @@ Those values are::
 Pitzer
 ``````
 
-The `Pitzer surface tension equation <https://thermo.readthedocs.io/en/latest/thermo.interface.html>`_
+The `Pitzer surface tension equation <https://thermo.readthedocs.io/en/latest/thermo.interface.html#thermo.interface.Pitzer>`_
 is taken from the 
 `thermo <https://pypi.org/project/thermo/>`_  project which is an open-source 
 project on `pypi.org <https://pypi.org/>`_ developed by Caleb Bell 
 and Contributors (2016-2020). 
 
 For propellants with no surface tension data available, the
-`Pitzer surface tension equation <https://thermo.readthedocs.io/en/latest/thermo.interface.html>`_
+`Pitzer surface tension equation <https://thermo.readthedocs.io/en/latest/thermo.interface.html#thermo.interface.Pitzer>`_
 can be used to predict surface tension.
 
 .. image:: ./_static/surften_pitzer_eqn.jpg

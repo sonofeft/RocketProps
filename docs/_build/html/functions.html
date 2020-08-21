@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>RocketProps Code Functions &#8212; RocketProps 0.1.1 documentation</title>
+    <title>RocketProps Code Functions &#8212; RocketProps 0.1.2 documentation</title>
     <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="water_prop.html" title="Water"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.2 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -563,6 +563,83 @@ also see: equation 9-9.1  in 5th Ed. of Gases and Liquids.</p>
 </dl>
 </dd></dl>
 
+<span class="target" id="module-rocketprops.valve_supt"></span><dl class="py function">
+<dt id="rocketprops.valve_supt.calib_valve_dp">
+<code class="sig-prename descclassname">rocketprops.valve_supt.</code><code class="sig-name descname">calib_valve_dp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">wdotPPS</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">TdegR</span><span class="o">=</span><span class="default_value">530.0</span></em>, <em class="sig-param"><span class="n">Ppsia</span><span class="o">=</span><span class="default_value">1000.0</span></em>, <em class="sig-param"><span class="n">refWaterWdot</span><span class="o">=</span><span class="default_value">0.214</span></em>, <em class="sig-param"><span class="n">refWaterDP</span><span class="o">=</span><span class="default_value">30.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.valve_supt.calib_valve_dp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate valve pressure drop for a valve that has been calibrated
+with a water flow test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant mass flow rate in line, lbm/sec</p></li>
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant temperature of propellant, degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant inlet pressure to valve, psia</p></li>
+<li><p><strong>refWaterWdot</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- reference water flow rate, lbm/sec</p></li>
+<li><p><strong>refWaterDP</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- reference water pressure drop, psid</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>propellant pressure drop , psid</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rocketprops.valve_supt.cv_valve_dp">
+<code class="sig-prename descclassname">rocketprops.valve_supt.</code><code class="sig-name descname">cv_valve_dp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">Cv</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">wdotPPS</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">TdegR</span><span class="o">=</span><span class="default_value">530.0</span></em>, <em class="sig-param"><span class="n">Ppsia</span><span class="o">=</span><span class="default_value">1000.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.valve_supt.cv_valve_dp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate valve pressure drop for a valve with a known imperial flow coefficient, Cv.</p>
+<p>Imperial flow coefficient (Cv) is the amount of water (in gallons per minute) at 60 degF 
+that will flow through a fully open valve with a difference of 1 psi between 
+the inlet and the outlet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>Cv</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- valve flow coefficient</p></li>
+<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant mass flow rate in line, lbm/sec</p></li>
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant temperature of propellant, degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant inlet pressure to valve, psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>propellant pressure drop , psid</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="rocketprops.valve_supt.kv_valve_dp">
+<code class="sig-prename descclassname">rocketprops.valve_supt.</code><code class="sig-name descname">kv_valve_dp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">Kv</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">wdotPPS</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">TdegR</span><span class="o">=</span><span class="default_value">530.0</span></em>, <em class="sig-param"><span class="n">Ppsia</span><span class="o">=</span><span class="default_value">1000.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.valve_supt.kv_valve_dp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate valve pressure drop for a valve with a known metric flow coefficient, Kv.</p>
+<p>Metric flow coefficient (Kv) is the amount of water (in m**3/hr) at 4 degC
+that will flow through a fully open valve with a difference of 1 bar between 
+the inlet and the outlet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>Kv</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- valve flow coefficient</p></li>
+<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant mass flow rate in line, lbm/sec</p></li>
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant temperature of propellant, degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant inlet pressure to valve, psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>propellant pressure drop , psid</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
@@ -586,7 +663,7 @@ also see: equation 9-9.1  in 5th Ed. of Gases and Liquids.</p>
         <li class="right" >
           <a href="water_prop.html" title="Water"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.2 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

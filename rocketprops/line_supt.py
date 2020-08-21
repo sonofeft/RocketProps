@@ -80,13 +80,13 @@ def calc_line_vel_dp( pObj, TdegR=530.0, Ppsia=1000.0,
     rho = get_value( SG, 'SG', 'lbm/in**3' )
     Dens = get_value( SG, 'SG', 'lbm/ft**3' )
     
-    Q = wdotPPS / rho
-    Ac = pi * IDinches**2 / 4.0
-    velFPS = Q / (Ac * 12.0)
+    Q = wdotPPS / rho            # in**3/s
+    Ac = pi * IDinches**2 / 4.0  # in**2
+    velFPS = Q / (Ac * 12.0)     # ft/sec
 
     # calculate pressure drop
-    visc = pObj.Visc_compressed(TdegR, Ppsia)
-    mu = get_value( visc, 'poise', 'lbm/s/ft')
+    visc = pObj.Visc_compressed(TdegR, Ppsia)   # poise
+    mu = get_value( visc, 'poise', 'lbm/s/ft')  # lbm/s-ft
     ReNum= 144.0 * rho * velFPS * IDinches / mu
     
     ff = colebrook_ffact(roughness, IDinches, ReNum)

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Examples &#8212; RocketProps 0.1.1 documentation</title>
+    <title>Examples &#8212; RocketProps 0.1.2 documentation</title>
     <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
@@ -40,7 +40,7 @@
         <li class="right" >
           <a href="quickstart.html" title="QuickStart"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.2 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -54,6 +54,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#propellant-tank-volume">Propellant Tank Volume</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#propellant-line">Propellant Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#valve">Valve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#injector-orifice">Injector Orifice</a></li>
 </ul>
 </li>
@@ -181,6 +182,35 @@ in a propellant line.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="valve">
+<h2>Valve<a class="headerlink" href="#valve" title="Permalink to this headline">¶</a></h2>
+<p>Valve pressure drops can be calculated using  <strong>rocketprops.valve_supt</strong>.</p>
+<p>The script below compares valve pressure drops using both the imperial valve
+flow coefficient (Cv), and the metric flow coefficient (Kv).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rocketprops.rocket_prop</span> <span class="kn">import</span> <span class="n">get_prop</span>
+<span class="kn">from</span> <span class="nn">rocketprops.valve_supt</span> <span class="kn">import</span> <span class="n">cv_valve_dp</span><span class="p">,</span> <span class="n">kv_valve_dp</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Calculate the pressure drop across an MMH valve with given mass flow rate</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">pObj</span> <span class="o">=</span> <span class="n">get_prop</span><span class="p">(</span> <span class="s1">&#39;MMH&#39;</span> <span class="p">)</span>
+
+<span class="c1"># Imperial valve flow coefficient, Cv</span>
+<span class="n">dp</span> <span class="o">=</span> <span class="n">cv_valve_dp</span><span class="p">(</span> <span class="n">pObj</span><span class="p">,</span> <span class="n">Cv</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">wdotPPS</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">TdegR</span><span class="o">=</span><span class="mf">530.0</span><span class="p">,</span> <span class="n">Ppsia</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Cv = 1.0           deltaP = </span><span class="si">%g</span><span class="s1"> psid&#39;</span><span class="o">%</span><span class="n">dp</span><span class="p">)</span>
+
+<span class="c1"># Metric valve flow coefficient, Kv</span>
+<span class="n">Kv</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">1.1560992283526375</span>  <span class="c1"># Conversion factor for Cv to Kv</span>
+<span class="n">dp</span> <span class="o">=</span> <span class="n">kv_valve_dp</span><span class="p">(</span> <span class="n">pObj</span><span class="p">,</span> <span class="n">Kv</span><span class="o">=</span><span class="n">Kv</span><span class="p">,</span> <span class="n">wdotPPS</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">TdegR</span><span class="o">=</span><span class="mf">530.0</span><span class="p">,</span> <span class="n">Ppsia</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Kv = 1.0/convFact  deltaP = </span><span class="si">%g</span><span class="s1"> psid&#39;</span><span class="o">%</span><span class="n">dp</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output from the above script is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cv</span> <span class="o">=</span> <span class="mf">1.0</span>           <span class="n">deltaP</span> <span class="o">=</span> <span class="mf">14.6749</span> <span class="n">psid</span>
+<span class="n">Kv</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">convFact</span>  <span class="n">deltaP</span> <span class="o">=</span> <span class="mf">14.6749</span> <span class="n">psid</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="injector-orifice">
 <h2>Injector Orifice<a class="headerlink" href="#injector-orifice" title="Permalink to this headline">¶</a></h2>
 <p>Some injector orifice calculations are supported with <strong>rocketprops.injector_supt</strong>.</p>
@@ -229,7 +259,7 @@ in a propellant line.</p>
         <li class="right" >
           <a href="quickstart.html" title="QuickStart"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.2 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

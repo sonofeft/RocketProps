@@ -34,7 +34,7 @@ project on `pypi.org <https://pypi.org/>`_ developed by Caleb Bell
 and Contributors (2016-2020). 
 
 In the comparison plots below, it seems to be the most accurate model for all propellants,
-except for alcohols.
+except for alcohols and parahydrogen.
 
 Chang-Zhao
 ``````````

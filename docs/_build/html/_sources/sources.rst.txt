@@ -15,7 +15,7 @@ Gas&Liq 5th Ed
 
 `Properties of Gases and Liquids, Fifth Edition <https://www.accessengineeringlibrary.com/content/book/9780070116825>`_,
 also available as a
-`PDF <file:///D:/downloads/sweet.ua.pt_fsilva_PTDCFTT2980_Reidetal.2001ThePropertiesofGasesandLiquids.pdf>`_,
+`PDF <https://www.academia.edu/30133306/Poling_B_E_Prausnitz_J_M_OConnell_J_P_The_Properties_of_Gases_and_Liquids_5ed_MGH_2000_ISBN_0070116822_803s_>`_,
 is an all-inclusive, critical survey of the most reliable estimating methods in use 
 today written and organized by Bruce Poling, John Prausnitz, and John O'Connell.
 

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: rocketprops
-Version: 0.1.1
+Version: 0.1.2
 Summary: RocketProps models liquid rocket propellants.
 Home-page: http://rocketprops.readthedocs.org/en/latest/
 Author: Charlie Taylor
@@ -12,7 +12,7 @@ Description:
         
         .. image:: https://img.shields.io/pypi/v/RocketProps.svg
                 
-        .. image:: https://img.shields.io/badge/python-2.7|3.5|3.6|3.7-blue
+        .. image:: https://img.shields.io/badge/python-3.5|3.6|3.7|3.8-blue
         
         .. image:: https://img.shields.io/pypi/l/RocketProps.svg
         

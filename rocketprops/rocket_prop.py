@@ -87,7 +87,13 @@ def get_prop( name, suppress_warning=False ):
 
 
 class Propellant(object):
-    """RocketProps models liquid rocket propellants that are injected into liquid rocket chambers.
+    """
+    RocketProps models liquid rocket propellants that are injected into liquid rocket chambers.
+        
+    :param name : name of propellant
+    :type name : str
+    :return: Propellant object
+    :rtype: Propellant
     """
 
     def __init__(self, name='MMH'):
@@ -100,11 +106,6 @@ class Propellant(object):
         
         NOTE: Propellant is designed as a Base Class... needs to be overriden
         by a specific propellant class.
-        
-        :param name : name of propellant
-        :type name : str
-        :return: None
-        :rtype: None        
         """
         
         self.name = name

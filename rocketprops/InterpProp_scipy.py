@@ -2,7 +2,8 @@
 # Oct,21 2005
 '''Interpolated Properties'''
 
-from scipy import array, float64, interpolate
+from scipy import float64, interpolate
+from numpy import array
 
 class InterpProp:
     '''Interpolate tables of properties
@@ -83,7 +84,7 @@ class InterpProp:
             #print '1) self.interpFunc( %s ) ='%xval,self.interpFunc( xval )
             return float(self.interpFunc( xval ))
         
-        # if not in data range, linearly extrapoate from end points.
+        # if not in data range, linearly extrapolate from end points.
         if xval<self.x[0]: 
             yval = self.y[0]+(xval-self.x[0])*(self.y[1]-self.y[0])/(self.x[1]-self.x[0])
         elif xval>self.x[-1]: 

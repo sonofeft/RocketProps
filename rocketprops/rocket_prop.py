@@ -6,7 +6,7 @@ RocketProps models liquid rocket propellants that are injected into
 liquid rocket chambers.
 
 RocketProps calculates the various propellant properties required
-to analyse a liquid propellant thrust chamber. 
+to analyze a liquid propellant thrust chamber. 
 This includes density, viscosity, vapor pressure,
 heat of vaporization, surface tension, heat capacity and thermal conductivity. 
 Other properties such as critical temperature and pressure, normal boiling point, 

@@ -1,40 +1,12 @@
 Metadata-Version: 2.1
 Name: rocketprops
-Version: 0.1.2
+Version: 0.1.3
 Summary: RocketProps models liquid rocket propellants.
 Home-page: http://rocketprops.readthedocs.org/en/latest/
+Download-URL: https://github.com/sonofeft/RocketProps
 Author: Charlie Taylor
 Author-email: cet@appliedpython.com
 License: GPL-3
-Download-URL: https://github.com/sonofeft/RocketProps
-Description: 
-        .. image:: https://travis-ci.org/sonofeft/RocketProps.svg?branch=master
-        
-        .. image:: https://img.shields.io/pypi/v/RocketProps.svg
-                
-        .. image:: https://img.shields.io/badge/python-3.5|3.6|3.7|3.8-blue
-        
-        .. image:: https://img.shields.io/pypi/l/RocketProps.svg
-        
-        
-        Rocketprops Models Liquid Rocket Propellants
-        
-        
-        See the Code at: `<https://github.com/sonofeft/RocketProps>`_
-        
-        See the Docs at: `<http://rocketprops.readthedocs.org/en/latest/>`_
-        
-        See PyPI page at:`<https://pypi.python.org/pypi/rocketprops>`_
-        
-        
-        RocketProps calculates the various liquid propellant properties required
-        to analyse a liquid propellant thrust chamber. 
-        This includes density, viscosity, vapor pressure,
-        heat of vaporization, surface tension, heat capacity and thermal conductivity. 
-        Other properties such as critical temperature and pressure, normal boiling point, 
-        molecular weight and freezing temperature are available.
-        
-        
 Keywords: rocketprops setuptools development
 Platform: any
 Classifier: Development Status :: 4 - Beta
@@ -51,3 +23,33 @@ Classifier: Programming Language :: Python :: 3.8
 Description-Content-Type: text/x-rst
 Provides-Extra: dev
 Provides-Extra: test
+License-File: LICENSE.txt
+License-File: AUTHORS.rst
+
+
+.. image:: https://travis-ci.org/sonofeft/RocketProps.svg?branch=master
+
+.. image:: https://img.shields.io/pypi/v/RocketProps.svg
+        
+.. image:: https://img.shields.io/badge/python-3.5|3.6|3.7|3.8-blue
+
+.. image:: https://img.shields.io/pypi/l/RocketProps.svg
+
+
+Rocketprops Models Liquid Rocket Propellants
+
+
+See the Code at: `<https://github.com/sonofeft/RocketProps>`_
+
+See the Docs at: `<http://rocketprops.readthedocs.org/en/latest/>`_
+
+See PyPI page at:`<https://pypi.python.org/pypi/rocketprops>`_
+
+
+RocketProps calculates the various liquid propellant properties required
+to analyse a liquid propellant thrust chamber. 
+This includes density, viscosity, vapor pressure,
+heat of vaporization, surface tension, heat capacity and thermal conductivity. 
+Other properties such as critical temperature and pressure, normal boiling point, 
+molecular weight and freezing temperature are available.
+

@@ -4,10 +4,10 @@ from matplotlib.ticker import StrMethodFormatter
 from rocketprops.rocket_prop import get_prop as get_rocket_prop
 
 pObj = get_rocket_prop( 'ethane', suppress_warning=True )
-
 print('Testing: solve_omega( Tc, Pc )')
 P07 = pObj.PvapAtTr( 0.7 )
-omega_calc = solve_omega( pObj.Tc, pObj.Pc, P07 )
+omega_calc = solve_omega( pObj.Tc, pObj.Pc, P07, 0.7*pObj.Tc )
+
 print('for %s omega_calc=%g,   omega=%g'%(pObj.name, omega_calc, pObj.omega))
 print()
 

@@ -71,7 +71,7 @@ def get_prop( name, suppress_warning=False ):
     pname = prop_names.get_primary_name( name )
     if pname is None:
         if not suppress_warning:
-            print('WARNING... propellant "%s" is not available.'%name)
+            print('WARNING... propellant "%s" is not recognized.'%name)
         return None
     
     filename = pname + '_prop'
@@ -81,7 +81,7 @@ def get_prop( name, suppress_warning=False ):
         return prop_obj.Prop() # create instance and return it
     except:
         if not suppress_warning:
-            print('WARNING... propellant "%s" is not available.'%name)
+            print('WARNING... propellant "%s" import failed.'%name)
         return None
     
 
@@ -218,7 +218,7 @@ class Propellant(object):
     def ZVapAtTdegR(self, TdegR):
         """Given temperature in degR, return compressibility of  Saturated Vapor."""
         Tr = TdegR / self.Tc
-        return ZVapAtTr( Tr )
+        return self.ZVapAtTr( Tr )
 
     # ========= methods for reduced temperature (Tr) =============
 

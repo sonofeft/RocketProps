@@ -116,6 +116,7 @@ prop_names.add_primary_name('UDMH')
 prop_names.add_primary_name('RP1')
 prop_names.add_primary_name('Water')
 
+
 prop_names.add_associated_name( 'A50', "50% N2H4 + 50% UDMH" )
 prop_names.add_associated_name( 'A50', 'Aerozine50' )
 prop_names.add_associated_name( 'CLF5', "ChlorinePentafluoride" )
@@ -159,6 +160,11 @@ prop_names.add_associated_name('UDMH', 'UnsymmetricDiMethylHydrazine')
 prop_names.add_associated_name('Water', 'H2O')
 
 
+# scaled propellants
+# prop_names.add_primary_name('XXX')
+# prop_names.add_associated_name('XXX', 'A50_scaled')
+
+
 if __name__ == "__main__":            
     
     pn = PropNames()
@@ -173,5 +179,10 @@ if __name__ == "__main__":
     print('Is "mmh" a primary name:', pn.is_primary_name('mmh'))
     
     print('Primary for "Hydrazine" = ', pn.get_primary_name("Hydrazine") )
+
+
+    print( '=*66')
+    prop_names.summ_print()
+    print('Primary for "XXX" = ', prop_names.get_primary_name("XXX") )
     
 

@@ -126,7 +126,15 @@ def make_plots( prop_nameL, abs_T=False, ref_scaled=False):
         
     for i,prop in enumerate(propL):
         lab = prop.name + '(%s)'%prop.dataSrc
-        x_refL, y_refL, x_dataL, y_dataL, x_terpL, y_terpL = get_xy_plot_lists( i, 'P', 'log10pL', 'PvapAtTr' )
+        x_refL, y_refL, x_dataL, y_dataL, x_terpL, y_terpL = get_xy_plot_lists( i, 'Pvap', 'log10pL', 'PvapAtTr' )
+
+        # print('Pressure Plot data')
+        # print( 'x_refL =', x_refL)
+        # print( 'y_refL =', y_refL)
+        # print( 'x_dataL =', x_dataL[:5])
+        # print( 'y_dataL =', y_dataL[:5], y_dataL[-5:])
+        # print( 'x_terpL =', x_terpL[:5])
+        # print( 'y_terpL =', y_terpL[:5], y_terpL[-5:])
 
         ax2.semilogy( x_dataL, y_dataL, marker=get_marker(i), color=get_color(i), label=lab, linewidth=0 )
         ax2.semilogy( x_terpL, y_terpL, '-', color=get_color(i) )
@@ -243,8 +251,16 @@ def make_plots( prop_nameL, abs_T=False, ref_scaled=False):
     plt.show()
 
 if __name__ == '__main__':
+
+    from rocketprops.prop_names import prop_names
     
-    make_plots( ['MMH', 'N2H4'], abs_T=0, ref_scaled=True)
+    prop_names.add_primary_name('XXX')
+    prop_names.add_associated_name('XXX', 'A50_scaled')
+
+    
+    make_plots( ['XXX', 'A50'], abs_T=0, ref_scaled=False)
+    # make_plots( ['MMH', 'N2H4'], abs_T=0, ref_scaled=True)
+    
     #make_plots( ['C2H6', 'C3H8', 'CH4'], abs_T=0, ref_scaled=True)
     #make_plots( ['N2O', 'NH3'], abs_T=0, ref_scaled=True)
     # make_plots( ['CH4','LOX','MMH','N2H4','NH3','Propane'], abs_T=0, ref_scaled=True)

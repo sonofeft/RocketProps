@@ -1,8 +1,16 @@
-from numpy import exp, log, log10
+from numpy import exp, log, log10, sqrt
 from scipy import optimize
 from rocketprops.unit_conv_data import get_value
 
 R = 8.3144598 # J/mol-K
+
+def trunc_exp(x, trunc=1.7976931348622732e+308):
+    # maximum value occurs at 709.782712893384 exactly
+    try:
+        return exp(x)
+    except:
+        # Really exp(709.7) 1.6549840276802644e+308
+        return trunc
 
 def ambrose_Psat( T, Tc, Pc, omega ):
     """
@@ -27,25 +35,26 @@ def ambrose_Psat( T, Tc, Pc, omega ):
     
     ln_Pvr = f0 + omega*f1 + omega**2*f2
     
-    return Pc * exp( ln_Pvr )
+    # return Pc * exp( ln_Pvr )
+    return Pc*trunc_exp( ln_Pvr )
 
-def solve_omega( Tc, Pc, P07, Tr=0.7 ):
+def solve_omega( Tc, Pc, Psat_ref, Tref ):
     """
     Given Tc and Pc, solve for omega
     omega = -1.0 - log10( Pvap(0.7 * Tc) / Pc )
-    Assume that P07 is the pressure at reduced temperature=0.7 
+    Psat_ref is a reference Psat at Tref
     UNLESS, a different value of Tr is input
     """
     
-    T07 = Tr * Tc
-    #print('Solving Tc=%s, Pc=%s, P07=%s'%(Tc, Pc, P07) )
+    # print('Solving Tc=%s, Pc=%s, Psat_ref=%s'%(Tc, Pc, Psat_ref) )
     
     def func( omega ):
-        return P07 - ambrose_Psat( T07, Tc, Pc, omega )
+        return Psat_ref - ambrose_Psat( Tref, Tc, Pc, omega )
     
     sol = optimize.root_scalar(func, bracket=[-5, 5.0], method='brentq')
-    #print( 'sol.root=',sol.root )
+    # print( 'sol.root=',sol.root )
     return sol.root
+
 
 
 
@@ -65,7 +74,7 @@ def Rowlinson_Poling_Cp(T, Tc, omega, Cpgm, MW):
     omega : float
         Acentric factor for fluid, [-]
     Cpgm : float
-        Constant-pressure gas heat capacity, [J/mol/K]
+        Constant-pressure gas heat capacity, [J/mol/K] <--- 'BTU/lbm/delF'
     MW : float
         Molecular Weight [g/mol]
 
@@ -77,6 +86,7 @@ def Rowlinson_Poling_Cp(T, Tc, omega, Cpgm, MW):
     T = get_value(T, 'degR', 'degK')
     Tc = get_value(Tc, 'degR', 'degK')
     R = 8.3144598
+    Cpgm = Cpgm * ( 1.8 * MW * 1055.06 ) # convert to J/mol/K
     
     Tr = T/Tc
     denom = max(0.001, 1.0-Tr) # modification by CET for Tr >= 1.0
@@ -287,12 +297,91 @@ def Nicola_thcond(T, M, Tc, Pc, omega):
 def Squires_visc( TdegR, Tref, PoiseRef ):
     """
     Squires Figure 9-13,  equation 9-10.3 in 5th Ed. of Gases and Liquids.
+    Errors of 5 to 15% (or greater). Should not be used above normal boiling point
     """
     T_K = get_value(TdegR, 'degR', 'degK')
     Tref_K = get_value(Tref, 'degR', 'degK')
-    cp_ref = PoiseRef * 100.0
+    cp_ref = PoiseRef * 100.0 # from poise to cp
     
     vtopow = cp_ref**-0.2661 + (T_K - Tref_K) / 233.0
     
     cp = vtopow ** (-1.0/.2661)
-    return cp / 100.0
+    return cp / 100.0 # return poise from cp
+
+def Przedziecki_Sridhar_visc(T, Tm, Tc, Pc, Vc, Vm, omega, MW):
+    r'''Calculates the viscosity of a liquid using an empirical formula
+    developed in [1]_.
+
+    Parameters
+    ----------
+    T : float
+        Temperature of the fluid [K] <-- degR
+    Tm : float
+        Melting point of fluid [K] <-- degR
+    Tc : float
+        Critical temperature of the fluid [K] <-- degR
+    Pc : float
+        Critical pressure of the fluid [Pa] <-- psia
+    Vc : float
+        Critical volume of the fluid [m^3/mol]
+    Vm : float
+        Molar volume of the fluid at temperature [K]
+    omega : float
+        Acentric factor of compound
+    MW : float
+        Molecular weight of fluid [g/mol]
+
+    Returns
+    -------
+    mu_l : float
+        Viscosity of liquid, [Pa*s]
+
+    Notes
+    -----
+    A test by Reid (1983) is used, but only mostly correct.
+    This function is not recommended.
+    Internal units are bar and mL/mol.
+
+    Examples
+    --------
+    >>> Przedziecki_Sridhar(383., 178., 591.8, 41E5, 316E-6, 95E-6, .263, 92.14)
+    0.00021981479956033846
+
+    References
+    ----------
+    .. [1] Przedziecki, J. W., and T. Sridhar. "Prediction of Liquid
+       Viscosities." AIChE Journal 31, no. 2 (February 1, 1985): 333-35.
+       doi:10.1002/aic.690310225.
+    '''
+    T = get_value(T, 'degR', 'degK')
+    Tm = get_value(Tm, 'degR', 'degK')
+    Tc = get_value(Tc, 'degR', 'degK')
+    Pc = get_value(Pc, 'psia', 'Pa')    
+
+
+    Pc = Pc*1e-5  # Pa to atm
+    Vm, Vc = Vm*1E6, Vc*1E6  # m^3/mol to mL/mol
+    Tc_inv = 1.0/Tc
+    Tr = T*Tc_inv
+
+    Tr2 = Tr*Tr
+    Gamma = 0.29607 - 0.09045*Tr - 0.04842*Tr2
+    VrT = 0.33593 - 0.33953*Tr + 1.51941*Tr2 - 2.02512*Tr*Tr2 + 1.11422*Tr2*Tr2
+    V = VrT*(1.0 - omega*Gamma)*Vc
+
+    Vo = 0.0085*omega*Tc - 2.02 + Vm/(0.342*(Tm*Tc_inv) + 0.894)  # checked
+    E = -1.12 + Vc/(12.94 + 0.1*MW - 0.23*Pc + 0.0424*Tm - 11.58*(Tm*Tc_inv))
+    return Vo/(E*(V-Vo))*1e-3
+
+
+if __name__ == "__main__":
+
+    print( 'Check A50 omega from its Tnbp')
+    omega = solve_omega( 1092.67, 1731, 14.7, 617.67 )
+    print('Calculated omega=%g, accepted omega=%g'%( omega, 0.16664587517590368 ))
+
+    print()
+    print( 'Check MMH omega from its Tnbp')
+    omega = solve_omega( 1053.67, 1197, 14.7, 649.47 )
+    print('Calculated omega=%g, accepted omega=%g'%( omega, 0.28680344162000093 ))
+

@@ -254,11 +254,10 @@ if __name__ == '__main__':
 
     from rocketprops.prop_names import prop_names
     
-    prop_names.add_primary_name('XXX')
-    prop_names.add_associated_name('XXX', 'A50_scaled')
 
     
-    make_plots( ['XXX', 'A50'], abs_T=0, ref_scaled=False)
+    make_plots( ['M20_scaled', 'MMH', 'N2H4'], abs_T=0, ref_scaled=False)
+    #make_plots( ['A50_scaled', 'A50'], abs_T=0, ref_scaled=False)
     # make_plots( ['MMH', 'N2H4'], abs_T=0, ref_scaled=True)
     
     #make_plots( ['C2H6', 'C3H8', 'CH4'], abs_T=0, ref_scaled=True)

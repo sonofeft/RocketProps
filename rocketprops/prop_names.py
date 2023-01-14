@@ -1,4 +1,5 @@
-
+import os
+import glob
 
 """
 Give primary name and alternate names for included propellants.
@@ -160,9 +161,15 @@ prop_names.add_associated_name('UDMH', 'UnsymmetricDiMethylHydrazine')
 prop_names.add_associated_name('Water', 'H2O')
 
 
-# scaled propellants
-# prop_names.add_primary_name('XXX')
-# prop_names.add_associated_name('XXX', 'A50_scaled')
+# look for scaled propellants
+here = os.path.abspath(os.path.dirname(__file__))
+prop_dir = os.path.join( here, 'props')
+scaledL = glob.glob( os.path.join( prop_dir, '*_scaled_prop.py' ) )
+
+for scaled_prop in scaledL:
+    head,tail = os.path.split( scaled_prop )
+    prop_name = tail.replace( '_prop.py', '' )
+    prop_names.add_primary_name( prop_name )
 
 
 if __name__ == "__main__":            
@@ -183,6 +190,5 @@ if __name__ == "__main__":
 
     print( '=*66')
     prop_names.summ_print()
-    print('Primary for "XXX" = ', prop_names.get_primary_name("XXX") )
     
 

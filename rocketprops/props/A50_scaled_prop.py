@@ -8,10 +8,10 @@ class Prop( Propellant ):
     
     def __init__(self):
         
-        Propellant.__init__(self, name='XXX')
+        Propellant.__init__(self, name='A50_scaled')
 
     def set_std_state(self):
-        """Set properties and standard state of Propellant, XXX"""
+        """Set properties and standard state of Propellant, A50_scaled"""
         
         self.dataSrc = 'Scaled Reference Point'        
         self.T       = 527.67 # degR

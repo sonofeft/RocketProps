@@ -2,7 +2,7 @@ from numpy import exp, log, log10, sqrt
 from scipy import optimize
 from rocketprops.unit_conv_data import get_value
 
-R = 8.3144598 # J/mol-K
+R = 8.3144598 # J/mol-K  =  m^3-Pa / mol-K  =  J/mol-K
 
 def trunc_exp(x, trunc=1.7976931348622732e+308):
     # maximum value occurs at 709.782712893384 exactly
@@ -85,7 +85,7 @@ def Rowlinson_Poling_Cp(T, Tc, omega, Cpgm, MW):
     '''
     T = get_value(T, 'degR', 'degK')
     Tc = get_value(Tc, 'degR', 'degK')
-    R = 8.3144598
+    R = 8.3144598 # J/mol-K  =  m^3-Pa / mol-K  =  J/mol-K
     Cpgm = Cpgm * ( 1.8 * MW * 1055.06 ) # convert to J/mol/K
     
     Tr = T/Tc
@@ -130,7 +130,7 @@ def Pitzer_Hvap(T, Tc, MW, omega):
     '''
     T = get_value(T, 'degR', 'degK')
     Tc = get_value(Tc, 'degR', 'degK')
-    R = 8.3144598
+    R = 8.3144598 # J/mol-K  =  m^3-Pa / mol-K  =  J/mol-K
     
     Tr = T/Tc
     hvap_JperM = R*Tc * (7.08*(1. - Tr)**0.354 + 10.95*omega*(1. - Tr)**0.456)

@@ -411,7 +411,7 @@ class Propellant(object):
         r'''Adjusts viscosity of a liquid for high pressure  using an empirical
         formula developed by Lucas.
 
-        This code is modified from thermo package: https://thermo.readthedocs.io/en/latest/index.html
+        This code is modified from thermo package: https://thermo.readthedocs.io/
         also see: equation 9-9.1  in 5th Ed. of Gases and Liquids.
 
         :param TdegR: temperature in degR
@@ -655,7 +655,7 @@ class Propellant(object):
         c1=-2.7659 
         Om0=7.9019E-2 
         Om1=-2.8431E-2
-        R = 8.3144598 # m^3-Pa / mol-K
+        R = 8.3144598 # J/mol-K  =  m^3-Pa / mol-K  =  J/mol-K
         
         J = j0 + j1*(1-Tr)**(1./3.) + j2*(1-Tr)**(2./3.)
         F = f0 * (1-Tr)

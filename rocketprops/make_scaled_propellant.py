@@ -7,7 +7,7 @@ from rocketprops.scaling_funcs import ambrose_Psat, solve_omega, Rowlinson_Polin
 from rocketprops._scaled_prop_template import template
 from rocketprops.PR_eos import PReos
 from rocketprops.rocket_prop import here
-from rocketprops.unit_conv_data import get_value
+# from rocketprops.unit_conv_data import get_value
 
 """ 
 Signatures of functions
@@ -22,9 +22,9 @@ def Pitzer_surften(T, Tc, Pc, omega)
 def Nicola_thcond(T, M, Tc, Pc, omega)
 def Squires_visc( TdegR, Tref, PoiseRef )
 """
-R = 8.3144598 # J/mol-K
+R = 8.3144598 # J/mol-K  =  m^3-Pa / mol-K  =  J/mol-K
 
-def add_propellant( prop_name='XXX',
+def add_propellant( prop_name='A50',
                     Tref        = 527.67, # degR
                     Pref        = 14.6959, # psia
                     SG_ref       = 0.9035471601513377, # SG
@@ -49,9 +49,9 @@ def add_propellant( prop_name='XXX',
     Pvap = ambrose_Psat( Tref, Tc_degR, Pc_psia, omega ) # psia
     tmpD['Pvap'] = Pvap
 
-    tmpD['dataSrc'] = 'Scaled Reference Point'
-    tmpD['class_name'] = prop_name
-    tmpD['prop_name'] = prop_name
+    tmpD['dataSrc'] = dataSrc
+    tmpD['class_name'] = prop_name + '_scaled'
+    tmpD['prop_name'] = prop_name + '_scaled'
 
     tmpD['T'] = Tref
     tmpD['P'] = Pref
@@ -163,10 +163,7 @@ def add_propellant( prop_name='XXX',
     tmpD['tL'] = repr(tL)
     tmpD['log10pL'] = repr( [log10(p) for p in pL] )
     
-    if tmpD['visc'] is None:
-        tmpD['log10viscL'] = repr( [None for v in viscL] )
-    else:
-        tmpD['log10viscL'] = repr( [log10(v) for v in viscL] )
+    tmpD['log10viscL'] = repr( [log10(v) for v in viscL] )
     tmpD['condL'] = repr(condL)
     tmpD['cpL'] = repr(cpL)
     tmpD['hvapL'] = repr(hvapL)
@@ -180,15 +177,12 @@ def add_propellant( prop_name='XXX',
     # ============== save template to file ===================
     src = template.format( **tmpD )
     # print( src )
-    fname = prop_name + '_prop.py'
+    fname = prop_name + '_scaled_prop.py'
 
     save_path = os.path.join( here, 'props', fname)
-    if not os.path.isfile( save_path ):
-        print( 'Saving "%s"'%save_path )
-        with open(save_path, 'w') as fOut:
-            fOut.write( src )
-    else:
-        print( 'ERROR: Existing File: "%s"'%save_path )
+    print( 'Saving "%s"'%save_path )
+    with open(save_path, 'w') as fOut:
+        fOut.write( src )
 
 
 if __name__ == "__main__":

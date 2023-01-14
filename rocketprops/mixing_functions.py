@@ -1,4 +1,88 @@
 from math import sqrt
+from rocketprops.InterpProp_scipy import InterpProp
+    
+# Freezing point of mixture of MMH with N2H4
+wtPcentMMHL =       [0.0,    16.1057,26.3705,35.4891,43.3123,50.8364,59.9052, 86.0,    100.0]
+#pcentMMH_FreezeKL = [274.678,269.95, 266.316,262.641,259.168,255.493,250.647, 219.261, 220.761] # degK
+pcentMMH_FreezeRL = [494.4204, 485.91, 479.3688, 472.7538, 466.5024, 459.8874, 451.1646, 394.6698, 397.3698] # degR
+#                   N2H4                                                              MMH
+Mnn_Freeze_terp = InterpProp( wtPcentMMHL, pcentMMH_FreezeRL )
+
+wtPcentONL = [0.0,2.54567,5.03106,7.51645,10.0684,12.5477,15.0717,17.0373,18.8689,20.0974,22.0183,22.6214,23.8275,25.1454,26.6196,27.6917,28.8085,29.7913,30.7294,31.5335,32.293,33.0077,33.7895,35.018,37.5197,40.0213]
+MONfreezeL_degRL = [471.241,466.135,461.159,455.529,449.709,443.27,436.026,429.945,423.596,418.23,409.824,406.336,399.897,391.223,380.223,370.297,360.281,350.354,340.338,330.054,320.306,310.111,298.486,303.315,308.502,310.737]
+#MONfreezeKL = [261.8, 258.96, 256.2, 253.07, 249.84, 246.26, 242.24, 238.86, 235.33, 232.35, 227.68, 225.74, 222.16, 217.35, 211.24, 205.72, 200.16, 194.64, 189.08, 183.36, 177.95, 172.28, 165.83, 168.51, 171.39, 172.63]
+MON_Freeze_terp = InterpProp( wtPcentONL, MONfreezeL_degRL )
+
+
+def is_blend( name, blend_prefix, verbose=False ):
+    """
+    If is blend, return the percentage of additive.
+    If NOT blend, return False
+    """    
+    if name[: len(blend_prefix) ] != blend_prefix:
+        if verbose:
+            print( '   failed prefix' )
+        return False
+        
+    pcent_str = name[ len(blend_prefix): ]
+    try:
+        pcent = float( pcent_str )
+        if pcent < 0.0:
+            return False
+        elif pcent > 100.0:
+            return False
+        return pcent
+    except:
+        if verbose:
+            print( '   failed float of pcent_str' )
+    
+    return False
+
+def isMMH_N2H4_Blend( name, verbose=False ):
+    # check for an MMH + N2H4 blend
+    
+    # must start with capital "M"    
+    mmhPcent = is_blend( name, 'M', verbose=verbose )
+    if mmhPcent:
+        if verbose:
+            print('"%s"'%name, 'IS Blend', 'mmhPcent =', mmhPcent )
+        return mmhPcent
+    else:
+        if verbose:
+            print('"%s"'%name, 'NOT Blend' )
+
+    return False
+
+
+def isMON_Ox( name, verbose=False ):
+    # check for MON oxidizer (MON1 to MON30)
+    
+    # must start with capital "MON"    
+    noPcent = is_blend( name, 'MON', verbose=verbose )
+    if noPcent:
+        if verbose:
+            print('"%s"'%name, 'IS Blend', 'noPcent =', noPcent )
+        return noPcent
+    else:
+        if verbose:
+            print('"%s"'%name, 'NOT Blend' )
+
+    return False
+
+def isFLOX_Ox( name, verbose=False ):
+    # check for FLOX oxidizer (e.g. FLOX70 or FLOX82.5)
+    # must start with capital "FLOX"    
+    f2Pcent = is_blend( name, 'FLOX', verbose=verbose )
+    if f2Pcent:
+        if verbose:
+            print('"%s"'%name, 'IS Blend', 'f2Pcent =', f2Pcent )
+        return f2Pcent
+    else:
+        if verbose:
+            print('"%s"'%name, 'NOT Blend' )
+
+    return False
+    
 
 def mixing_simple(fracs, props):
     r'''Calculates a property based on weighted averages of properties. 
@@ -23,7 +107,7 @@ def mixing_simple(fracs, props):
     return sum( [fracs[i]*props[i] for i in range(len(fracs))] )
 
 
-def COSTALD(T, Tc, Vc, omega):
+def COSTALD_Vmolar(T, Tc, Vc, omega):
     r'''Calculate saturation liquid density using the COSTALD CSP method.
 
     A popular and accurate estimation method. If possible, fit parameters are
@@ -34,11 +118,11 @@ def COSTALD(T, Tc, Vc, omega):
     Parameters
     ----------
     T : float
-        Temperature of fluid [K]
+        Temperature of fluid , any absolute unite
     Tc : float
-        Critical temperature of fluid [K]
+        Critical temperature of fluid, same units as T
     Vc : float
-        Critical volume of fluid [m^3/mol].
+        Critical volume of fluid, any units
         This parameter is alternatively a fit parameter
     omega : float
         (ideally SRK) Acentric factor for fluid, [-]
@@ -47,7 +131,7 @@ def COSTALD(T, Tc, Vc, omega):
     Returns
     -------
     Vs : float
-        Saturation liquid volume
+        Saturation liquid volume, same units as Vc
 
     Notes
     -----
@@ -79,7 +163,7 @@ def COSTALD(T, Tc, Vc, omega):
     return Vc*V_0*(1.0 - omega*V_delta)
 
 
-def COSTALD_mixture(xs, T, Tcs, Vcs, omegas):
+def COSTALD_mixture_Vmolar(xs, T, Tcs, Vcs, omegas):
     r'''Calculate mixture liquid density using the COSTALD CSP method.
 
     A popular and accurate estimation method. If possible, fit parameters are
@@ -125,6 +209,8 @@ def COSTALD_mixture(xs, T, Tcs, Vcs, omegas):
        Saturated Densities of Liquids and Their Mixtures." AIChE Journal
        25, no. 4 (1979): 653-663. doi:10.1002/aic.690250412
     '''
+    root_two = 1.4142135623730951
+    
     N = len(xs)
     sum1, sum2, sum3, omega = 0.0, 0.0, 0.0, 0.0
     for i in range(N):
@@ -146,7 +232,7 @@ def COSTALD_mixture(xs, T, Tcs, Vcs, omegas):
         for j in range(i):
             Tcm += vec[i]*vec[j]
         Tcm += 0.5*vec[i]*vec[i]
-    return COSTALD(T, Tcm, Vm, omega)
+    return COSTALD_Vmolar(T, Tcm, Vm, omega)
 
 
 
@@ -376,5 +462,24 @@ def DIPPR9H_cond(ws, ks):
     for i in range(len(ws)):
         kl += ws[i]/(ks[i]*ks[i])
     return 1.0/sqrt(kl)
+
+    
+if __name__ == "__main__":
+    for name in ['M20', "20M", 'MM2', 'm020', 'M10', 'm20 ', 'M101', 'M99']:
+        isMMH_N2H4_Blend( name, verbose=True )
+        isMMH_N2H4_Blend( name )
+        
+    print( '-'*22 )
+
+    for name in ['M20', "MON25", "mon10", "MON5.5", "MON20 "]:
+        isMON_Ox( name, verbose=True )
+        isMON_Ox( name )
+
+        
+    print( '-'*22 )
+
+    for name in ['M20', "FLOX25", "FLOX82.5", "flox5.5", "FLOX20 "]:
+        isFLOX_Ox( name, verbose=True )
+        isFLOX_Ox( name )
 
 

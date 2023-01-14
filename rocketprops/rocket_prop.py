@@ -458,7 +458,7 @@ class Propellant(object):
     def SG_compressedCOSTALD(self, TdegR, Ppsia):
         r'''Calculates compressed-liquid specific gravity, using the COSTALD  CSP method.
 
-        This code is modified from thermo package: https://thermo.readthedocs.io/en/latest/index.html
+        This code is modified from thermo package: https://thermo.readthedocs.io/index.html
 
         :param TdegR: temperature in degR
         :param Ppsia: pressure in psia

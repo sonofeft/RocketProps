@@ -28,7 +28,7 @@ the density at high pressure.
 COSTALD
 ```````
 
-The `COSTALD <https://thermo.readthedocs.io/en/latest/thermo.volume.html#thermo.volume.COSTALD>`_
+The `COSTALD <https://thermo.readthedocs.io/thermo.volume.html#thermo.volume.COSTALD>`_
 model is a CSP model taken from the `thermo <https://pypi.org/project/thermo/>`_  project which is an open-source 
 project on `pypi.org <https://pypi.org/>`_ developed by Caleb Bell 
 and Contributors (2016-2020). 
@@ -62,7 +62,7 @@ Model Comparisons
 The following charts compare high accuracy density calculations 
 (`CoolProp <http://www.coolprop.org/index.html#what-is-coolprop>`_)
 to the results of RocketProps curve fits and to each of the models mentioned above
-`COSTALD <https://thermo.readthedocs.io/en/latest/thermo.volume.html#thermo.volume.COSTALD>`_,
+`COSTALD <https://thermo.readthedocs.io/thermo.volume.html#thermo.volume.COSTALD>`_,
 Chang-Zhao 1, Chang-Zhao 2 and Nasrfar.
 
 Each chart shows the percent standard deviation (%SD) of each model as compared to
@@ -73,12 +73,12 @@ The error of each model has a 95% chance of being within 2 times %SD,
 The charts are shown in order from worst to best in terms of %SD.
 
 Except for the three worst fluids, parahydrogen and the alcohols,
-the `COSTALD <https://thermo.readthedocs.io/en/latest/thermo.volume.html#thermo.volume.COSTALD>`_,
+the `COSTALD <https://thermo.readthedocs.io/thermo.volume.html#thermo.volume.COSTALD>`_,
 model matches high pressure propellant density better than
 Chang-Zhao 1, Chang-Zhao 2 or Nasrfar. Usually with less than 1% error; often much less.
 
 For this reason, 
-`COSTALD <https://thermo.readthedocs.io/en/latest/thermo.volume.html#thermo.volume.COSTALD>`_
+`COSTALD <https://thermo.readthedocs.io/thermo.volume.html#thermo.volume.COSTALD>`_
 is the default model for propellants without detailed high pressure density data within RocketProps.
 
 .. image:: ./_static/PH2_sg_compare.png

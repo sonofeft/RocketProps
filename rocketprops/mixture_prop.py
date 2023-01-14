@@ -4,7 +4,9 @@ from scipy import optimize
 from rocketprops.InterpProp_scipy import InterpProp
 from rocketprops.unit_conv_data import get_value
 from rocketprops.mixing_functions import Li_Tcm, mixing_simple, DIPPR9H_cond, Filippov_cond
-
+from rocketprops.mixing_functions import isMMH_N2H4_Blend, isMON_Ox, isFLOX_Ox
+from rocketprops.mixing_functions import Mnn_Freeze_terp, MON_Freeze_terp
+from rocketprops.rocket_prop import get_prop
 
 def solve_Tnbp( tL, pvapL ):
     """
@@ -25,15 +27,54 @@ def solve_Tnbp( tL, pvapL ):
     return sol.root
 
 
-def build_mixture( prop_name='', prop_objL=None, mass_fracL=None):
-    """_summary_
+def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
+    """
+    Build a mixture of MMH + N2H4 (e.g. M20), N2O4 + NO (e.g. MON25) or LOX + F2 (e.g. FLOX70)
 
     Args:
-        prop_objL (_type_, optional): list of Propellant objects to be mixed. Defaults to None.
-        mass_fracL (_type_, optional): list of WEIGHT Fractions for each Propellant object. Defaults to None.
 
     Returns: Propellant object of mixture
     """
+    # prop_objL  list of Propellant objects to be mixed. 
+    # mass_fracL list of WEIGHT Fractions for each Propellant object.
+
+    mmhPcent = isMMH_N2H4_Blend( prop_name )
+    noPcent  = isMON_Ox( prop_name )
+    f2Pcent  = isFLOX_Ox( prop_name )
+
+    if mmhPcent:
+        mmh_prop = get_prop('MMH')
+        n2h4_prop = get_prop('N2H4')
+        prop_objL=[mmh_prop, n2h4_prop]
+        mass_fracL=[mmhPcent, 100-mmhPcent]  # will normalize below
+
+        Tfreeze = Mnn_Freeze_terp( mmhPcent )
+    elif prop_name == 'MHF3':
+        mmh_prop = get_prop('MMH')
+        n2h4_prop = get_prop('N2H4')
+        mmhPcent = 86.0 # MHF3 is 86% MMH
+        prop_objL=[mmh_prop, n2h4_prop]
+        mass_fracL=[mmhPcent, 100-mmhPcent]  # will normalize below
+
+        Tfreeze = Mnn_Freeze_terp( mmhPcent )
+    elif noPcent:
+        mon_lo_prop = get_prop('MON10')
+        mon_hi_prop = get_prop('MON25')
+        prop_objL=[mon_lo_prop, mon_hi_prop]  # will normalize below
+
+        mass_fracL=[20, 80]
+        Tfreeze = MON_Freeze_terp( noPcent )
+        raise Exception('MON logic needs work')
+    elif f2Pcent:
+        lox_prop = get_prop('LOX')
+        lf2_prop = get_prop('LF2')
+        prop_objL=[lf2_prop, lox_prop]
+        mass_fracL=[f2Pcent, 100-f2Pcent]  # will normalize below
+
+        # Assume we don't need an accurate freeze temperature
+        Tfreeze = (f2Pcent*lf2_prop.Tfreeze + (100.0-f2Pcent)*lox_prop.Tfreeze) / 100.0
+    else:
+        raise Exception('Mixtures only implemented for MMH+N2H4 or MON oxidizer or FLOX oxidizer')
 
     if prop_objL is None or mass_fracL is None:
         raise Exception('Must input BOTH prop_objL AND mass_fracL')
@@ -48,6 +89,7 @@ def build_mixture( prop_name='', prop_objL=None, mass_fracL=None):
     moleL = [ f_mass/P.MolWt for (f_mass, P) in zip(mass_fracL, prop_objL) ]
     mole_total = sum( moleL )
     mole_fracL = [m/mole_total for m in moleL]
+    print( 'mole_fracL =', mole_fracL)
 
     tmpD = {} # index=template name, value=string or numeric value
 
@@ -57,14 +99,14 @@ def build_mixture( prop_name='', prop_objL=None, mass_fracL=None):
     tmpD['omega'] = mixing_simple(mole_fracL, [P.omega for P in prop_objL]) 
 
     tmpD['dataSrc'] = dataSrc
-    tmpD['class_name'] = prop_name + '_mixture'
-    tmpD['prop_name'] = prop_name + '_mixture'
+    # tmpD['class_name'] = prop_name 
+    tmpD['prop_name'] = prop_name 
 
     # Vc = MolWt / SGc # (cm**3/gmole)
     VcL = [ P.MolWt/P.SGc for P in prop_objL ]
 
     # Properties of Liquids and Gases 5th Ed. Eqn 5-3.1
-    # tmpD['Tc'] = mixing_simple(mole_fracL, [P.Tc for P in prop_objL])  # degR
+    # Use Li method:  tmpD['Tc'] = mixing_simple(mole_fracL, [P.Tc for P in prop_objL])  # degR
 
     # thermo package: https://thermo.readthedocs.io/
     TcL = [P.Tc for P in prop_objL]
@@ -119,8 +161,8 @@ def build_mixture( prop_name='', prop_objL=None, mass_fracL=None):
     viscL = [P.ViscAtTdegR(T) for P in prop_objL]
     tmpD['visc'] = mixing_simple( mass_fracL, viscL)
 
-    tmpD['Tfreeze'] = None
-    tmpD['Ttriple'] = None
+    tmpD['Tfreeze'] = Tfreeze
+    tmpD['Ttriple'] = Tfreeze
 
 
 
@@ -129,7 +171,7 @@ def build_mixture( prop_name='', prop_objL=None, mass_fracL=None):
 
     # Use Raoult's Law to calculate vapor pressure vs temperature
     TfreezeL = [P.Tfreeze for P in prop_objL]
-    Tlo = min( TfreezeL )
+    Tlo = Tfreeze
     Thi = max( TcL )
     if Thi > Tc:
         Thi = Tc
@@ -212,21 +254,22 @@ def build_mixture( prop_name='', prop_objL=None, mass_fracL=None):
     for k in kL:
         try:
             sL = tmpD[k].split(',')
-            print( '%20s'%k, ','.join(sL[:2]),'...', ','.join(sL[-2:]) )
+            if len(sL) > 1:
+                print( '%20s'%k, ','.join(sL[:2]),'...', ','.join(sL[-2:]) )
+            else:
+                print( '%20s'%k, tmpD[k] )
         except:
             print( '%20s'%k, tmpD[k] )
 
     # show T limits
     print( 'Tlo=%g,  Thi=%g'%(Tlo, Thi))
-    print( 'Tfreeze of pure propellants:', TfreezeL)
-    print( 'Tc of pure propellants:', TcL)
+    print( 'Tfreeze of pure propellants:', TfreezeL, '  of blend =', Tfreeze)
+    print( 'Tc of pure propellants:', TcL, '  of blend =', Tc)
 
 
 if __name__ == "__main__":
     
-    from rocketprops.rocket_prop import get_prop
 
-    mmh_prop = get_prop('MMH')
-    n2h4_prop = get_prop('N2H4')
-
-    build_mixture( prop_name='M20', prop_objL=[mmh_prop, n2h4_prop],  mass_fracL=[20, 80])
+    build_mixture( prop_name='M20' )
+    # build_mixture( prop_name='MHF3' )
+    # build_mixture( prop_name='FLOX70' )

@@ -213,7 +213,7 @@ class Propellant(object):
     def ZLiqAtTdegR(self, TdegR):
         """Given temperature in degR, return compressibility of saturated liquid."""
         Tr = TdegR / self.Tc
-        return self.ZAtTr( Tr )
+        return self.ZLiqAtTr( Tr )
         
     def ZVapAtTdegR(self, TdegR):
         """Given temperature in degR, return compressibility of  Saturated Vapor."""

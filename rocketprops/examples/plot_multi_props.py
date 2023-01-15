@@ -180,6 +180,7 @@ def make_plots( prop_nameL, abs_T=False, ref_scaled=False):
     fig, (ax1,ax2) = plt.subplots(2, 1, figsize=(6,8))
     ax1.set_title( name_str + '\nCp and Heat of Vaporization' )
     
+    cp_max = 0.0 # fix last point being VERY large
     for i,prop in enumerate(propL):
         lab = prop.name + '(%s)'%prop.dataSrc
         
@@ -188,10 +189,19 @@ def make_plots( prop_nameL, abs_T=False, ref_scaled=False):
         ax1.plot( x_dataL, y_dataL, marker=get_marker(i), color=get_color(i), label=lab, linewidth=0 )
         ax1.plot( x_terpL, y_terpL, '-', color=get_color(i) )
         ax1.plot( x_refL, y_refL, marker=get_marker(i), color=get_color(i), markersize=10, linewidth=0, markeredgecolor='k', alpha=.5 )
+
+        cp_max = max(cp_max, 2.0 * y_dataL[-2] )
         
     set_ylabel(ax1, 'Cp', '(BTU/lbm-F)')
     ax1.grid()
     ax1.legend()
+
+    (ylo, yhi) = ax1.get_ylim()
+    if ylo < 0.0:
+        ylo = 0.0
+    if yhi > cp_max:
+        yhi = cp_max
+    ax1.set_ylim( [ylo, yhi] )
     
     ax2.grid()
     set_ylabel(ax2, 'Heat of Vaporization', '(BTU/lbm)')

@@ -5,7 +5,7 @@ from rocketprops.InterpProp_scipy import InterpProp
 from rocketprops.unit_conv_data import get_value
 from rocketprops.mixing_functions import Li_Tcm, mixing_simple, DIPPR9H_cond, Filippov_cond
 from rocketprops.mixing_functions import isMMH_N2H4_Blend, isMON_Ox, isFLOX_Ox
-from rocketprops.mixing_functions import Mnn_Freeze_terp, MON_Freeze_terp, ScaledGasZ
+from rocketprops.mixing_functions import Mnn_Freeze_terp, MON_Freeze_terp  #, ScaledGasZ
 from rocketprops.rocket_prop import get_prop
 # from rocketprops._prop_template import template
 
@@ -81,15 +81,25 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     if len(prop_objL) > 2:
         raise Exception('ONLY Binary mixtures allowed.')
 
-    # get out-of-bounds properties
-    def clamped_property(T, prop_obj, method):
-        if T <= prop_obj.Tfreeze:
-            Pvap = method( prop_obj.Tfreeze )
-        elif T >= prop_obj.Tc:
-            Pvap = method( prop_obj.Tc )
+    # Change reference fluids to allow extrapolation
+    def change_terp_extrap( terp_obj ):
+        terp_obj.extrapOK = 1
+        terp_obj.linear = 1
+        if terp_obj.linear:
+            terp_obj.Nterp = 1
         else:
-            Pvap = method( T )
-        return Pvap
+            terp_obj.Nterp = 2
+
+    for Pobj in prop_objL:
+        
+        change_terp_extrap( Pobj.log10p_terp )
+        change_terp_extrap( Pobj.log10visc_terp )
+        change_terp_extrap( Pobj.cond_terp )
+        change_terp_extrap( Pobj.cp_terp )
+        change_terp_extrap( Pobj.hvap_terp )
+        change_terp_extrap( Pobj.surf_terp )
+        change_terp_extrap( Pobj.SG_liq_terp )
+        change_terp_extrap( Pobj.log10SG_vap_terp )
 
     # Normalize mass_fracL to make sure it adds up to 1.0
     total = sum( mass_fracL )
@@ -99,7 +109,7 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     moleL = [ f_mass/Pobj.MolWt for (f_mass, Pobj) in zip(mass_fracL, prop_objL) ]
     mole_total = sum( moleL )
     mole_fracL = [m/mole_total for m in moleL]
-    print( 'mole_fracL =', mole_fracL)
+    # print( 'mole_fracL =', mole_fracL)
 
     tmpD = {} # index=parameter name, value=string or numeric value
 
@@ -113,41 +123,44 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     # tmpD['class_name'] = prop_name 
     tmpD['prop_name'] = prop_name 
 
-    # Vc = MolWt / SGc # (cm**3/gmole)
-    VcL = [ Pobj.MolWt/Pobj.SGc for Pobj in prop_objL ]
-
-    # Properties of Liquids and Gases 5th Ed. Eqn 5-3.1
-    # Use Li method:  tmpD['Tc'] = mixing_simple(mole_fracL, [Pobj.Tc for Pobj in prop_objL])  # degR
-
-    # thermo package: https://thermo.readthedocs.io/
-    TcL = [Pobj.Tc for Pobj in prop_objL]
-    Tc = Li_Tcm(mole_fracL, TcL, VcL)
-    tmpD['Tc'] = Tc # (zs, Tcs, Vcs)
-
-    # Zc is the mechanical compressibility for mixtures as well.
-    Zc = mixing_simple(mole_fracL, [Pobj.Zc for Pobj in prop_objL])
-    tmpD['Zc'] = Zc
-
-    # get mixture critical volume
-    Vcm =  mixing_simple( mole_fracL, VcL )
-    Vcm = get_value( Vcm, 'cm**3', 'inch**3')
-
-    # Properties of Liquids and Gases 5th Ed. Eqn 5-3.2
-    R = 18540.0 / 453.59237 # psi-in**3 / gmole-degR
-    Pc = Zc  * R * Tc / Vcm 
-    tmpD['Pc'] = Zc
-
+    MolWt = sum( [mole_frac*Pobj.MolWt for (mole_frac,Pobj) in zip(mole_fracL, prop_objL)] )
+    tmpD['MolWt'] = MolWt
 
     # make mixture reference point the mole average of constituents
     T = mixing_simple(mole_fracL, [Pobj.T for Pobj in prop_objL])
     tmpD['T'] = T  # degR
     tmpD['P'] = mixing_simple(mole_fracL, [Pobj.P for Pobj in prop_objL])  # psia
 
-    MolWt = sum( [mole_frac*Pobj.MolWt for (mole_frac,Pobj) in zip(mole_fracL, prop_objL)] )
-    tmpD['MolWt'] = MolWt
+    # Vc = MolWt / SGc # (cm**3/gmole)
+    VcL = [ Pobj.MolWt/Pobj.SGc for Pobj in prop_objL ]
+
+    # Properties of Liquids and Gases 5th Ed. Eqn 5-3.1
+    # Switch to Li method from mixing_simple:  tmpD['Tc'] = mixing_simple(mole_fracL, [Pobj.Tc for Pobj in prop_objL])  # degR
+
+    # thermo package: https://thermo.readthedocs.io/
+    TcL = [Pobj.Tc for Pobj in prop_objL]
+    Tc = Li_Tcm(mole_fracL, TcL, VcL)
+    tmpD['Tc'] = Tc # (zs, Tcs, Vcs)
+
+    Tr = T / Tc
+
+    # Zc is the mechanical compressibility for mixtures as well as pure fluids
+    Zc = mixing_simple(mole_fracL, [Pobj.Zc for Pobj in prop_objL])
+    tmpD['Zc'] = Zc
+
+
+    # get mixture critical volume
+    Vcm =  mixing_simple( mole_fracL, VcL )
+    Vcm = get_value( Vcm, 'cm**3', 'inch**3')
+
+    # Properties of Liquids and Gases 5th Ed. Eqn 5-3.2
+    R = 18540.0 / 453.59237 # psi-in**3 / gmole-degR (i.e. 453.59 converts lbmole to gmole)
+    Pc = Zc  * R * Tc / Vcm 
+    tmpD['Pc'] = Pc
+
 
     # get Pvap at T
-    Pvap = sum( [y*clamped_property(T, Pobj, Pobj.PvapAtTdegR) for (y,Pobj) in zip(mole_fracL, prop_objL)] )
+    Pvap = sum( [y* Pobj.PvapAtTdegR(T) for (y,Pobj) in zip(mole_fracL, prop_objL)] )
     tmpD['Pvap'] = Pvap
 
     # Vm = MolWt / SG # (cm**3/gmole)
@@ -157,10 +170,10 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     tmpD['SG'] = MolWt / Vm  
 
 
-    tmpD['Cp'] = mixing_simple(mole_fracL, [Pobj.Cp for Pobj in prop_objL])
-    tmpD['Hvap'] = mixing_simple(mole_fracL, [Pobj.Hvap for Pobj in prop_objL])
+    tmpD['Cp'] = mixing_simple(mole_fracL, [Pobj.CpAtTr(Tr) for Pobj in prop_objL])
+    tmpD['Hvap'] = mixing_simple(mole_fracL, [Pobj.HvapAtTr(Tr) for Pobj in prop_objL])
     
-    tmp_condL = [Pobj.CondAtTdegR(T) for Pobj in prop_objL]
+    tmp_condL = [Pobj.CondAtTr(Tr) for Pobj in prop_objL]
     if len(mass_fracL) == 2:
         # Recommended in Perry Handbook 8th Ed. page 2-512
         tmpD['cond'] =  Filippov_cond( mass_fracL, tmp_condL )
@@ -171,11 +184,11 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     # TbsL = [Pobj.Tnbp for Pobj in prop_objL]
     # tmpD['surf'] =  Diguilio_Teja_surften(T, mole_fracL, sigmas_TbL, TbsL, TcL)
 
-    surfL = [Pobj.SurfAtTdegR(T) for Pobj in prop_objL]
+    surfL = [Pobj.SurfAtTr(Tr) for Pobj in prop_objL]
     tmpD['surf'] =  mixing_simple( mass_fracL, surfL )
 
     #  D. Perry's Chemical Engineering Handbook. 6th Ed
-    viscL = [Pobj.ViscAtTdegR(T) for Pobj in prop_objL]
+    viscL = [Pobj.ViscAtTr(Tr) for Pobj in prop_objL]
     tmpD['visc'] = mixing_simple( mass_fracL, viscL)
 
     tmpD['Tfreeze'] = Tfreeze
@@ -206,26 +219,30 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     SG_liqL = []
     SG_vapL = []
 
-    print( 'Tlo=%g,  Thi=%g'%(Tlo, Thi))
+    # print( 'Tlo=%g,  Thi=%g'%(Tlo, Thi))
 
     # iterate over temperature range
     for i in range( NsatPts ):
         T =  Tlo + i*dT
+        Tr = T / Tc
         if i == NsatPts-1:
             T = Thi
+            Tr = 1.0
 
         tL.append( T )
         trL.append( T/Tc )
-        pL.append( sum( [y*clamped_property(T, Pobj, Pobj.PvapAtTdegR) for (y,Pobj) in zip(mole_fracL, prop_objL)] ) ) # Raoult's Law
+        pL.append( sum( [y* Pobj.PvapAtTdegR(T) for (y,Pobj) in zip(mole_fracL, prop_objL)] ) ) # Raoult's Law
 
-        cpL.append( mixing_simple(mole_fracL, [clamped_property(T, Pobj, Pobj.CpAtTdegR) for Pobj in prop_objL]) )
-        hvapL.append( mixing_simple(mole_fracL, [clamped_property(T, Pobj, Pobj.HvapAtTdegR) for Pobj in prop_objL]) )
+        cpL.append( mixing_simple(mole_fracL, [ Pobj.CpAtTr(Tr) for Pobj in prop_objL]) )
 
-        surfL.append( mixing_simple(mole_fracL, [clamped_property(T, Pobj, Pobj.SurfAtTdegR) for Pobj in prop_objL]) )
-        viscL.append( mixing_simple(mole_fracL, [clamped_property(T, Pobj, Pobj.ViscAtTdegR) for Pobj in prop_objL]) )
+        hvapL.append( mixing_simple(mole_fracL, [ Pobj.HvapAtTr(Tr) for Pobj in prop_objL]) )
+        
+        surfL.append( mixing_simple(mass_fracL, [ Pobj.SurfAtTr(Tr) for Pobj in prop_objL]) )
+        
+        viscL.append( mixing_simple(mass_fracL, [ Pobj.ViscAtTr(Tr) for Pobj in prop_objL]) )
         
         # thermal conductivity
-        tmp_condL = [Pobj.CondAtTdegR(T) for Pobj in prop_objL]
+        tmp_condL = [Pobj.CondAtTr(Tr) for Pobj in prop_objL]
         if len(mass_fracL) == 2:
             # Recommended in Perry Handbook 8th Ed. page 2-512
             condL.append(  Filippov_cond( mass_fracL, tmp_condL ) )
@@ -233,20 +250,21 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
             condL.append(   DIPPR9H_cond( mass_fracL, tmp_condL ) )
 
         # liquid density
-        VmL = [ Pobj.MolWt/Pobj.SGLiqAtTdegR(T) for Pobj in prop_objL ]
+        VmL = [ Pobj.MolWt/Pobj.SGLiqAtTr(Tr) for Pobj in prop_objL ]
+        
         Vm = mixing_simple( mole_fracL, VmL )
         # Amgat mixing rule from thermo package: https://thermo.readthedocs.io/
         SG_liqL.append( MolWt / Vm )
 
+        Z = mixing_simple(mole_fracL, [Pobj.ZVapAtTr(Tr) for Pobj in prop_objL])
 
-        #ScaledGasZ( TdegR, Ppsia, Tc, Pc, Zc, omega )
-        Z = ScaledGasZ( T, pL[-1], Tc, Pc, Zc, omega )
-
-        # scale MolWt by Raoult's Law
-        MW = sum( [y*Pobj.MolWt*clamped_property(T, Pobj, Pobj.PvapAtTdegR) \
+        MW = sum( [y*Pobj.MolWt* Pobj.PvapAtTr(Tr) \
                    for (y,Pobj) in zip(mole_fracL, prop_objL)] ) / pL[-1]
+
         # print( 'MW =',MW, '  MolWt =', MolWt)
         SGg = pL[-1] * MW / (18540.0 * T * (Z/27.67990471)) # g/ml
+        # SGg = pL[-1] * MolWt / (18540.0 * T * (Z/27.67990471)) # g/ml
+        
         SG_vapL.append( SGg )
 
 
@@ -268,32 +286,33 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
 
 
     # =============== Temporary output =====================
-    kL = sorted( tmpD.keys(), key=str.lower )
-    for k in kL:
-        try:
-            sL = tmpD[k].split(',')
-            if len(sL) > 1:
-                print( '%20s'%k, ','.join(sL[:2]),'...', ','.join(sL[-2:]) )
-            else:
+    if 0:
+        kL = sorted( tmpD.keys(), key=str.lower )
+        for k in kL:
+            try:
+                sL = tmpD[k].split(',')
+                if len(sL) > 1:
+                    print( '%20s'%k, ','.join(sL[:2]),'...', ','.join(sL[-2:]) )
+                else:
+                    print( '%20s'%k, tmpD[k] )
+            except:
                 print( '%20s'%k, tmpD[k] )
-        except:
-            print( '%20s'%k, tmpD[k] )
 
-    # show T limits
-    print( 'Tlo=%g,  Thi=%g'%(Tlo, Thi))
-    print( 'Tfreeze of pure propellants:', TfreezeL, '  of blend =', Tfreeze)
-    print( 'Tc of pure propellants:', TcL, '  of blend =', Tc)
-    # src = template.format( **tmpD )
-    # print( src )
+        # show T limits
+        print( 'Tlo=%g,  Thi=%g'%(Tlo, Thi))
+        print( 'Tfreeze of pure propellants:', TfreezeL, '  of blend =', Tfreeze)
+        print( 'Tc of pure propellants:', TcL, '  of blend =', Tc)
+        # src = template.format( **tmpD )
+        # print( src )
 
-    # from math import log10
-    # from rocketprops.rocket_prop import Propellant
-    # from rocketprops.unit_conv_data import get_value
-    # from rocketprops.InterpProp_scipy import InterpProp
+        # from math import log10
+        # from rocketprops.rocket_prop import Propellant
+        # from rocketprops.unit_conv_data import get_value
+        # from rocketprops.InterpProp_scipy import InterpProp
 
-    # exec( src )
-    print()
-    # print( repr(tmpD) )
+        # exec( src )
+        print()
+        # print( repr(tmpD) )
 
     return tmpD
 

@@ -30,6 +30,7 @@
         "Kesler",
         "lbcuft",
         "lbmmole",
+        "lbmole",
         "linewidth",
         "lvpres",
         "markeredgecolor",
@@ -47,6 +48,7 @@
         "Pmax",
         "Pmin",
         "pname",
+        "Pobj",
         "Ppsia",
         "Przedziecki",
         "Psat",
@@ -97,6 +99,7 @@
         "xlabel",
         "yaxis",
         "ylabel",
+        "ylim",
         "Zhao",
         "Zroots"
     ]

@@ -4,7 +4,7 @@ from rocketprops.scaling_funcs import ambrose_Psat, solve_omega, Rowlinson_Polin
                                       Pitzer_Hvap, Edalat_Pvap, Rackett_SG, ScaledRackett_SG, \
                                       Pitzer_surften, Nicola_thcond, Squires_visc, \
                                       Przedziecki_Sridhar_visc
-from rocketprops._scaled_prop_template import template
+from rocketprops._prop_template import template
 from rocketprops.PR_eos import PReos
 from rocketprops.rocket_prop import here
 # from rocketprops.unit_conv_data import get_value

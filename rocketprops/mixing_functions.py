@@ -483,3 +483,45 @@ if __name__ == "__main__":
         isFLOX_Ox( name )
 
 
+def ScaledGasZ( TdegR, Ppsia, Tc, Pc, Zc, omega ):
+    """Based on BVirial_Pitzer_Curl from thermo.
+    see: https://study.com/academy/answer/using-the-correlation-for-the-second-virial-coefficient-pitzer-correlation-find-the-molar-volume-of-1-propanol-vapour-at-508-8-k-and-12-bar-giving-your-answer-to-the-nearest-cm-3-mol-the-critical.html
+    """
+    
+    Tr = TdegR / Tc 
+    Pr = Ppsia / Pc
+    
+    def calc_b0b1( Tr ):
+        # Pitzer_Curl
+        B0 = 0.1445 - 0.33/Tr - 0.1385/Tr**2 - 0.0121/Tr**3
+        B1 = 0.073 + 0.46/Tr - 0.5/Tr**2 - 0.097/Tr**3 - 0.0073/Tr**8
+        
+        # Tsonopoulos
+        #B0 = 0.1445 - 0.33/Tr - 0.1385/Tr**2 - 0.0121/Tr**3 - 0.000607/Tr**8
+        #B1 = 0.0637 + 0.331/Tr**2 - 0.423/Tr**3 - 0.008/Tr**8        
+        
+        # Abbot version of second virial const.
+        #B0 = 0.083 - 0.422/Tr**1.6
+        #B1 = 0.139 - 0.172/Tr**4.2
+        
+        return B0, B1
+        
+    def calc_B( Tr, omega ):
+        B0, B1 = calc_b0b1( Tr )
+        B = B0 + omega * B1
+        return B
+            
+    def calc_z( Tr, Pr, omega ):
+        B = calc_B( Tr, omega )
+        Z = 1.0 + B * Pr / Tr
+        return Z
+    
+    Bc_calc = calc_B( 1.0, omega )
+    Bc_inp = Zc - 1.0
+    scale_fact = Bc_inp / Bc_calc
+    
+    B = calc_B( Tr, omega )
+    Z = 1.0 + scale_fact * B * Pr / Tr
+    return Z
+
+

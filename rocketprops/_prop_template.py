@@ -49,36 +49,36 @@ class Prop( Propellant ):
         
         # ========== save dataSrc for each value ===========
         data_srcD = dict() # index=parameter, value=data source
-        data_srcD["main"]    = "Scaled Reference Point"
-        data_srcD["T"]       = "Scaled Reference Point" # degR
-        data_srcD["P"]       = "Scaled Reference Point" # psia
-        data_srcD["Pvap"]    = "Scaled Reference Point" # psia
-        data_srcD["Pc"]      = "Scaled Reference Point" # psia
-        data_srcD["Tc"]      = "Scaled Reference Point" # degR
-        data_srcD["Zc"]      = "Scaled Reference Point" # Z at critical pt
-        data_srcD["omega"]   = "Scaled Reference Point" # define: omega = -1.0 - log10( Pvap(0.7 * Tc) / Pc )
-        data_srcD["SG"]      = "Scaled Reference Point" # SG
-        data_srcD["visc"]    = "Scaled Reference Point" # poise
-        data_srcD["cond"]    = "Scaled Reference Point" # BTU/hr/ft/delF
-        data_srcD["Tnbp"]    = "Scaled Reference Point" # degR
-        data_srcD["Tfreeze"] = "Scaled Reference Point" # degR
-        data_srcD["Ttriple"] = "Scaled Reference Point" # degR
-        data_srcD["Cp"]      = "Scaled Reference Point" # BTU/lbm/delF
-        data_srcD["MolWt"]   = "Scaled Reference Point" # g/gmole
-        data_srcD["Hvap"]    = "Scaled Reference Point" # BTU/lbm
-        data_srcD["surf"]    = "Scaled Reference Point" # lbf/in
+        data_srcD["main"]    = "{dataSrc}"
+        data_srcD["T"]       = "{dataSrc}" # degR
+        data_srcD["P"]       = "{dataSrc}" # psia
+        data_srcD["Pvap"]    = "{dataSrc}" # psia
+        data_srcD["Pc"]      = "{dataSrc}" # psia
+        data_srcD["Tc"]      = "{dataSrc}" # degR
+        data_srcD["Zc"]      = "{dataSrc}" # Z at critical pt
+        data_srcD["omega"]   = "{dataSrc}" # define: omega = -1.0 - log10( Pvap(0.7 * Tc) / Pc )
+        data_srcD["SG"]      = "{dataSrc}" # SG
+        data_srcD["visc"]    = "{dataSrc}" # poise
+        data_srcD["cond"]    = "{dataSrc}" # BTU/hr/ft/delF
+        data_srcD["Tnbp"]    = "{dataSrc}" # degR
+        data_srcD["Tfreeze"] = "{dataSrc}" # degR
+        data_srcD["Ttriple"] = "{dataSrc}" # degR
+        data_srcD["Cp"]      = "{dataSrc}" # BTU/lbm/delF
+        data_srcD["MolWt"]   = "{dataSrc}" # g/gmole
+        data_srcD["Hvap"]    = "{dataSrc}" # BTU/lbm
+        data_srcD["surf"]    = "{dataSrc}" # lbf/in
 
-        data_srcD["trL"]     = "Scaled Reference Point"
-        data_srcD["tL"]      = "Scaled Reference Point"
+        data_srcD["trL"]     = "{dataSrc}"
+        data_srcD["tL"]      = "{dataSrc}"
 
-        data_srcD["log10pL"]      = "Scaled Reference Point"
-        data_srcD["log10viscL"]   = "Scaled Reference Point"
-        data_srcD["condL"]        = "Scaled Reference Point"
-        data_srcD["cpL"]          = "Scaled Reference Point"
-        data_srcD["hvapL"]        = "Scaled Reference Point"
-        data_srcD["surfL"]        = "Scaled Reference Point"    
-        data_srcD["SG_liqL"]      = "Scaled Reference Point"
-        data_srcD["log10SG_vapL"] = "Scaled Reference Point"
+        data_srcD["log10pL"]      = "{dataSrc}"
+        data_srcD["log10viscL"]   = "{dataSrc}"
+        data_srcD["condL"]        = "{dataSrc}"
+        data_srcD["cpL"]          = "{dataSrc}"
+        data_srcD["hvapL"]        = "{dataSrc}"
+        data_srcD["surfL"]        = "{dataSrc}"    
+        data_srcD["SG_liqL"]      = "{dataSrc}"
+        data_srcD["log10SG_vapL"] = "{dataSrc}"
         self.data_srcD = data_srcD
         
         # ========== initialize saturation interpolators ===========

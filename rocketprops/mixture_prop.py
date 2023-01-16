@@ -59,13 +59,35 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
 
     #     Tfreeze = Mnn_Freeze_terp( mmhPcent )
     elif noPcent:
-        mon_lo_prop = get_prop('MON10')
-        mon_hi_prop = get_prop('MON25')
-        prop_objL=[mon_lo_prop, mon_hi_prop]  # will normalize below
+        if noPcent == 10.0:
+            return get_prop('MON10')
+        elif noPcent == 25.0:
+            return get_prop('MON25')
+        elif noPcent == 30.0:
+            return get_prop('MON30')
 
-        mass_fracL=[20, 80]
+        if noPcent <= 10.0:
+            mon_lo_prop = get_prop('N2O4')
+            mon_hi_prop = get_prop('MON10')
+            # mass_fracL=[noPcent, 100-noPcent]
+            mass_fracL=[(10-noPcent)/(noPcent), 1.0]
+        elif noPcent <= 25.0:
+            mon_lo_prop = get_prop('MON10')
+            mon_hi_prop = get_prop('MON25')
+            mass_fracL=[(25-noPcent)/(noPcent-10), 1.0]
+        elif noPcent <= 30.0:
+            mon_lo_prop = get_prop('MON25')
+            mon_hi_prop = get_prop('MON30')
+            mass_fracL=[(30-noPcent)/(noPcent-25), 1.0]
+        else:
+            raise Exception('Maximum MON value is MON30.')
+
+        prop_objL=[mon_lo_prop, mon_hi_prop]  # will normalize below
+        print( 'mon_lo_prop.name =', mon_lo_prop.name)
+        print( 'mon_hi_prop.name =', mon_hi_prop.name)
+
         Tfreeze = MON_Freeze_terp( noPcent )
-        raise Exception('MON logic needs work')
+        # raise Exception('MON logic needs work')
     elif f2Pcent:
         lox_prop = get_prop('LOX')
         lf2_prop = get_prop('LF2')
@@ -101,6 +123,23 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
         change_terp_extrap( Pobj.SG_liq_terp )
         change_terp_extrap( Pobj.log10SG_vap_terp )
 
+    def pTr(Pobj, T, Tr):
+        """Make a pseudo temperature for each object to smooth high Tr values"""
+        limit = 0.7
+        # Tr_p = max(limit, min(1.0, T / Pobj.Tc))
+        Tr_p =  T / Pobj.Tc
+        if Tr_p < limit:
+            return Tr_p
+        
+        Tc_mix = T / Tr
+        T_at_limit = limit * Pobj.Tc
+        Tr_mix_at_Tr_p_limit = T_at_limit / Tc_mix
+
+        Tr_range = 1.0 - limit
+
+        return limit + Tr_range * (Tr-Tr_mix_at_Tr_p_limit)/(1.0-Tr_mix_at_Tr_p_limit)
+
+
     # Normalize mass_fracL to make sure it adds up to 1.0
     total = sum( mass_fracL )
     mass_fracL = [ f/total for f in mass_fracL ]
@@ -109,7 +148,8 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     moleL = [ f_mass/Pobj.MolWt for (f_mass, Pobj) in zip(mass_fracL, prop_objL) ]
     mole_total = sum( moleL )
     mole_fracL = [m/mole_total for m in moleL]
-    # print( 'mole_fracL =', mole_fracL)
+    print( 'mole_fracL =', mole_fracL)
+    print( 'mass_fracL =', mass_fracL)
 
     tmpD = {} # index=parameter name, value=string or numeric value
 
@@ -139,7 +179,14 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
 
     # thermo package: https://thermo.readthedocs.io/
     TcL = [Pobj.Tc for Pobj in prop_objL]
+
+    # if prop_name.startswith('MON'):
+    #     Tc = mixing_simple(mole_fracL, TcL)  # degR
+    # else:
     Tc = Li_Tcm(mole_fracL, TcL, VcL)
+    # Tc = mixing_simple(mole_fracL, TcL)  # degR
+    print( 'Tc =', Tc)
+
     tmpD['Tc'] = Tc # (zs, Tcs, Vcs)
 
     Tr = T / Tc
@@ -160,35 +207,35 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
 
 
     # get Pvap at T
-    Pvap = sum( [y* Pobj.PvapAtTdegR(T) for (y,Pobj) in zip(mole_fracL, prop_objL)] )
+    Pvap = sum( [y* Pobj.PvapAtTr( pTr(Pobj, T, Tr) ) for (y,Pobj) in zip(mole_fracL, prop_objL)] )
     tmpD['Pvap'] = Pvap
 
     # Vm = MolWt / SG # (cm**3/gmole)
-    VmL = [ Pobj.MolWt/Pobj.SGLiqAtTdegR(T) for Pobj in prop_objL ]
+    VmL = [ Pobj.MolWt/Pobj.SGLiqAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL ]
     Vm = mixing_simple( mole_fracL, VmL )
     # Amgat mixing rule from thermo package: https://thermo.readthedocs.io/
     tmpD['SG'] = MolWt / Vm  
 
 
-    tmpD['Cp'] = mixing_simple(mole_fracL, [Pobj.CpAtTr(Tr) for Pobj in prop_objL])
-    tmpD['Hvap'] = mixing_simple(mole_fracL, [Pobj.HvapAtTr(Tr) for Pobj in prop_objL])
+    tmpD['Cp']   = mixing_simple(mole_fracL, [Pobj.CpAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL])
+    tmpD['Hvap'] = mixing_simple(mole_fracL, [Pobj.HvapAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL])
     
-    tmp_condL = [Pobj.CondAtTr(Tr) for Pobj in prop_objL]
+    tmp_condL = [Pobj.CondAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
     if len(mass_fracL) == 2:
         # Recommended in Perry Handbook 8th Ed. page 2-512
         tmpD['cond'] =  Filippov_cond( mass_fracL, tmp_condL )
     else:
         tmpD['cond'] =  DIPPR9H_cond( mass_fracL, tmp_condL )
 
-    # sigmas_TbL = [Pobj.SurfAtTdegR( Pobj.Tnbp ) for Pobj in prop_objL]
+    # sigmas_TbL = [Pobj.SurfAtTr( Pobj.Tnbp ) for Pobj in prop_objL]
     # TbsL = [Pobj.Tnbp for Pobj in prop_objL]
     # tmpD['surf'] =  Diguilio_Teja_surften(T, mole_fracL, sigmas_TbL, TbsL, TcL)
 
-    surfL = [Pobj.SurfAtTr(Tr) for Pobj in prop_objL]
+    surfL = [Pobj.SurfAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
     tmpD['surf'] =  mixing_simple( mass_fracL, surfL )
 
     #  D. Perry's Chemical Engineering Handbook. 6th Ed
-    viscL = [Pobj.ViscAtTr(Tr) for Pobj in prop_objL]
+    viscL = [Pobj.ViscAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
     tmpD['visc'] = mixing_simple( mass_fracL, viscL)
 
     tmpD['Tfreeze'] = Tfreeze
@@ -231,18 +278,18 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
 
         tL.append( T )
         trL.append( T/Tc )
-        pL.append( sum( [y* Pobj.PvapAtTdegR(T) for (y,Pobj) in zip(mole_fracL, prop_objL)] ) ) # Raoult's Law
+        pL.append( sum( [y* Pobj.PvapAtTr( pTr(Pobj, T, Tr) ) for (y,Pobj) in zip(mole_fracL, prop_objL)] ) ) # Raoult's Law
 
-        cpL.append( mixing_simple(mole_fracL, [ Pobj.CpAtTr(Tr) for Pobj in prop_objL]) )
+        cpL.append( mixing_simple(mole_fracL, [ Pobj.CpAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
 
-        hvapL.append( mixing_simple(mole_fracL, [ Pobj.HvapAtTr(Tr) for Pobj in prop_objL]) )
+        hvapL.append( mixing_simple(mole_fracL, [ Pobj.HvapAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
         
-        surfL.append( mixing_simple(mass_fracL, [ Pobj.SurfAtTr(Tr) for Pobj in prop_objL]) )
+        surfL.append( mixing_simple(mass_fracL, [ Pobj.SurfAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
         
-        viscL.append( mixing_simple(mass_fracL, [ Pobj.ViscAtTr(Tr) for Pobj in prop_objL]) )
+        viscL.append( mixing_simple(mass_fracL, [ Pobj.ViscAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
         
         # thermal conductivity
-        tmp_condL = [Pobj.CondAtTr(Tr) for Pobj in prop_objL]
+        tmp_condL = [Pobj.CondAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
         if len(mass_fracL) == 2:
             # Recommended in Perry Handbook 8th Ed. page 2-512
             condL.append(  Filippov_cond( mass_fracL, tmp_condL ) )
@@ -250,15 +297,15 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
             condL.append(   DIPPR9H_cond( mass_fracL, tmp_condL ) )
 
         # liquid density
-        VmL = [ Pobj.MolWt/Pobj.SGLiqAtTr(Tr) for Pobj in prop_objL ]
+        VmL = [ Pobj.MolWt/Pobj.SGLiqAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL ]
         
         Vm = mixing_simple( mole_fracL, VmL )
         # Amgat mixing rule from thermo package: https://thermo.readthedocs.io/
         SG_liqL.append( MolWt / Vm )
 
-        Z = mixing_simple(mole_fracL, [Pobj.ZVapAtTr(Tr) for Pobj in prop_objL])
+        Z = mixing_simple(mole_fracL, [Pobj.ZVapAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL])
 
-        MW = sum( [y*Pobj.MolWt* Pobj.PvapAtTr(Tr) \
+        MW = sum( [y*Pobj.MolWt* Pobj.PvapAtTr( pTr(Pobj, T, Tr) ) \
                    for (y,Pobj) in zip(mole_fracL, prop_objL)] ) / pL[-1]
 
         # print( 'MW =',MW, '  MolWt =', MolWt)
@@ -290,11 +337,7 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
         kL = sorted( tmpD.keys(), key=str.lower )
         for k in kL:
             try:
-                sL = tmpD[k].split(',')
-                if len(sL) > 1:
-                    print( '%20s'%k, ','.join(sL[:2]),'...', ','.join(sL[-2:]) )
-                else:
-                    print( '%20s'%k, tmpD[k] )
+                print( '%20s'%k, tmpD[k][:2], tmpD[k][-2:] )
             except:
                 print( '%20s'%k, tmpD[k] )
 
@@ -321,8 +364,8 @@ if __name__ == "__main__":
     from rocketprops.plot_multi_props import make_plots
     from rocketprops.prop_from_dict import Prop
 
-    tmpD = build_mixture( prop_name='M20' )
-    # tmpD = build_mixture( prop_name='MON15' )
+    # tmpD = build_mixture( prop_name='M20' )
+    tmpD = build_mixture( prop_name='MON27' )
     # tmpD = build_mixture( prop_name='FLOX70' )
 
     C = Prop( valueD=tmpD )
@@ -335,5 +378,7 @@ if __name__ == "__main__":
     print('  P_data_range=', C.P_data_range())
     
     # C.plot_sat_props()
-    make_plots( prop_nameL=[ 'MMH', 'N2H4'], prop_objL=[C], abs_T=0, ref_scaled=False)
+    # make_plots( prop_nameL=[ 'MMH', 'N2H4'], prop_objL=[C], abs_T=0, ref_scaled=False)
+    make_plots( prop_nameL=['N2O4', 'MON10', 'MON25', 'MON30'], 
+                prop_objL=[C], abs_T=0, ref_scaled=False)
 

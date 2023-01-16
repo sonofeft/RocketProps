@@ -7,6 +7,7 @@ from rocketprops.mixing_functions import Li_Tcm, mixing_simple, DIPPR9H_cond, Fi
 from rocketprops.mixing_functions import isMMH_N2H4_Blend, isMON_Ox, isFLOX_Ox
 from rocketprops.mixing_functions import Mnn_Freeze_terp, MON_Freeze_terp  #, ScaledGasZ
 from rocketprops.rocket_prop import get_prop
+from rocketprops.prop_from_dict import Prop
 # from rocketprops._prop_template import template
 
 def solve_Tnbp( tL, pvapL ):
@@ -59,12 +60,10 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
 
     #     Tfreeze = Mnn_Freeze_terp( mmhPcent )
     elif noPcent:
-        if noPcent == 10.0:
-            return get_prop('MON10')
-        elif noPcent == 25.0:
-            return get_prop('MON25')
-        elif noPcent == 30.0:
-            return get_prop('MON30')
+        # if a well-documented MON, return the file-based version
+        prop_str = 'MON%g'%noPcent
+        if prop_str in ['MON10', 'MON25', 'MON30']:
+            return get_prop( prop_str )
 
         if noPcent <= 10.0:
             mon_lo_prop = get_prop('N2O4')
@@ -357,18 +356,17 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
         print()
         # print( repr(tmpD) )
 
-    return tmpD
+    # use tmpD values to build mixture Propellant object
+    return Prop( valueD=tmpD )
 
 
 if __name__ == "__main__":
     from rocketprops.plot_multi_props import make_plots
-    from rocketprops.prop_from_dict import Prop
 
-    # tmpD = build_mixture( prop_name='M20' )
-    tmpD = build_mixture( prop_name='MON27' )
-    # tmpD = build_mixture( prop_name='FLOX70' )
+    # C = build_mixture( prop_name='M20' )
+    C = build_mixture( prop_name='MON12' )
+    # C = build_mixture( prop_name='FLOX70' )
 
-    C = Prop( valueD=tmpD )
     print('T = %g R = %g K'%( C.T, C.T/1.8 ))
     print('SurfaceTension = %g lbf/in'%C.surf, ' = ', get_value(C.surf, 'lbf/in', 'mN/m'), 'mN/m' )
     
@@ -379,6 +377,8 @@ if __name__ == "__main__":
     
     # C.plot_sat_props()
     # make_plots( prop_nameL=[ 'MMH', 'N2H4'], prop_objL=[C], abs_T=0, ref_scaled=False)
-    make_plots( prop_nameL=['N2O4', 'MON10', 'MON25', 'MON30'], 
-                prop_objL=[C], abs_T=0, ref_scaled=False)
+    # make_plots( prop_nameL=['N2O4', 'MON10', 'MON25', 'MON30'], 
+    #             prop_objL=[C], abs_T=0, ref_scaled=False)
+    # make_plots( prop_nameL=[ 'LOX', 'LF2'], prop_objL=[C], abs_T=1, ref_scaled=False)
+    make_plots( prop_nameL=[ 'MON25', 'MON30'], prop_objL=[C], abs_T=1, ref_scaled=False)
 

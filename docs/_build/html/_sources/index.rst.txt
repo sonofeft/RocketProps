@@ -20,6 +20,7 @@ Contents:
    models
    high_press
    mixtures
+   mixture_freeze
    a50_prop   
    clf5_prop
    ethane_prop

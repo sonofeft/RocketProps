@@ -59,7 +59,7 @@ from rocketprops.InterpProp_scipy import InterpProp
 
 from scipy import optimize
 from rocketprops.mixing_functions import Li_Tcm, mixing_simple, DIPPR9H_cond, Filippov_cond
-from rocketprops.mixing_functions import Mnn_Freeze_terp, MON_Freeze_terp  #, ScaledGasZ
+from rocketprops.mixing_functions import Mnn_Freeze_terp, MON_Freeze_terp, Axx_Freeze_terp
 
 
 TREF_K = get_value( 20.0, 'degC', 'degK')
@@ -865,8 +865,7 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     elif n2h4Pcent:
         prop_names.add_associated_name( prop_name, f"{n2h4Pcent}% N2H4 + {100-n2h4Pcent}% UDMH" )
 
-        print( 'ERROR... must correct Tfreeze for Axx mixtures')
-        Tfreeze = Mnn_Freeze_terp( n2h4Pcent )
+        Tfreeze = Axx_Freeze_terp( 100.0 - n2h4Pcent )
 
         if n2h4Pcent <= 50.0:
             mmh_lo_prop = get_prop('UDMH')

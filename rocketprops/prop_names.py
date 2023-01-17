@@ -149,7 +149,7 @@ prop_names.add_associated_name('N2O', 'NitrousOxide')
 prop_names.add_associated_name('N2O', 'Dinitrogen Oxide')
 
 prop_names.add_associated_name('N2O4', 'MON-3')
-prop_names.add_associated_name('N2O4', 'MON3')
+# prop_names.add_associated_name('N2O4', 'MON3')
 prop_names.add_associated_name('NH3', 'Ammonia')
 prop_names.add_associated_name('PH2', 'H2(L)')
 prop_names.add_associated_name('PH2', 'LH2')

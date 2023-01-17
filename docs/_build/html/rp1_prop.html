@@ -2,25 +2,25 @@
 
 <!doctype html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>RP1 &#8212; RocketProps 0.1.2 documentation</title>
-    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>RP1 &#8212; RocketProps 0.1.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
     <link rel="next" title="UDMH" href="udmh_prop.html" />
     <link rel="prev" title="Propane" href="propane_prop.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -40,96 +40,20 @@
         <li class="right" >
           <a href="propane_prop.html" title="Propane"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RP1</a></li> 
       </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
-            </a></p>
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">QuickStart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sources.html">Sources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="high_press.html">High Pressure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="a50_prop.html">A50</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clf5_prop.html">CLF5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ethanol_prop.html">Ethanol</a></li>
-<li class="toctree-l1"><a class="reference internal" href="f2_prop.html">F2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="irfna_prop.html">IRFNA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lox_prop.html">LOX</a></li>
-<li class="toctree-l1"><a class="reference internal" href="methane_prop.html">Methane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="methanol_prop.html">Methanol</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mhf3_prop.html">MHF3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mmh_prop.html">MMH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mon10_prop.html">MON10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mon25_prop.html">MON25</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mon30_prop.html">MON30</a></li>
-<li class="toctree-l1"><a class="reference internal" href="n2h4_prop.html">N2H4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="n2o4_prop.html">N2O4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="n2o_prop.html">N2O</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nh3_prop.html">NH3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ph2_prop.html">PH2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="propane_prop.html">Propane</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">RP1</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#reference-points">Reference Points</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fluid-properties">Fluid Properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#vapor-pressure">Vapor Pressure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#density">Density</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#heat-capacity">Heat Capacity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#viscosity">Viscosity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#heat-of-vaporization">Heat of Vaporization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#thermal-conductivity">Thermal Conductivity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#surface-tension">Surface Tension</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="udmh_prop.html">UDMH</a></li>
-<li class="toctree-l1"><a class="reference internal" href="water_prop.html">Water</a></li>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">RocketProps Code Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
-<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="propane_prop.html"
-                        title="previous chapter">Propane</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="udmh_prop.html"
-                        title="next chapter">UDMH</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/rp1_prop.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="rp1">
-<h1>RP1<a class="headerlink" href="#rp1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="reference-points">
-<h2>Reference Points<a class="headerlink" href="#reference-points" title="Permalink to this headline">¶</a></h2>
+  <section id="rp1">
+<h1>RP1<a class="headerlink" href="#rp1" title="Permalink to this heading">¶</a></h1>
+<section id="reference-points">
+<h2>Reference Points<a class="headerlink" href="#reference-points" title="Permalink to this heading">¶</a></h2>
 <p>RP1 == RP-1</p>
 <p><cite>Hover over column headers to see definitions, values to see alternate units</cite></p>
 <table width="100%">
@@ -201,9 +125,9 @@
 0.0325499 cal/s/m/delC
 0.00136189 W/cm/delC">0.0787</td><td >---</td></tr>
 
-</table></div>
-<div class="section" id="fluid-properties">
-<h2>Fluid Properties<a class="headerlink" href="#fluid-properties" title="Permalink to this headline">¶</a></h2>
+</table></section>
+<section id="fluid-properties">
+<h2>Fluid Properties<a class="headerlink" href="#fluid-properties" title="Permalink to this heading">¶</a></h2>
 <p>RP1 == RP-1</p>
 <p><cite>Hover over column headers to see definitions, values to see alternate units</cite></p>
 <table width="100%">
@@ -252,9 +176,9 @@
 -50 degF
 -45.5556 degC">409.7</td><td>0.51236</td></tr>
 
-</table></div>
-<div class="section" id="vapor-pressure">
-<h2>Vapor Pressure<a class="headerlink" href="#vapor-pressure" title="Permalink to this headline">¶</a></h2>
+</table></section>
+<section id="vapor-pressure">
+<h2>Vapor Pressure<a class="headerlink" href="#vapor-pressure" title="Permalink to this heading">¶</a></h2>
 <div class="columns">
     <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/RP1_Psat.png"><img alt="_images/RP1_Psat.png" src="_images/RP1_Psat.png" /></a>
 </div><div ><br><br><div class="line-block">
@@ -264,9 +188,9 @@
 </div>
 </div></div>
 <div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
-</div>
-<div class="section" id="density">
-<h2>Density<a class="headerlink" href="#density" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="density">
+<h2>Density<a class="headerlink" href="#density" title="Permalink to this heading">¶</a></h2>
 <div class="columns">
     <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/RP1_SG.png"><img alt="_images/RP1_SG.png" src="_images/RP1_SG.png" /></a>
 </div><div ><br><br><div class="line-block">
@@ -277,9 +201,9 @@
 </div>
 </div></div>
 <div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
-</div>
-<div class="section" id="heat-capacity">
-<h2>Heat Capacity<a class="headerlink" href="#heat-capacity" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="heat-capacity">
+<h2>Heat Capacity<a class="headerlink" href="#heat-capacity" title="Permalink to this heading">¶</a></h2>
 <div class="columns">
     <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/RP1_Cp.png"><img alt="_images/RP1_Cp.png" src="_images/RP1_Cp.png" /></a>
 </div><div ><br><br><div class="line-block">
@@ -288,9 +212,9 @@
 </div>
 </div></div>
 <div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
-</div>
-<div class="section" id="viscosity">
-<h2>Viscosity<a class="headerlink" href="#viscosity" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="viscosity">
+<h2>Viscosity<a class="headerlink" href="#viscosity" title="Permalink to this heading">¶</a></h2>
 <div class="columns">
     <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/RP1_Visc.png"><img alt="_images/RP1_Visc.png" src="_images/RP1_Visc.png" /></a>
 </div><div ><br><br><div class="line-block">
@@ -300,9 +224,9 @@
 </div>
 </div></div>
 <div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
-</div>
-<div class="section" id="heat-of-vaporization">
-<h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="heat-of-vaporization">
+<h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Permalink to this heading">¶</a></h2>
 <div class="columns">
     <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/RP1_Hvap.png"><img alt="_images/RP1_Hvap.png" src="_images/RP1_Hvap.png" /></a>
 </div><div ><br><br><div class="line-block">
@@ -312,9 +236,9 @@
 </div>
 </div></div>
 <div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
-</div>
-<div class="section" id="thermal-conductivity">
-<h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="thermal-conductivity">
+<h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Permalink to this heading">¶</a></h2>
 <div class="columns">
     <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/RP1_Cond.png"><img alt="_images/RP1_Cond.png" src="_images/RP1_Cond.png" /></a>
 </div><div ><br><br><div class="line-block">
@@ -324,9 +248,9 @@
 </div>
 </div></div>
 <div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
-</div>
-<div class="section" id="surface-tension">
-<h2>Surface Tension<a class="headerlink" href="#surface-tension" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="surface-tension">
+<h2>Surface Tension<a class="headerlink" href="#surface-tension" title="Permalink to this heading">¶</a></h2>
 <div class="columns">
     <div style="width:75%;float:left" ><a class="reference external image-reference" href="./_static/RP1_Surf.png"><img alt="_images/RP1_Surf.png" src="_images/RP1_Surf.png" /></a>
 </div><div ><br><br><div class="line-block">
@@ -335,11 +259,96 @@
 </div>
 </div></div>
 <div style="clear:both"></div><p><cite>Click Image to View Fill Size</cite></p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">QuickStart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sources.html">Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="high_press.html">High Pressure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixtures.html">Mixtures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="a50_prop.html">A50</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clf5_prop.html">CLF5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethanol_prop.html">Ethanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="f2_prop.html">F2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="irfna_prop.html">IRFNA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lox_prop.html">LOX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methane_prop.html">Methane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methanol_prop.html">Methanol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mhf3_prop.html">MHF3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mmh_prop.html">MMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon10_prop.html">MON10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon25_prop.html">MON25</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mon30_prop.html">MON30</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2h4_prop.html">N2H4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o4_prop.html">N2O4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="n2o_prop.html">N2O</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nh3_prop.html">NH3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ph2_prop.html">PH2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propane_prop.html">Propane</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RP1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reference-points">Reference Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fluid-properties">Fluid Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vapor-pressure">Vapor Pressure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#density">Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heat-capacity">Heat Capacity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#viscosity">Viscosity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#heat-of-vaporization">Heat of Vaporization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thermal-conductivity">Thermal Conductivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surface-tension">Surface Tension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="udmh_prop.html">UDMH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="water_prop.html">Water</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">RocketProps Code Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="propane_prop.html"
+                          title="previous chapter">Propane</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="udmh_prop.html"
+                          title="next chapter">UDMH</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/rp1_prop.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -359,12 +368,13 @@
         <li class="right" >
           <a href="propane_prop.html" title="Propane"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RP1</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
   </body>
 </html>

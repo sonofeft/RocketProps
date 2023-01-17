@@ -1,8 +1,8 @@
 
 from rocketprops.plot_multi_props import make_plots
-from rocketprops.rocket_prop import Prop, build_mixture
+from rocketprops.rocket_prop import get_prop
 
-C = build_mixture( prop_name='M86' )
+C = get_prop( 'M86' )
 # tmpD = build_mixture( prop_name='MON15' )
 # tmpD = build_mixture( prop_name='FLOX70' )
 

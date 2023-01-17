@@ -2,25 +2,25 @@
 
 <!doctype html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>RocketProps Code Functions &#8212; RocketProps 0.1.2 documentation</title>
-    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>RocketProps Code Functions &#8212; RocketProps 0.1.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
     <link rel="next" title="Copyright" href="copyright.html" />
     <link rel="prev" title="Water" href="water_prop.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -40,21 +40,613 @@
         <li class="right" >
           <a href="water_prop.html" title="Water"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RocketProps Code Functions</a></li> 
       </ul>
-    </div>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-rocketprops.rocket_prop">
+<span id="rocketprops-code-functions"></span><h1>RocketProps Code Functions<a class="headerlink" href="#module-rocketprops.rocket_prop" title="Permalink to this heading">¶</a></h1>
+<p>RocketProps models liquid rocket propellants that are injected into 
+liquid rocket chambers.</p>
+<p>RocketProps calculates the various propellant properties required
+to analyze a liquid propellant thrust chamber. 
+This includes density, viscosity, vapor pressure,
+heat of vaporization, surface tension, heat capacity and thermal conductivity. 
+Other properties such as critical temperature and pressure, normal boiling point, 
+molecular weight and freezing temperature are available.</p>
+<p>RocketProps
+Copyright (C) 2020  Applied Python</p>
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+<hr class="docutils" />
+<dl class="py class">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Prop">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rocketprops.rocket_prop.</span></span><span class="sig-name descname"><span class="pre">Prop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">valueD</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Prop" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Prop.set_std_state">
+<span class="sig-name descname"><span class="pre">set_std_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Prop.set_std_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set properties and standard state of Propellant</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rocketprops.rocket_prop.</span></span><span class="sig-name descname"><span class="pre">Propellant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'MMH'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant" title="Permalink to this definition">¶</a></dt>
+<dd><p>RocketProps models liquid rocket propellants that are injected into liquid rocket chambers.</p>
+<p>:param name : name of propellant
+:type name : str
+:return: Propellant object
+:rtype: Propellant</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.CondAtTdegR">
+<span class="sig-name descname"><span class="pre">CondAtTdegR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.CondAtTdegR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature in degR, return thermal conductivity of saturated liquid in BTU/hr-ft-R.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.CondAtTr">
+<span class="sig-name descname"><span class="pre">CondAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.CondAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature (Tr), return thermal conductivity of saturated liquid in BTU/hr-ft-R.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.CpAtTdegR">
+<span class="sig-name descname"><span class="pre">CpAtTdegR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.CpAtTdegR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature in degR, return Heat Capacity of saturated liquid in BTU/lbm-R.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.CpAtTr">
+<span class="sig-name descname"><span class="pre">CpAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.CpAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature (Tr), return heat capacity of saturated liquid in BTU/lbm-R.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.HvapAtTdegR">
+<span class="sig-name descname"><span class="pre">HvapAtTdegR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.HvapAtTdegR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature in degR, return heat of vaporization of saturated liquid in BTU/lbm.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.HvapAtTr">
+<span class="sig-name descname"><span class="pre">HvapAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.HvapAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature (Tr), return heat of vaporization of saturated liquid in BTU/lbm.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.P_data_range">
+<span class="sig-name descname"><span class="pre">P_data_range</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.P_data_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return tuple of pressure range, (Pmin, Pmax) in psia</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.PvapAtTdegR">
+<span class="sig-name descname"><span class="pre">PvapAtTdegR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.PvapAtTdegR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature in degR, return saturation pressure in psia.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.PvapAtTr">
+<span class="sig-name descname"><span class="pre">PvapAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.PvapAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature (Tr), return vapor pressure of saturated liquid in psia.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SGLiqAtTdegR">
+<span class="sig-name descname"><span class="pre">SGLiqAtTdegR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SGLiqAtTdegR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature in degR, return specific gravity of saturated liquid in g/ml.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SGLiqAtTr">
+<span class="sig-name descname"><span class="pre">SGLiqAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SGLiqAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature (Tr), return specific gravity of saturated liquid in g/ml.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SGVapAtTdegR">
+<span class="sig-name descname"><span class="pre">SGVapAtTdegR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SGVapAtTdegR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature in degR, return specific gravity of Saturated Vapor in g/ml.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SGVapAtTr">
+<span class="sig-name descname"><span class="pre">SGVapAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SGVapAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature (Tr), return specific of Saturated Vapor in g/ml.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SG_compressed">
+<span class="sig-name descname"><span class="pre">SG_compressed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SG_compressed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates compressed-liquid specific gravity,
+unless overridden, uses COSTALD since COSTALD matched non-alcohol REFPROP propellants best.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- temperature in degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- pressure in psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>specific gravity at (TdegR, Ppsia) in g/ml</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SG_compressedCOSTALD">
+<span class="sig-name descname"><span class="pre">SG_compressedCOSTALD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SG_compressedCOSTALD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates compressed-liquid specific gravity, using the COSTALD  CSP method.</p>
+<p>This code is modified from thermo package: <a class="reference external" href="https://thermo.readthedocs.io/index.html">https://thermo.readthedocs.io/index.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- temperature in degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- pressure in psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>specific gravity at (TdegR, Ppsia) in g/ml</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SG_compressedCZ1">
+<span class="sig-name descname"><span class="pre">SG_compressedCZ1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SG_compressedCZ1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates compressed-liquid specific gravity, using the Chang Zhao method.</p>
+<p>This code is derived from equation 4-12.3 in 5th Ed. of Gases and Liquids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- temperature in degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- pressure in psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>specific gravity at (TdegR, Ppsia) in g/ml</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SG_compressedCZ2">
+<span class="sig-name descname"><span class="pre">SG_compressedCZ2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SG_compressedCZ2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates compressed-liquid specific gravity, using the Chang Zhao method
+as modified in Journal of Molecular Liquids 160 (2011) 94-102</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- temperature in degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- pressure in psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>specific gravity at (TdegR, Ppsia) in g/ml</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SG_compressedNasrfar">
+<span class="sig-name descname"><span class="pre">SG_compressedNasrfar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SG_compressedNasrfar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates compressed-liquid specific gravity, using the Nasrfar Moshfeghian method
+from Journal of Molecular Liquids 160 (2011) 94-102</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- temperature in degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- pressure in psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>specific gravity at (TdegR, Ppsia) in g/ml</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SGc">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SGc</span></span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SGc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return critical specific gravity.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SurfAtTdegR">
+<span class="sig-name descname"><span class="pre">SurfAtTdegR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SurfAtTdegR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature in degR, return surface tension of saturated liquid in lbf/in.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.SurfAtTr">
+<span class="sig-name descname"><span class="pre">SurfAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SurfAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature (Tr), return surface tension of saturated liquid in lbf/in.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.TAtTr">
+<span class="sig-name descname"><span class="pre">TAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.TAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature, return absolute temperature in degR.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.T_data_range">
+<span class="sig-name descname"><span class="pre">T_data_range</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.T_data_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return tuple of temperature range, (Tmin, Tmax) in degR</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.TdegRAtPsat">
+<span class="sig-name descname"><span class="pre">TdegRAtPsat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Psat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.TdegRAtPsat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given saturation pressure in psia, solve for saturation temperature in degR</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.TrAtT">
+<span class="sig-name descname"><span class="pre">TrAtT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.TrAtT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature, return reduced temperature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.Tr_data_range">
+<span class="sig-name descname"><span class="pre">Tr_data_range</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.Tr_data_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return tuple of reduced temperature range, (Trmin, Trmax)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.ViscAtTdegR">
+<span class="sig-name descname"><span class="pre">ViscAtTdegR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ViscAtTdegR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature in degR, return viscosity of saturated liquid in poise.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.ViscAtTr">
+<span class="sig-name descname"><span class="pre">ViscAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ViscAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature (Tr), return viscosity of saturated liquid in poise.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.Visc_compressed">
+<span class="sig-name descname"><span class="pre">Visc_compressed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.Visc_compressed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adjusts viscosity of a liquid for high pressure  using an empirical
+formula developed by Lucas.</p>
+<p>This code is modified from thermo package: <a class="reference external" href="https://thermo.readthedocs.io/">https://thermo.readthedocs.io/</a>
+also see: equation 9-9.1  in 5th Ed. of Gases and Liquids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- temperature in degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- pressure in psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>viscosity at (TdegR, Ppsia) in poise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.ZLiqAtTdegR">
+<span class="sig-name descname"><span class="pre">ZLiqAtTdegR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ZLiqAtTdegR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature in degR, return compressibility of saturated liquid.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.ZLiqAtTr">
+<span class="sig-name descname"><span class="pre">ZLiqAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ZLiqAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature (Tr), return compressibility of saturated liquid.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.ZVapAtTdegR">
+<span class="sig-name descname"><span class="pre">ZVapAtTdegR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TdegR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ZVapAtTdegR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given temperature in degR, return compressibility of  Saturated Vapor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.ZVapAtTr">
+<span class="sig-name descname"><span class="pre">ZVapAtTr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Tr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ZVapAtTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given reduced temperature (Tr), return compressibility of Saturated Vapor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.plot_sat_props">
+<span class="sig-name descname"><span class="pre">plot_sat_props</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_figures</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.plot_sat_props" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and launch matplotlib plots of all saturation properties.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.Propellant.summ_print">
+<span class="sig-name descname"><span class="pre">summ_print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.summ_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a summary of the Propellant object.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.build_mixture">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.rocket_prop.</span></span><span class="sig-name descname"><span class="pre">build_mixture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prop_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.build_mixture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a mixture of MMH + N2H4 (e.g. M20), N2O4 + NO (e.g. MON25) or LOX + F2 (e.g. FLOX70)</p>
+<p>Args:</p>
+<p>Returns: Propellant object of mixture</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.get_prop">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.rocket_prop.</span></span><span class="sig-name descname"><span class="pre">get_prop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suppress_warning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.get_prop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a Propellant object for the named propellant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>string</em>) -- name of propellant (for example &quot;N2O4&quot; or &quot;LOX&quot;)</p></li>
+<li><p><strong>suppress_warning</strong> (<em>boolean</em>) -- if True, then do not print warnings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Propellant object for named propellant</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant">Propellant</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.rocket_prop.solve_Tnbp">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.rocket_prop.</span></span><span class="sig-name descname"><span class="pre">solve_Tnbp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pvapL</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.solve_Tnbp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given Temperature list, tL and Vapor Pressure list, pvapL, solve for Tnbp
+tL = temperature list, degR
+pvapL = vapor pressure list, psia
+Return:
+Tnbp = normal boiling point, degR</p>
+</dd></dl>
+
+<section id="module-rocketprops.tank_supt">
+<span id="tank-support"></span><h2>Tank Support<a class="headerlink" href="#module-rocketprops.tank_supt" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.tank_supt.calc_tank_volume">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.tank_supt.</span></span><span class="sig-name descname"><span class="pre">calc_tank_volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pObj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kg_expelled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TmaxC</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expPcent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">98.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ullPcent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.tank_supt.calc_tank_volume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the volume of a propellant tank given operating requirements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>kg_expelled</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- mass of expelled propellant in kg</p></li>
+<li><p><strong>TmaxC</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- max operating/storage/transport temperature in deg C</p></li>
+<li><p><strong>expPcent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- expulsion efficiency in percent</p></li>
+<li><p><strong>ullPcent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- percent of total tank volume that is ullage at TmaxC</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(volume of tank (ml), loaded propellant mass (kg), residual propellant mass (kg))</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-rocketprops.line_supt">
+<span id="line-support"></span><h2>Line Support<a class="headerlink" href="#module-rocketprops.line_supt" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.line_supt.calc_line_id_dp">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.line_supt.</span></span><span class="sig-name descname"><span class="pre">calc_line_id_dp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pObj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TdegR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">530.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wdotPPS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velFPS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">13.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roughness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kfactors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">len_inches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.line_supt.calc_line_id_dp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the inner diameter and pressure drop in propellant line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- temperature of propellant, degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- inlet pressure to orifice, psia</p></li>
+<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- mass flow rate in line, lbm/sec</p></li>
+<li><p><strong>velFPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- velocity of liquid in line, ft/sec</p></li>
+<li><p><strong>roughness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- line roughness, inches</p></li>
+<li><p><strong>Kfactors</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- number of velocity heads lost due to bends, valves, etc.</p></li>
+<li><p><strong>len_inches</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- length of line, inches</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple of inside diameter and pressure drop (dinsid, deltaP), (inch, psid)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.line_supt.calc_line_vel_dp">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.line_supt.</span></span><span class="sig-name descname"><span class="pre">calc_line_vel_dp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pObj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TdegR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">530.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wdotPPS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IDinches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.335</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roughness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kfactors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">len_inches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.line_supt.calc_line_vel_dp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the line velocity and pressure drop in propellant line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- temperature of propellant, degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- inlet pressure to orifice, psia</p></li>
+<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- mass flow rate in line, lbm/sec</p></li>
+<li><p><strong>IDinches</strong> -- inside diameter of line, in</p></li>
+<li><p><strong>roughness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- line roughness, inches</p></li>
+<li><p><strong>Kfactors</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- number of velocity heads lost due to bends, valves, etc.</p></li>
+<li><p><strong>len_inches</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- length of line, inches</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple of velocity and pressure drop (velFPS, deltaP), (ft/s, psid)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-rocketprops.injector_supt">
+<span id="injector-support"></span><h2>Injector Support<a class="headerlink" href="#module-rocketprops.injector_supt" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.injector_supt.calc_inj_velocity">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.injector_supt.</span></span><span class="sig-name descname"><span class="pre">calc_inj_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pObj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dPpsia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TdegR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">530.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.injector_supt.calc_inj_velocity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the injection velocity of a propellant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>dPpsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- pressure drop across orifice, psid</p></li>
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- temperature of propellant, degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- inlet pressure to orifice, psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>injection velocity, ft/sec</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.injector_supt.calc_orifice_flow_rate">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.injector_supt.</span></span><span class="sig-name descname"><span class="pre">calc_orifice_flow_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pObj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CdOrf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DiamInches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dPpsia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TdegR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">530.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.injector_supt.calc_orifice_flow_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate mass flow rate through a single injector orifice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>CdOrf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- discharge coefficient of orifice</p></li>
+<li><p><strong>DiamInches</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- diameter of orifice, inch</p></li>
+<li><p><strong>dPpsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- pressure drop across orifice, psid</p></li>
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- temperature of propellant, degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- inlet pressure to orifice, psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>mass flow rate of single orifice, lbm/sec</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-rocketprops.valve_supt">
+<span id="valve-support"></span><h2>Valve Support<a class="headerlink" href="#module-rocketprops.valve_supt" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.valve_supt.calib_valve_dp">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.valve_supt.</span></span><span class="sig-name descname"><span class="pre">calib_valve_dp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pObj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wdotPPS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TdegR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">530.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refWaterWdot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.214</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refWaterDP</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.valve_supt.calib_valve_dp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate valve pressure drop for a valve that has been calibrated
+with a water flow test.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- propellant mass flow rate in line, lbm/sec</p></li>
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- propellant temperature of propellant, degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- propellant inlet pressure to valve, psia</p></li>
+<li><p><strong>refWaterWdot</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- reference water flow rate, lbm/sec</p></li>
+<li><p><strong>refWaterDP</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- reference water pressure drop, psid</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>propellant pressure drop , psid</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.valve_supt.cv_valve_dp">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.valve_supt.</span></span><span class="sig-name descname"><span class="pre">cv_valve_dp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pObj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wdotPPS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TdegR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">530.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.valve_supt.cv_valve_dp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate valve pressure drop for a valve with a known imperial flow coefficient, Cv.</p>
+<p>Imperial flow coefficient (Cv) is the amount of water (in gallons per minute) at 60 degF 
+that will flow through a fully open valve with a difference of 1 psi between 
+the inlet and the outlet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>Cv</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- valve flow coefficient</p></li>
+<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- propellant mass flow rate in line, lbm/sec</p></li>
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- propellant temperature of propellant, degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- propellant inlet pressure to valve, psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>propellant pressure drop , psid</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rocketprops.valve_supt.kv_valve_dp">
+<span class="sig-prename descclassname"><span class="pre">rocketprops.valve_supt.</span></span><span class="sig-name descname"><span class="pre">kv_valve_dp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pObj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wdotPPS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TdegR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">530.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ppsia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.valve_supt.kv_valve_dp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate valve pressure drop for a valve with a known metric flow coefficient, Kv.</p>
+<p>Metric flow coefficient (Kv) is the amount of water (in m**3/hr) at 4 degC
+that will flow through a fully open valve with a difference of 1 bar between 
+the inlet and the outlet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
+<li><p><strong>Kv</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- valve flow coefficient</p></li>
+<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- propellant mass flow rate in line, lbm/sec</p></li>
+<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- propellant temperature of propellant, degR</p></li>
+<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) -- propellant inlet pressure to valve, psia</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>propellant pressure drop , psid</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
             </a></p>
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul class="current">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">QuickStart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sources.html">Sources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="high_press.html">High Pressure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixtures.html">Mixtures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="a50_prop.html">A50</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clf5_prop.html">CLF5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
@@ -78,18 +670,90 @@
 <li class="toctree-l1"><a class="reference internal" href="rp1_prop.html">RP1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udmh_prop.html">UDMH</a></li>
 <li class="toctree-l1"><a class="reference internal" href="water_prop.html">Water</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">RocketProps Code Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RocketProps Code Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rocketprops.rocket_prop.Prop"><code class="docutils literal notranslate"><span class="pre">Prop</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Prop.set_std_state"><code class="docutils literal notranslate"><span class="pre">Prop.set_std_state()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant"><code class="docutils literal notranslate"><span class="pre">Propellant</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.CondAtTdegR"><code class="docutils literal notranslate"><span class="pre">Propellant.CondAtTdegR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.CondAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.CondAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.CpAtTdegR"><code class="docutils literal notranslate"><span class="pre">Propellant.CpAtTdegR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.CpAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.CpAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.HvapAtTdegR"><code class="docutils literal notranslate"><span class="pre">Propellant.HvapAtTdegR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.HvapAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.HvapAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.P_data_range"><code class="docutils literal notranslate"><span class="pre">Propellant.P_data_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.PvapAtTdegR"><code class="docutils literal notranslate"><span class="pre">Propellant.PvapAtTdegR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.PvapAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.PvapAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SGLiqAtTdegR"><code class="docutils literal notranslate"><span class="pre">Propellant.SGLiqAtTdegR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SGLiqAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.SGLiqAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SGVapAtTdegR"><code class="docutils literal notranslate"><span class="pre">Propellant.SGVapAtTdegR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SGVapAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.SGVapAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SG_compressed"><code class="docutils literal notranslate"><span class="pre">Propellant.SG_compressed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SG_compressedCOSTALD"><code class="docutils literal notranslate"><span class="pre">Propellant.SG_compressedCOSTALD()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SG_compressedCZ1"><code class="docutils literal notranslate"><span class="pre">Propellant.SG_compressedCZ1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SG_compressedCZ2"><code class="docutils literal notranslate"><span class="pre">Propellant.SG_compressedCZ2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SG_compressedNasrfar"><code class="docutils literal notranslate"><span class="pre">Propellant.SG_compressedNasrfar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SGc"><code class="docutils literal notranslate"><span class="pre">Propellant.SGc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SurfAtTdegR"><code class="docutils literal notranslate"><span class="pre">Propellant.SurfAtTdegR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.SurfAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.SurfAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.TAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.TAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.T_data_range"><code class="docutils literal notranslate"><span class="pre">Propellant.T_data_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.TdegRAtPsat"><code class="docutils literal notranslate"><span class="pre">Propellant.TdegRAtPsat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.TrAtT"><code class="docutils literal notranslate"><span class="pre">Propellant.TrAtT()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.Tr_data_range"><code class="docutils literal notranslate"><span class="pre">Propellant.Tr_data_range()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.ViscAtTdegR"><code class="docutils literal notranslate"><span class="pre">Propellant.ViscAtTdegR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.ViscAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.ViscAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.Visc_compressed"><code class="docutils literal notranslate"><span class="pre">Propellant.Visc_compressed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.ZLiqAtTdegR"><code class="docutils literal notranslate"><span class="pre">Propellant.ZLiqAtTdegR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.ZLiqAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.ZLiqAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.ZVapAtTdegR"><code class="docutils literal notranslate"><span class="pre">Propellant.ZVapAtTdegR()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.ZVapAtTr"><code class="docutils literal notranslate"><span class="pre">Propellant.ZVapAtTr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.plot_sat_props"><code class="docutils literal notranslate"><span class="pre">Propellant.plot_sat_props()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.rocket_prop.Propellant.summ_print"><code class="docutils literal notranslate"><span class="pre">Propellant.summ_print()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#rocketprops.rocket_prop.build_mixture"><code class="docutils literal notranslate"><span class="pre">build_mixture()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rocketprops.rocket_prop.get_prop"><code class="docutils literal notranslate"><span class="pre">get_prop()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rocketprops.rocket_prop.solve_Tnbp"><code class="docutils literal notranslate"><span class="pre">solve_Tnbp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rocketprops.tank_supt">Tank Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.tank_supt.calc_tank_volume"><code class="docutils literal notranslate"><span class="pre">calc_tank_volume()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rocketprops.line_supt">Line Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.line_supt.calc_line_id_dp"><code class="docutils literal notranslate"><span class="pre">calc_line_id_dp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.line_supt.calc_line_vel_dp"><code class="docutils literal notranslate"><span class="pre">calc_line_vel_dp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rocketprops.injector_supt">Injector Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.injector_supt.calc_inj_velocity"><code class="docutils literal notranslate"><span class="pre">calc_inj_velocity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.injector_supt.calc_orifice_flow_rate"><code class="docutils literal notranslate"><span class="pre">calc_orifice_flow_rate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rocketprops.valve_supt">Valve Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.valve_supt.calib_valve_dp"><code class="docutils literal notranslate"><span class="pre">calib_valve_dp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.valve_supt.cv_valve_dp"><code class="docutils literal notranslate"><span class="pre">cv_valve_dp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rocketprops.valve_supt.kv_valve_dp"><code class="docutils literal notranslate"><span class="pre">kv_valve_dp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="copyright.html">Copyright</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="water_prop.html"
-                        title="previous chapter">Water</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="copyright.html"
-                        title="next chapter">Copyright</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="water_prop.html"
+                          title="previous chapter">Water</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="copyright.html"
+                          title="next chapter">Copyright</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -101,549 +765,12 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="module-rocketprops.rocket_prop">
-<span id="rocketprops-code-functions"></span><h1>RocketProps Code Functions<a class="headerlink" href="#module-rocketprops.rocket_prop" title="Permalink to this headline">¶</a></h1>
-<p>RocketProps models liquid rocket propellants that are injected into 
-liquid rocket chambers.</p>
-<p>RocketProps calculates the various propellant properties required
-to analyse a liquid propellant thrust chamber. 
-This includes density, viscosity, vapor pressure,
-heat of vaporization, surface tension, heat capacity and thermal conductivity. 
-Other properties such as critical temperature and pressure, normal boiling point, 
-molecular weight and freezing temperature are available.</p>
-<p>RocketProps
-Copyright (C) 2020  Applied Python</p>
-<p>This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.</p>
-<p>This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.</p>
-<p>You should have received a copy of the GNU General Public License
-along with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
-<hr class="docutils" />
-<dl class="py class">
-<dt id="rocketprops.rocket_prop.Propellant">
-<em class="property">class </em><code class="sig-prename descclassname">rocketprops.rocket_prop.</code><code class="sig-name descname">Propellant</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'MMH'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant" title="Permalink to this definition">¶</a></dt>
-<dd><p>RocketProps models liquid rocket propellants that are injected into liquid rocket chambers.</p>
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.CondAtTdegR">
-<code class="sig-name descname">CondAtTdegR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.CondAtTdegR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given temperature in degR, return thermal conductivity of saturated liquid in BTU/hr-ft-R.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.CondAtTr">
-<code class="sig-name descname">CondAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.CondAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature (Tr), return thermal conductivity of saturated liquid in BTU/hr-ft-R.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.CpAtTdegR">
-<code class="sig-name descname">CpAtTdegR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.CpAtTdegR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given temperature in degR, return Heat Capacity of saturated liquid in BTU/lbm-R.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.CpAtTr">
-<code class="sig-name descname">CpAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.CpAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature (Tr), return heat capacity of saturated liquid in BTU/lbm-R.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.HvapAtTdegR">
-<code class="sig-name descname">HvapAtTdegR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.HvapAtTdegR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given temperature in degR, return heat of vaporization of saturated liquid in BTU/lbm.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.HvapAtTr">
-<code class="sig-name descname">HvapAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.HvapAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature (Tr), return heat of vaporization of saturated liquid in BTU/lbm.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.P_data_range">
-<code class="sig-name descname">P_data_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.P_data_range" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return tuple of pressure range, (Pmin, Pmax) in psia</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.PvapAtTdegR">
-<code class="sig-name descname">PvapAtTdegR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.PvapAtTdegR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given temperature in degR, return saturation pressure in psia.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.PvapAtTr">
-<code class="sig-name descname">PvapAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.PvapAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature (Tr), return vapor pressure of saturated liquid in psia.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SGLiqAtTdegR">
-<code class="sig-name descname">SGLiqAtTdegR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SGLiqAtTdegR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given temperature in degR, return specific gravity of saturated liquid in g/ml.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SGLiqAtTr">
-<code class="sig-name descname">SGLiqAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SGLiqAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature (Tr), return specific gravity of saturated liquid in g/ml.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SGVapAtTdegR">
-<code class="sig-name descname">SGVapAtTdegR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SGVapAtTdegR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given temperature in degR, return specific gravity of Saturated Vapor in g/ml.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SGVapAtTr">
-<code class="sig-name descname">SGVapAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SGVapAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature (Tr), return specific of Saturated Vapor in g/ml.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SG_compressed">
-<code class="sig-name descname">SG_compressed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em>, <em class="sig-param"><span class="n">Ppsia</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SG_compressed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates compressed-liquid specific gravity,
-unless overridden, uses COSTALD since COSTALD matched non-alcohol REFPROP propellants best.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- temperature in degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- pressure in psia</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>specific gravity at (TdegR, Ppsia) in g/ml</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SG_compressedCOSTALD">
-<code class="sig-name descname">SG_compressedCOSTALD</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em>, <em class="sig-param"><span class="n">Ppsia</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SG_compressedCOSTALD" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates compressed-liquid specific gravity, using the COSTALD  CSP method.</p>
-<p>This code is modified from thermo package: <a class="reference external" href="https://thermo.readthedocs.io/en/latest/index.html">https://thermo.readthedocs.io/en/latest/index.html</a></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- temperature in degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- pressure in psia</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>specific gravity at (TdegR, Ppsia) in g/ml</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SG_compressedCZ1">
-<code class="sig-name descname">SG_compressedCZ1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em>, <em class="sig-param"><span class="n">Ppsia</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SG_compressedCZ1" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates compressed-liquid specific gravity, using the Chang Zhao method.</p>
-<p>This code is derived from equation 4-12.3 in 5th Ed. of Gases and Liquids.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- temperature in degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- pressure in psia</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>specific gravity at (TdegR, Ppsia) in g/ml</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SG_compressedCZ2">
-<code class="sig-name descname">SG_compressedCZ2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em>, <em class="sig-param"><span class="n">Ppsia</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SG_compressedCZ2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates compressed-liquid specific gravity, using the Chang Zhao method
-as modified in Journal of Molecular Liquids 160 (2011) 94-102</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- temperature in degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- pressure in psia</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>specific gravity at (TdegR, Ppsia) in g/ml</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SG_compressedNasrfar">
-<code class="sig-name descname">SG_compressedNasrfar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em>, <em class="sig-param"><span class="n">Ppsia</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SG_compressedNasrfar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates compressed-liquid specific gravity, using the Nasrfar Moshfeghian method
-from Journal of Molecular Liquids 160 (2011) 94-102</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- temperature in degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- pressure in psia</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>specific gravity at (TdegR, Ppsia) in g/ml</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SGc">
-<em class="property">property </em><code class="sig-name descname">SGc</code><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SGc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return critical specific gravity.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SurfAtTdegR">
-<code class="sig-name descname">SurfAtTdegR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SurfAtTdegR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given temperature in degR, return surface tension of saturated liquid in lbf/in.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.SurfAtTr">
-<code class="sig-name descname">SurfAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.SurfAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature (Tr), return surface tension of saturated liquid in lbf/in.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.TAtTr">
-<code class="sig-name descname">TAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.TAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature, return absolute temperature in degR.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.T_data_range">
-<code class="sig-name descname">T_data_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.T_data_range" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return tuple of temperature range, (Tmin, Tmax) in degR</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.TdegRAtPsat">
-<code class="sig-name descname">TdegRAtPsat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Psat</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.TdegRAtPsat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given saturation pressure in psia, solve for saturation temperature in degR</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.Tr_data_range">
-<code class="sig-name descname">Tr_data_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.Tr_data_range" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return tuple of reduced temperature range, (Trmin, Trmax)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.ViscAtTdegR">
-<code class="sig-name descname">ViscAtTdegR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ViscAtTdegR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given temperature in degR, return viscosity of saturated liquid in poise.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.ViscAtTr">
-<code class="sig-name descname">ViscAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ViscAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature (Tr), return viscosity of saturated liquid in poise.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.Visc_compressed">
-<code class="sig-name descname">Visc_compressed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em>, <em class="sig-param"><span class="n">Ppsia</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.Visc_compressed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adjusts viscosity of a liquid for high pressure  using an empirical
-formula developed by Lucas.</p>
-<p>This code is modified from thermo package: <a class="reference external" href="https://thermo.readthedocs.io/en/latest/index.html">https://thermo.readthedocs.io/en/latest/index.html</a>
-also see: equation 9-9.1  in 5th Ed. of Gases and Liquids.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- temperature in degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- pressure in psia</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>viscosity at (TdegR, Ppsia) in poise</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.ZLiqAtTdegR">
-<code class="sig-name descname">ZLiqAtTdegR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ZLiqAtTdegR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given temperature in degR, return compressibility of saturated liquid.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.ZLiqAtTr">
-<code class="sig-name descname">ZLiqAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ZLiqAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature (Tr), return compressibility of saturated liquid.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.ZVapAtTdegR">
-<code class="sig-name descname">ZVapAtTdegR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">TdegR</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ZVapAtTdegR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given temperature in degR, return compressibility of  Saturated Vapor.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.ZVapAtTr">
-<code class="sig-name descname">ZVapAtTr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Tr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.ZVapAtTr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given reduced temperature (Tr), return compressibility of Saturated Vapor.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.plot_sat_props">
-<code class="sig-name descname">plot_sat_props</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_figures</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.plot_sat_props" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and launch matplotlib plots of all saturation properties.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="rocketprops.rocket_prop.Propellant.summ_print">
-<code class="sig-name descname">summ_print</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.Propellant.summ_print" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print a summary of the Propellant object.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt id="rocketprops.rocket_prop.get_prop">
-<code class="sig-prename descclassname">rocketprops.rocket_prop.</code><code class="sig-name descname">get_prop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">suppress_warning</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.rocket_prop.get_prop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a Propellant object for the named propellant.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>string</em>) -- name of propellant (for example &quot;N2O4&quot; or &quot;LOX&quot;)</p></li>
-<li><p><strong>suppress_warning</strong> (<em>boolean</em>) -- if True, then do not print warnings.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Propellant object for named propellant</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant">Propellant</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<span class="target" id="module-rocketprops.tank_supt"></span><dl class="py function">
-<dt id="rocketprops.tank_supt.calc_tank_volume">
-<code class="sig-prename descclassname">rocketprops.tank_supt.</code><code class="sig-name descname">calc_tank_volume</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">kg_expelled</span><span class="o">=</span><span class="default_value">50.0</span></em>, <em class="sig-param"><span class="n">TmaxC</span><span class="o">=</span><span class="default_value">50.0</span></em>, <em class="sig-param"><span class="n">expPcent</span><span class="o">=</span><span class="default_value">98.0</span></em>, <em class="sig-param"><span class="n">ullPcent</span><span class="o">=</span><span class="default_value">3.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.tank_supt.calc_tank_volume" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the volume of a propellant tank given operating requirements.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
-<li><p><strong>kg_expelled</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- mass of expelled propellant in kg</p></li>
-<li><p><strong>TmaxC</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- max operating/storage/transport temperature in deg C</p></li>
-<li><p><strong>expPcent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- expulsion efficiency in percent</p></li>
-<li><p><strong>ullPcent</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- percent of total tank volume that is ullage at TmaxC</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>(volume of tank (ml), loaded propellant mass (kg), residual propellant mass (kg))</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<span class="target" id="module-rocketprops.line_supt"></span><dl class="py function">
-<dt id="rocketprops.line_supt.calc_line_id_dp">
-<code class="sig-prename descclassname">rocketprops.line_supt.</code><code class="sig-name descname">calc_line_id_dp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">TdegR</span><span class="o">=</span><span class="default_value">530.0</span></em>, <em class="sig-param"><span class="n">Ppsia</span><span class="o">=</span><span class="default_value">1000.0</span></em>, <em class="sig-param"><span class="n">wdotPPS</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">velFPS</span><span class="o">=</span><span class="default_value">13.0</span></em>, <em class="sig-param"><span class="n">roughness</span><span class="o">=</span><span class="default_value">5e-06</span></em>, <em class="sig-param"><span class="n">Kfactors</span><span class="o">=</span><span class="default_value">2.0</span></em>, <em class="sig-param"><span class="n">len_inches</span><span class="o">=</span><span class="default_value">50.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.line_supt.calc_line_id_dp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the inner diameter and pressure drop in propellant line.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- temperature of propellant, degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- inlet pressure to orifice, psia</p></li>
-<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- mass flow rate in line, lbm/sec</p></li>
-<li><p><strong>velFPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- velocity of liquid in line, ft/sec</p></li>
-<li><p><strong>roughness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- line roughness, inches</p></li>
-<li><p><strong>Kfactors</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- number of velocity heads lost due to bends, valves, etc.</p></li>
-<li><p><strong>len_inches</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- length of line, inches</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>tuple of inside diameter and pressure drop (dinsid, deltaP), (inch, psid)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="rocketprops.line_supt.calc_line_vel_dp">
-<code class="sig-prename descclassname">rocketprops.line_supt.</code><code class="sig-name descname">calc_line_vel_dp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">TdegR</span><span class="o">=</span><span class="default_value">530.0</span></em>, <em class="sig-param"><span class="n">Ppsia</span><span class="o">=</span><span class="default_value">1000.0</span></em>, <em class="sig-param"><span class="n">wdotPPS</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">IDinches</span><span class="o">=</span><span class="default_value">0.335</span></em>, <em class="sig-param"><span class="n">roughness</span><span class="o">=</span><span class="default_value">5e-06</span></em>, <em class="sig-param"><span class="n">Kfactors</span><span class="o">=</span><span class="default_value">2.0</span></em>, <em class="sig-param"><span class="n">len_inches</span><span class="o">=</span><span class="default_value">50.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.line_supt.calc_line_vel_dp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the line velocity and pressure drop in propellant line.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- temperature of propellant, degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- inlet pressure to orifice, psia</p></li>
-<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- mass flow rate in line, lbm/sec</p></li>
-<li><p><strong>IDinches</strong> -- inside diameter of line, in</p></li>
-<li><p><strong>roughness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- line roughness, inches</p></li>
-<li><p><strong>Kfactors</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- number of velocity heads lost due to bends, valves, etc.</p></li>
-<li><p><strong>len_inches</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- length of line, inches</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>tuple of velocity and pressure drop (velFPS, deltaP), (ft/s, psid)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<span class="target" id="module-rocketprops.injector_supt"></span><dl class="py function">
-<dt id="rocketprops.injector_supt.calc_inj_velocity">
-<code class="sig-prename descclassname">rocketprops.injector_supt.</code><code class="sig-name descname">calc_inj_velocity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">dPpsia</span><span class="o">=</span><span class="default_value">50.0</span></em>, <em class="sig-param"><span class="n">TdegR</span><span class="o">=</span><span class="default_value">530.0</span></em>, <em class="sig-param"><span class="n">Ppsia</span><span class="o">=</span><span class="default_value">1000.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.injector_supt.calc_inj_velocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the injection velocity of a propellant.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
-<li><p><strong>dPpsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- pressure drop across orifice, psid</p></li>
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- temperature of propellant, degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- inlet pressure to orifice, psia</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>injection velocity, ft/sec</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="rocketprops.injector_supt.calc_orifice_flow_rate">
-<code class="sig-prename descclassname">rocketprops.injector_supt.</code><code class="sig-name descname">calc_orifice_flow_rate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">CdOrf</span><span class="o">=</span><span class="default_value">0.75</span></em>, <em class="sig-param"><span class="n">DiamInches</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">dPpsia</span><span class="o">=</span><span class="default_value">50.0</span></em>, <em class="sig-param"><span class="n">TdegR</span><span class="o">=</span><span class="default_value">530.0</span></em>, <em class="sig-param"><span class="n">Ppsia</span><span class="o">=</span><span class="default_value">1000.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.injector_supt.calc_orifice_flow_rate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate mass flow rate through a single injector orifice.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
-<li><p><strong>CdOrf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- discharge coefficient of orifice</p></li>
-<li><p><strong>DiamInches</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- diameter of orifice, inch</p></li>
-<li><p><strong>dPpsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- pressure drop across orifice, psid</p></li>
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- temperature of propellant, degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- inlet pressure to orifice, psia</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>mass flow rate of single orifice, lbm/sec</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<span class="target" id="module-rocketprops.valve_supt"></span><dl class="py function">
-<dt id="rocketprops.valve_supt.calib_valve_dp">
-<code class="sig-prename descclassname">rocketprops.valve_supt.</code><code class="sig-name descname">calib_valve_dp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">wdotPPS</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">TdegR</span><span class="o">=</span><span class="default_value">530.0</span></em>, <em class="sig-param"><span class="n">Ppsia</span><span class="o">=</span><span class="default_value">1000.0</span></em>, <em class="sig-param"><span class="n">refWaterWdot</span><span class="o">=</span><span class="default_value">0.214</span></em>, <em class="sig-param"><span class="n">refWaterDP</span><span class="o">=</span><span class="default_value">30.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.valve_supt.calib_valve_dp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate valve pressure drop for a valve that has been calibrated
-with a water flow test.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
-<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant mass flow rate in line, lbm/sec</p></li>
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant temperature of propellant, degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant inlet pressure to valve, psia</p></li>
-<li><p><strong>refWaterWdot</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- reference water flow rate, lbm/sec</p></li>
-<li><p><strong>refWaterDP</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- reference water pressure drop, psid</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>propellant pressure drop , psid</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="rocketprops.valve_supt.cv_valve_dp">
-<code class="sig-prename descclassname">rocketprops.valve_supt.</code><code class="sig-name descname">cv_valve_dp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">Cv</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">wdotPPS</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">TdegR</span><span class="o">=</span><span class="default_value">530.0</span></em>, <em class="sig-param"><span class="n">Ppsia</span><span class="o">=</span><span class="default_value">1000.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.valve_supt.cv_valve_dp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate valve pressure drop for a valve with a known imperial flow coefficient, Cv.</p>
-<p>Imperial flow coefficient (Cv) is the amount of water (in gallons per minute) at 60 degF 
-that will flow through a fully open valve with a difference of 1 psi between 
-the inlet and the outlet.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
-<li><p><strong>Cv</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- valve flow coefficient</p></li>
-<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant mass flow rate in line, lbm/sec</p></li>
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant temperature of propellant, degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant inlet pressure to valve, psia</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>propellant pressure drop , psid</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="rocketprops.valve_supt.kv_valve_dp">
-<code class="sig-prename descclassname">rocketprops.valve_supt.</code><code class="sig-name descname">kv_valve_dp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pObj</span></em>, <em class="sig-param"><span class="n">Kv</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">wdotPPS</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">TdegR</span><span class="o">=</span><span class="default_value">530.0</span></em>, <em class="sig-param"><span class="n">Ppsia</span><span class="o">=</span><span class="default_value">1000.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#rocketprops.valve_supt.kv_valve_dp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate valve pressure drop for a valve with a known metric flow coefficient, Kv.</p>
-<p>Metric flow coefficient (Kv) is the amount of water (in m**3/hr) at 4 degC
-that will flow through a fully open valve with a difference of 1 bar between 
-the inlet and the outlet.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pObj</strong> (<a class="reference internal" href="#rocketprops.rocket_prop.Propellant" title="rocketprops.rocket_prop.Propellant"><em>Propellant</em></a>) -- propellant object</p></li>
-<li><p><strong>Kv</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- valve flow coefficient</p></li>
-<li><p><strong>wdotPPS</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant mass flow rate in line, lbm/sec</p></li>
-<li><p><strong>TdegR</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant temperature of propellant, degR</p></li>
-<li><p><strong>Ppsia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) -- propellant inlet pressure to valve, psia</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>propellant pressure drop , psid</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
-
-
-          </div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -663,12 +790,13 @@ the inlet and the outlet.</p>
         <li class="right" >
           <a href="water_prop.html" title="Water"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RocketProps Code Functions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
   </body>
 </html>

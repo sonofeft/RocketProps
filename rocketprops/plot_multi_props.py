@@ -13,7 +13,7 @@ def get_color(i):
     return COLORL[ i % len(COLORL) ]
 
 def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
-                Tmin=None, Tmax=None, show_gas_dens=False):
+                Tmin=None, Tmax=None, show_gas_dens=False, save_figures=False):
     
     propL = []
     if prop_nameL is not None:
@@ -38,6 +38,8 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
             tL = [t_start + i*(t_end-t_start)/200.0 for i in range(201) ]
             TLL.append( tL )
             trLL.append( [t/prop.Tc for t in tL] )
+
+            prop.Tr = prop.T / prop.Tc # needed for Tr plots
         else:
             tr_start = max(Tr_min, prop.trL[0])
             tr_end = min(Tr_max, prop.trL[-1])
@@ -49,6 +51,7 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
     
     name_set = set([prop.name for prop in propL])
     name_str = ', '.join( name_set )
+    name_underscore_str = '_'.join( [prop.name for prop in propL] )
     
     # =========== general functions =======================
     def set_xlabel( ax ):
@@ -145,19 +148,24 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
     for i,prop in enumerate(propL):
         lab = prop.name + '(%s)'%prop.dataSrc
         
-        x_refL, y_refL, x_dataL, y_dataL, x_terpL, y_terpL = get_xy_plot_lists( i, 'T', 'tL', 'TAtTr' )
+        if abs_T:
+            x_refL, y_refL, x_dataL, y_dataL, x_terpL, y_terpL = get_xy_plot_lists( i, 'Tr', 'trL', 'TAtTr' )
+            y_terpL = [T/prop.Tc for T in y_terpL]
+        else:
+            x_refL, y_refL, x_dataL, y_dataL, x_terpL, y_terpL = get_xy_plot_lists( i, 'T', 'tL', 'TAtTr' )
 
         ax1.plot( x_dataL, y_dataL, marker=get_marker(i), color=get_color(i), label=lab, linewidth=0 )
         ax1.plot( x_terpL, y_terpL, '-', color=get_color(i) )
-        ax1.plot( x_refL, y_refL, marker=get_marker(i), color=get_color(i), markersize=10, linewidth=0, markeredgecolor='k', alpha=.5 )
+        ax1.plot( x_refL, y_refL, marker=get_marker(i), color=get_color(i), 
+                  markersize=10, linewidth=0, markeredgecolor='k', alpha=.5 )
         
     if abs_T:
-        set_ylabel(ax1, 'Temperature', '(degR)')
-    else:
         set_ylabel(ax1, 'Reduced Temperature', '(-)')
+    else:
+        set_ylabel(ax1, 'Temperature', '(degR)')
             
     ax1.grid()
-    ax1.legend()
+    ax1.legend( framealpha=0.5 )
     
     ax2.grid()
     set_xlabel( ax2 )
@@ -178,9 +186,12 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
         ax2.semilogy( x_dataL, y_dataL, marker=get_marker(i), color=get_color(i), label=lab, linewidth=0 )
         ax2.semilogy( x_terpL, y_terpL, '-', color=get_color(i) )
         ax2.semilogy( x_refL, y_refL, marker=get_marker(i), color=get_color(i), markersize=10, linewidth=0, markeredgecolor='k', alpha=.5 )
-    ax2.legend()
+    ax2.legend( framealpha=0.5 )
     fig.tight_layout()
-    
+
+    if save_figures:
+        fname = '%s_TandP.png'%name_underscore_str
+        plt.savefig(fname)    
     # ================== visc and cond =============================
     fig, (ax1,ax2) = plt.subplots(2, 1, figsize=(6,8))
     ax1.set_title( name_str + '\nViscosity and Thermal Conductivity' )
@@ -197,7 +208,7 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
             
     set_ylabel(ax1, 'Viscosity', '(poise)')
     ax1.grid()
-    ax1.legend()
+    ax1.legend( framealpha=0.5 )
     
     ax2.grid()
     set_ylabel(ax2, 'Thermal Conductivity', '(BTU/hr-ft-F)')
@@ -212,8 +223,12 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
             ax2.semilogy( x_terpL, y_terpL, '-', color=get_color(i) )
             ax2.semilogy( x_refL, y_refL, marker=get_marker(i), color=get_color(i), markersize=10, linewidth=0, markeredgecolor='k', alpha=.5 )
                         
-    ax2.legend()
+    ax2.legend( framealpha=0.5 )
     fig.tight_layout()
+        
+    if save_figures:
+        fname = '%s_ViscCond.png'%name_underscore_str
+        plt.savefig(fname)
     
     # ================== Cp and Hvap =============================
     fig, (ax1,ax2) = plt.subplots(2, 1, figsize=(6,8))
@@ -233,7 +248,7 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
         
     set_ylabel(ax1, 'Cp', '(BTU/lbm-F)')
     ax1.grid()
-    ax1.legend()
+    ax1.legend( framealpha=0.5 )
 
     (ylo, yhi) = ax1.get_ylim()
     if ylo < 0.0:
@@ -254,8 +269,12 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
         ax2.plot( x_terpL, y_terpL, '-', color=get_color(i) )
         ax2.plot( x_refL, y_refL, marker=get_marker(i), color=get_color(i), markersize=10, linewidth=0, markeredgecolor='k', alpha=.5 )
         
-    ax2.legend()
+    ax2.legend( framealpha=0.5 )
     fig.tight_layout()
+        
+    if save_figures:
+        fname = '%s_CpHvap.png'%name_underscore_str
+        plt.savefig(fname)
     
     # ================== Surface Tension and Density =============================
     fig, (ax1,ax2) = plt.subplots(2, 1, figsize=(6,8))
@@ -273,7 +292,7 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
             
     set_ylabel(ax1, 'Surface Tension', '(lbf/in)')
     ax1.grid()
-    ax1.legend()
+    ax1.legend( framealpha=0.5 )
     
     ax2.grid()
     set_ylabel(ax2, 'Specific Gravity', '(SG)')
@@ -293,8 +312,12 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
             ax2.plot( x_dataL, y_dataL, marker=get_marker(i), color=get_color(i), linewidth=0 )
             ax2.plot( x_terpL, y_terpL, '-', color=get_color(i) )
             
-    ax2.legend()
+    ax2.legend( framealpha=0.5 )
     fig.tight_layout()
+        
+    if save_figures:
+        fname = '%s_SurfSG.png'%name_underscore_str
+        plt.savefig(fname)
     
     
     # ========================================================
@@ -306,7 +329,6 @@ if __name__ == '__main__':
     
 
     
-    make_plots( ['M20', 'MMH', 'N2H4'], abs_T=1, ref_scaled=False, Tmin=480, Tmax=600)
     #make_plots( ['A50_scaled', 'A50'], abs_T=0, ref_scaled=False)
     # make_plots( ['MMH', 'N2H4'], abs_T=0, ref_scaled=True)
     
@@ -316,4 +338,10 @@ if __name__ == '__main__':
     
     #make_plots( ['LOX', 'F2', 'PH2'], abs_T=False, ref_scaled=True)
     #make_plots( ['LOX', 'F2'], abs_T=False, ref_scaled=True)
-    
+
+
+    # make_plots( ['MON30', 'MON25', 'MON10', 'MON3', 'N2O4'], abs_T=True, 
+    #             Tmin=480, Tmax=600, save_figures=False)
+
+    make_plots( ['UDMH','A25', 'A50', 'N2H4'], abs_T=1,
+                Tmin=430, Tmax=560, save_figures=True)

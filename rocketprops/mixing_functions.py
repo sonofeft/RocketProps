@@ -13,6 +13,43 @@ MONfreezeL_degRL = [471.241,466.135,461.159,455.529,449.709,443.27,436.026,429.9
 #MONfreezeKL = [261.8, 258.96, 256.2, 253.07, 249.84, 246.26, 242.24, 238.86, 235.33, 232.35, 227.68, 225.74, 222.16, 217.35, 211.24, 205.72, 200.16, 194.64, 189.08, 183.36, 177.95, 172.28, 165.83, 168.51, 171.39, 172.63]
 MON_Freeze_terp = InterpProp( wtPcentONL, MONfreezeL_degRL )
 
+def tfreeze_udmh_in_n2h4( wt_pcent_udmh ):
+    '''
+    Curve Fit Results from XYmath 07/20/2020
+    Can be called with wt_pcent_udmh=float or wt_pcent_udmh=numpy array
+
+    y = c0 + c1*wt_pcent_udmh + c2*wt_pcent_udmh**2
+        c0 = 275.0284644722944
+        c1 = -0.033382796654452374
+        c2 = -0.0026244277482150996
+        wt_pcent_udmh = wt_pcent_udmh
+        y = Tfreeze
+        Correlation Coefficient = 0.9999904489898558
+        Standard Deviation = 0.015507810687155406
+        Percent Standard Deviation = 0.005716790173686035%
+    y = 275.0284644722944 - 0.033382796654452374*wt_pcent_udmh - 0.0026244277482150996*wt_pcent_udmh**2
+
+     (x,y) Data Pairs from 07/20/2020 Used in Curve Fit 
+     (x,y) = (0.509356,274.985),(5.5297,274.783),(10.5275,274.404),
+        (15.5006,273.881),(20.4669,273.263),(25.3909,272.477),(30.2954,271.591),
+        (35.169,270.599),(40.0084,269.492),(44.8015,268.256),(49.5659,266.939),
+        (54.2762,265.507),(58.9317,263.932)
+
+    '''
+    try:
+        if wt_pcent_udmh<0 or wt_pcent_udmh>60:
+            print( 'WARNING... wt_pcent_udmh is outside range in tfreeze_udmh_in_n2h4' )
+            print( '  wt_pcent_udmh =',wt_pcent_udmh,' wt_pcent_udmh range = (0 to 60)' )
+    except:
+        if np.min(wt_pcent_udmh)<0 or np.max(wt_pcent_udmh)>60:
+            print( 'WARNING... wt_pcent_udmh array contains elements outside data range in tfreeze_udmh_in_n2h4' )
+            outsideArr = wt_pcent_udmh[ (wt_pcent_udmh<0) | (wt_pcent_udmh>60) ]
+            print( '  wt_pcent_udmh violations =',outsideArr,' wt_pcent_udmh range = (0 to 60)' )
+    
+    return 1.8*(275.0284644722944 - 0.033382796654452374*wt_pcent_udmh - 0.0026244277482150996*wt_pcent_udmh**2)
+
+
+
 
 def is_blend( name, blend_prefix, verbose=False ):
     """

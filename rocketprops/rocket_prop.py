@@ -163,6 +163,10 @@ class Propellant(object):
         """Given reduced temperature, return absolute temperature in degR."""
         return self.Tc * Tr
 
+    def TrAtT(self, T):
+        """Given temperature, return reduced temperature."""
+        return T / self.Tc
+
     def TdegRAtPsat(self, Psat):
         """Given saturation pressure in psia, solve for saturation temperature in degR"""
         trmin = self.trL[0]
@@ -794,7 +798,7 @@ class Prop( Propellant ):
 
 def solve_Tnbp( tL, pvapL ):
     """
-    Given Temperature list, tL and Vapor Pressure list, pvapL, solve for Tnpb
+    Given Temperature list, tL and Vapor Pressure list, pvapL, solve for Tnbp
     tL = temperature list, degR
     pvapL = vapor pressure list, psia
     Return:

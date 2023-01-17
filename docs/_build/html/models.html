@@ -2,25 +2,25 @@
 
 <!doctype html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Models &#8212; RocketProps 0.1.2 documentation</title>
-    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Models &#8212; RocketProps 0.1.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
     <link rel="next" title="High Pressure" href="high_press.html" />
     <link rel="prev" title="Sources" href="sources.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -40,16 +40,249 @@
         <li class="right" >
           <a href="sources.html" title="Sources"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Models</a></li> 
       </ul>
-    </div>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="models">
+<h1>Models<a class="headerlink" href="#models" title="Permalink to this heading">¶</a></h1>
+<p>The models chosen for the propellant properties database are described below.</p>
+<p>In general, if a standard <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> fluid is available,
+then <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> will be used as the source of the model data.
+Standard <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> models are present for ethane, ethanol,
+fluorine, oxygen, methane, methanol, nitrous oxide, ammonia, parahydrogen and propane.</p>
+<p>For other propellants like A50, ClF5, IRFNA, MHF3, MMH, MON10 thru 30, N2H4, N2O4, RP1 and UDMH
+other sources will be used. Data sources usually do not include the full temperature range
+from freezing point to critical point, so some extrapolation or interpolation of the data is required.
+<a class="reference external" href="https://www.accessengineeringlibrary.com/content/book/9780070116825">Properties of Gases and Liquids, Fifth Edition</a>,
+will be used to select appropriate models to represent and extend the data.</p>
+<section id="vapor-pressure">
+<h2>Vapor Pressure<a class="headerlink" href="#vapor-pressure" title="Permalink to this heading">¶</a></h2>
+<p>Vapor pressure data will be extended using the <strong>Wagner</strong> equation.</p>
+<p>For a number of published <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> fluids, the constants
+for the <strong>Wagner</strong> equation are published. It can be seen from the vapor pressure charts for those
+propellants that <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> and the <strong>Wagner</strong> equation agree very well
+(see: methane, methanol, ethane, ethanol, propane, ammonia and parahydrogen)</p>
+<p><a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
+recommends that the <strong>Wagner</strong> equation may be used down to a reduced temperature of 0.5, however,
+all of the REFPROP examples show its continued accuracy below that temperature.</p>
+<section id="wagner-fit-source">
+<span id="wagner"></span><span id="id5"></span><h3>Wagner<a class="headerlink" href="#wagner-fit-source" title="Permalink to this heading">¶</a></h3>
+<p>The equation requires four constants to be fitted to fluid vapor pressure data.</p>
+<img alt="_images/wagner_eqn.jpg" src="_images/wagner_eqn.jpg" />
+<p>The values of a, b, c and d have been fitted to a number of propellants
+for use in RocketProps.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>              <span class="n">a</span>                    <span class="n">b</span>                      <span class="n">c</span>                   <span class="n">d</span>
+<span class="n">Methane</span>   <span class="o">-</span><span class="mf">6.02242</span><span class="p">,</span>            <span class="mf">1.26652</span><span class="p">,</span>              <span class="o">-</span><span class="mf">0.5707</span><span class="p">,</span>             <span class="o">-</span><span class="mf">1.366</span>
+<span class="n">Methanol</span>  <span class="o">-</span><span class="mf">8.63571</span><span class="p">,</span>            <span class="mf">1.17982</span><span class="p">,</span>              <span class="o">-</span><span class="mf">2.4790</span><span class="p">,</span>             <span class="o">-</span><span class="mf">1.0240</span>
+<span class="n">Ethane</span>    <span class="o">-</span><span class="mf">6.47500</span><span class="p">,</span>            <span class="mf">1.41071</span><span class="p">,</span>              <span class="o">-</span><span class="mf">1.1440</span><span class="p">,</span>             <span class="o">-</span><span class="mf">1.8590</span>
+<span class="n">Ethanol</span>   <span class="o">-</span><span class="mf">8.68587</span><span class="p">,</span>            <span class="mf">1.17831</span><span class="p">,</span>              <span class="o">-</span><span class="mf">4.8762</span><span class="p">,</span>              <span class="mf">1.5880</span>
+<span class="n">Propane</span>   <span class="o">-</span><span class="mf">6.76368</span><span class="p">,</span>            <span class="mf">1.55481</span><span class="p">,</span>              <span class="o">-</span><span class="mf">1.5872</span><span class="p">,</span>             <span class="o">-</span><span class="mf">2.024</span>
+<span class="n">NH3</span>       <span class="o">-</span><span class="mf">7.28322</span><span class="p">,</span>            <span class="mf">1.5716</span><span class="p">,</span>               <span class="o">-</span><span class="mf">1.85672</span><span class="p">,</span>            <span class="o">-</span><span class="mf">2.39312</span>
+<span class="n">PH2</span>       <span class="o">-</span><span class="mf">4.902616</span><span class="p">,</span>           <span class="mf">1.06500</span><span class="p">,</span>               <span class="mf">0.737305</span><span class="p">,</span>            <span class="mf">0.053125</span>
+<span class="n">N2H4</span>      <span class="o">-</span><span class="mf">6.7779260205203515</span><span class="p">,</span> <span class="mf">0.031241419877672347</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.75576214157275</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.6791935603862034</span>
+<span class="n">N2O4</span>      <span class="o">-</span><span class="mf">8.437950623751371</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.7198359775967993</span><span class="p">,</span>    <span class="mf">3.2683044393949223</span><span class="p">,</span> <span class="mf">12.45086649764585</span>
+<span class="n">A50</span>       <span class="o">-</span><span class="mf">7.641659365830601</span><span class="p">,</span>  <span class="mf">3.2061563372352757</span><span class="p">,</span>   <span class="o">-</span><span class="mf">2.9346526057929907</span><span class="p">,</span>  <span class="mf">2.9995620039010578</span>
+<span class="n">MHF3</span>      <span class="o">-</span><span class="mf">4.430400554283357</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.289202857522381</span><span class="p">,</span>     <span class="mf">0.4548211727181293</span><span class="p">,</span>  <span class="mf">1.9771250142385894</span>
+<span class="n">MMH</span>       <span class="o">-</span><span class="mf">6.700466713713631</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.09747624183487236</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.7874544884949485</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.37220831093827</span>
+<span class="n">UDMH</span>      <span class="o">-</span><span class="mf">7.335910621921567</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.07120599848815566</span><span class="p">,</span>   <span class="mf">1.0118500681251754</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.504291228049002</span>
+<span class="n">MON10</span>     <span class="o">-</span><span class="mf">8.859867572622312</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.23569425311772815</span><span class="p">,</span>  <span class="o">-</span><span class="mf">1.21511310516509</span><span class="p">,</span>   <span class="o">-</span><span class="mf">2.7924844994111235</span>
+<span class="n">MON25</span>     <span class="o">-</span><span class="mf">8.626779322479342</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2877745218667564</span><span class="p">,</span>   <span class="o">-</span><span class="mf">1.2609528745852392</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.1994074964463137</span>
+<span class="n">MON30</span>     <span class="o">-</span><span class="mf">8.394164877030429</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3811184987718641</span><span class="p">,</span>   <span class="o">-</span><span class="mf">1.1304799873211373</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5220091386630217</span>
+<span class="n">IRFNA</span>     <span class="o">-</span><span class="mf">6.198317212258754</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.187645737139488</span><span class="p">,</span>     <span class="mf">4.993054204407724</span><span class="p">,</span> <span class="o">-</span><span class="mf">14.807512940520226</span>
+</pre></div>
+</div>
+</section>
+<section id="edalat">
+<span id="edalat-source"></span><h3>Edalat<a class="headerlink" href="#edalat" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference external" href="https://thermo.readthedocs.io/thermo.vapor_pressure.html#thermo.vapor_pressure.Edalat">Edalat Vapor Pressure equation</a>
+can estimate vapor pressure over a range of temperatures. It is taken from the
+<a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
+project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
+and Contributors (2016-2020).</p>
+<p>It can be used to scale a sparse set of vapor pressure data (e.g. normal boiling point) or
+when no vapor pressure data is available, it can estimate the full range of vapor pressure.</p>
+<img alt="_images/psat_edalat_eqn.jpg" src="_images/psat_edalat_eqn.jpg" />
+</section>
+</section>
+<section id="density">
+<h2>Density<a class="headerlink" href="#density" title="Permalink to this heading">¶</a></h2>
+<p>Density data will be extended using either the <strong>Rackett</strong> Equation,
+the <strong>Yamada and Gunn</strong> modification of the <strong>Rackett</strong> Equation or the <strong>Daubert</strong> Equation.</p>
+<p><a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
+defines those equations as follows.</p>
+<section id="rackett-scaling-source">
+<span id="rackett"></span><span id="id6"></span><h3>Rackett<a class="headerlink" href="#rackett-scaling-source" title="Permalink to this heading">¶</a></h3>
+<img alt="_images/rackett_eqn.jpg" src="_images/rackett_eqn.jpg" />
+<img alt="_images/yamada_and_gunn_eqn.jpg" src="_images/yamada_and_gunn_eqn.jpg" />
+</section>
+<section id="daubert-source">
+<span id="daubert"></span><span id="id7"></span><h3>Daubert<a class="headerlink" href="#daubert-source" title="Permalink to this heading">¶</a></h3>
+<p>The <strong>Daubert</strong> Equation changed the physical quantities and constants of Eq.
+(4-11.1) into four adjustable parameters to give the equation below.
+The value of C is generally equal to Tc while
+A, B, and D are generally close to the values used in Eq. (4-11.3) above.
+For propellants like MON10, MON25 and MON30, the Daubert equation does a good
+job of fitting data without needing the temperature-dependent  pseudocritical properties of
+the mixtures.</p>
+<img alt="_images/daubert_eqn.jpg" src="_images/daubert_eqn.jpg" />
+<p>The constants A, B, C and D were curve fit for MON10, MON25 and MON30.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>             <span class="n">A</span>                  <span class="n">B</span>                   <span class="n">C</span>                   <span class="n">D</span>
+<span class="n">MON10</span> <span class="mf">184.6090958200138</span><span class="p">,</span> <span class="mf">97.08205370646357</span><span class="p">,</span> <span class="mf">852.8788442633142</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.30396612785737676</span>
+<span class="n">MON25</span> <span class="mf">148.1481569994554</span><span class="p">,</span> <span class="mf">79.40853919233791</span><span class="p">,</span> <span class="mf">871.4077962994412</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3164174025669882</span>
+<span class="n">MON30</span> <span class="mf">179.63314607505583</span><span class="p">,</span> <span class="mf">98.3583884965557</span><span class="p">,</span> <span class="mf">869.460001600849</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.29906872709771604</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="heat-capacity">
+<h2>Heat Capacity<a class="headerlink" href="#heat-capacity" title="Permalink to this heading">¶</a></h2>
+<p>Liquid heat capacity approximations often start by calculating a residual heat capacity.</p>
+<p>The residual heat capacity is the difference between the liquid and ideal gas
+heat capacities. The following excerpt from <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
+describes one such method.</p>
+<img alt="_images/cp_corr_states.jpg" src="_images/cp_corr_states.jpg" />
+<p>The above residual heat capacity can be added to the ideal gas heat capacity
+as calculated by the Joback method below.</p>
+<section id="joback">
+<span id="joback-source"></span><h3>Joback<a class="headerlink" href="#joback" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Joback_method">Joback method</a>
+(often named Joback/Reid method) predicts eleven important and
+commonly used pure component thermodynamic properties from molecular structure only.</p>
+<p>The approach for ideal gas is shown below.</p>
+<img alt="_images/joback_cp_calc.jpg" src="_images/joback_cp_calc.jpg" />
+</section>
+</section>
+<section id="viscosity">
+<h2>Viscosity<a class="headerlink" href="#viscosity" title="Permalink to this heading">¶</a></h2>
+<section id="squires">
+<span id="squires-source"></span><h3>Squires<a class="headerlink" href="#squires" title="Permalink to this heading">¶</a></h3>
+<p>Figure 9-13 from <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a> displays the Lewis and Squires liquid
+viscosity vs temperature correlation. It leads to the scaling equation 9-10.3.</p>
+<p>Given a reference viscosity at a given temperature, the value at a different
+temperature may be calculated.</p>
+<img alt="_images/visc_squires_chart_v2.jpg" src="_images/visc_squires_chart_v2.jpg" />
+</section>
+</section>
+<section id="heat-of-vaporization">
+<h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Permalink to this heading">¶</a></h2>
+<section id="pitzer">
+<span id="pitzer-hvap-source"></span><h3>Pitzer<a class="headerlink" href="#pitzer" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference external" href="https://thermo.readthedocs.io/thermo.phase_change.html#thermo.phase_change.Pitzer">Pitzer Hvap equation</a>
+calculates enthalpy of vaporization at arbitrary temperatures. It is taken from the
+<a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
+project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
+and Contributors (2016-2020).</p>
+<img alt="_images/hvap_pitzer_eqn.jpg" src="_images/hvap_pitzer_eqn.jpg" />
+</section>
+</section>
+<section id="thermal-conductivity">
+<h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Permalink to this heading">¶</a></h2>
+<section id="nicola">
+<span id="nicola-source"></span><h3>Nicola<a class="headerlink" href="#nicola" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference external" href="https://thermo.readthedocs.io/thermo.thermal_conductivity.html#thermo.thermal_conductivity.Nicola_original">Nicola equation</a>
+is taken from the
+<a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
+project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
+and Contributors (2016-2020).</p>
+<p>It estimates the thermal conductivity of a liquid as a function of temperature using a
+CSP method. It is a statistically derived equation using the following correlated terms.</p>
+<img alt="_images/cond_nicola_eqn.jpg" src="_images/cond_nicola_eqn.jpg" />
+</section>
+</section>
+<section id="surface-tension">
+<h2>Surface Tension<a class="headerlink" href="#surface-tension" title="Permalink to this heading">¶</a></h2>
+<section id="sastri-rao">
+<span id="sastri-rao-source"></span><h3>Sastri-Rao<a class="headerlink" href="#sastri-rao" title="Permalink to this heading">¶</a></h3>
+<p>Surface tension can be scaled using equation 12-4.1 from <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>.
+The value of n varies from 0.8 for alcohols in the Sastri-Rao method to 1.22, or 11/ 9 for
+other compounds.</p>
+<img alt="_images/surften_scaling_rao.jpg" src="_images/surften_scaling_rao.jpg" />
+<p>For propellants having some surface tension data, n was derived from curve fit.
+Those values are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="n">n</span>
+<span class="n">N2H4</span> <span class="o">=</span> <span class="mf">1.322137</span>
+<span class="n">N2O4</span> <span class="o">=</span> <span class="mf">0.960017</span>
+<span class="n">A50</span>  <span class="o">=</span> <span class="mf">1.000717</span>
+<span class="n">MHF3</span> <span class="o">=</span> <span class="mf">0.859508</span>
+<span class="n">MMH</span>  <span class="o">=</span> <span class="mf">0.846186</span>
+<span class="n">UDMH</span> <span class="o">=</span> <span class="mf">1.018771</span>
+</pre></div>
+</div>
+</section>
+<section id="pitzer-surf-source">
+<span id="id12"></span><h3>Pitzer<a class="headerlink" href="#pitzer-surf-source" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference external" href="https://thermo.readthedocs.io/thermo.interface.html#thermo.interface.Pitzer">Pitzer surface tension equation</a>
+is taken from the
+<a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
+project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
+and Contributors (2016-2020).</p>
+<p>For propellants with no surface tension data available, the
+<a class="reference external" href="https://thermo.readthedocs.io/thermo.interface.html#thermo.interface.Pitzer">Pitzer surface tension equation</a>
+can be used to predict surface tension.</p>
+<img alt="_images/surften_pitzer_eqn.jpg" src="_images/surften_pitzer_eqn.jpg" />
+</section>
+</section>
+<section id="pseudocritical-properties">
+<h2>Pseudocritical Properties<a class="headerlink" href="#pseudocritical-properties" title="Permalink to this heading">¶</a></h2>
+<p>For propellants that are mixtures of other propellants (like A50, MHF3, MON10, MON25 or MON30)
+the critical properties are not pure fluid properties, but a combination of the constituent properties.</p>
+<section id="tc-mixture">
+<span id="id16"></span><h3>Tc Mixture<a class="headerlink" href="#tc-mixture" title="Permalink to this heading">¶</a></h3>
+<p>For pseudocritical temperature,
+<a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
+recommends the simplest mixing rule; a mole fraction average method.
+This rule is often called one of Kay's rules.</p>
+<p>Comparison of Tcm from Eq. (5-3.1) with values determined from other,
+more complicated rules shows that the differences in Tcm are usually less
+than 2% if, for all components the pure component critical properties are not extremely different.</p>
+<img alt="_images/kays_rule_eqn.jpg" src="_images/kays_rule_eqn.jpg" />
+</section>
+<section id="pc-mixture">
+<span id="id17"></span><h3>Pc Mixture<a class="headerlink" href="#pc-mixture" title="Permalink to this heading">¶</a></h3>
+<p>From <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
+for  the pseudocritical pressure, Pcm, a mole-fraction average of pure-component
+critical pressures is normally unsatisfactory. This is because the critical pressure for
+most systems goes through a maximum or minimum with composition. The only
+exceptions are if all components of the mixture have quite similar critical pressures
+and/ or critical volumes. The simplest rule which can give acceptable Pcm values
+for two-parameter or three-parameter CSP is the modified rule of Prausnitz and
+Gunn (1958)</p>
+<img alt="_images/prausnitz_and_gunn_eqn.jpg" src="_images/prausnitz_and_gunn_eqn.jpg" />
+<p>where <strong>all of the mixture pseudocriticals Zcm , Tcm , and Vcm are given by mole-fraction
+averages</strong> (Kay's rule) and R is the universal gas constant of <strong>Table 4-1</strong>.</p>
+<img alt="_images/table_4-1.jpg" src="_images/table_4-1.jpg" />
+</section>
+<section id="omega-mixture">
+<span id="id18"></span><h3>Omega Mixture<a class="headerlink" href="#omega-mixture" title="Permalink to this heading">¶</a></h3>
+<p>According to
+<a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>,
+the mixture pseudo acentric factor is commonly given
+by a mole fraction average (Joffe, 1971)</p>
+<img alt="_images/omega_mixture_eqn.jpg" src="_images/omega_mixture_eqn.jpg" />
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
             </a></p>
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul class="current">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">QuickStart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sources.html">Sources</a></li>
@@ -94,6 +327,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="high_press.html">High Pressure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mixtures.html">Mixtures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="a50_prop.html">A50</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clf5_prop.html">CLF5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
@@ -123,12 +357,17 @@
 <li class="toctree-l1"><a class="reference internal" href="history.html">History</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="sources.html"
-                        title="previous chapter">Sources</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="high_press.html"
-                        title="next chapter">High Pressure</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sources.html"
+                          title="previous chapter">Sources</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="high_press.html"
+                          title="next chapter">High Pressure</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -140,242 +379,12 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="models">
-<h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
-<p>The models chosen for the propellant properties database are described below.</p>
-<p>In general, if a standard <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> fluid is available,
-then <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> will be used as the source of the model data.
-Standard <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> models are present for ethane, ethanol,
-fluorine, oxygen, methane, methanol, nitrous oxide, ammonia, parahydrogen and propane.</p>
-<p>For other propellants like A50, ClF5, IRFNA, MHF3, MMH, MON10 thru 30, N2H4, N2O4, RP1 and UDMH
-other sources will be used. Data sources usually do not include the full temperature range
-from freezing point to critical point, so some extrapolation or interpolation of the data is required.
-<a class="reference external" href="https://www.accessengineeringlibrary.com/content/book/9780070116825">Properties of Gases and Liquids, Fifth Edition</a>,
-will be used to select appropriate models to represent and extend the data.</p>
-<div class="section" id="vapor-pressure">
-<h2>Vapor Pressure<a class="headerlink" href="#vapor-pressure" title="Permalink to this headline">¶</a></h2>
-<p>Vapor pressure data will be extended using the <strong>Wagner</strong> equation.</p>
-<p>For a number of published <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> fluids, the constants
-for the <strong>Wagner</strong> equation are published. It can be seen from the vapor pressure charts for those
-propellants that <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> and the <strong>Wagner</strong> equation agree very well
-(see: methane, methanol, ethane, ethanol, propane, ammonia and parahydrogen)</p>
-<p><a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
-recommends that the <strong>Wagner</strong> equation may be used down to a reduced temperature of 0.5, however,
-all of the REFPROP examples show its continued accuracy below that temperature.</p>
-<div class="section" id="wagner-fit-source">
-<span id="wagner"></span><span id="id5"></span><h3>Wagner<a class="headerlink" href="#wagner-fit-source" title="Permalink to this headline">¶</a></h3>
-<p>The equation requires four constants to be fitted to fluid vapor pressure data.</p>
-<img alt="_images/wagner_eqn.jpg" src="_images/wagner_eqn.jpg" />
-<p>The values of a, b, c and d have been fitted to a number of propellants
-for use in RocketProps.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>              <span class="n">a</span>                    <span class="n">b</span>                      <span class="n">c</span>                   <span class="n">d</span>
-<span class="n">Methane</span>   <span class="o">-</span><span class="mf">6.02242</span><span class="p">,</span>            <span class="mf">1.26652</span><span class="p">,</span>              <span class="o">-</span><span class="mf">0.5707</span><span class="p">,</span>             <span class="o">-</span><span class="mf">1.366</span>
-<span class="n">Methanol</span>  <span class="o">-</span><span class="mf">8.63571</span><span class="p">,</span>            <span class="mf">1.17982</span><span class="p">,</span>              <span class="o">-</span><span class="mf">2.4790</span><span class="p">,</span>             <span class="o">-</span><span class="mf">1.0240</span>
-<span class="n">Ethane</span>    <span class="o">-</span><span class="mf">6.47500</span><span class="p">,</span>            <span class="mf">1.41071</span><span class="p">,</span>              <span class="o">-</span><span class="mf">1.1440</span><span class="p">,</span>             <span class="o">-</span><span class="mf">1.8590</span>
-<span class="n">Ethanol</span>   <span class="o">-</span><span class="mf">8.68587</span><span class="p">,</span>            <span class="mf">1.17831</span><span class="p">,</span>              <span class="o">-</span><span class="mf">4.8762</span><span class="p">,</span>              <span class="mf">1.5880</span>
-<span class="n">Propane</span>   <span class="o">-</span><span class="mf">6.76368</span><span class="p">,</span>            <span class="mf">1.55481</span><span class="p">,</span>              <span class="o">-</span><span class="mf">1.5872</span><span class="p">,</span>             <span class="o">-</span><span class="mf">2.024</span>
-<span class="n">NH3</span>       <span class="o">-</span><span class="mf">7.28322</span><span class="p">,</span>            <span class="mf">1.5716</span><span class="p">,</span>               <span class="o">-</span><span class="mf">1.85672</span><span class="p">,</span>            <span class="o">-</span><span class="mf">2.39312</span>
-<span class="n">PH2</span>       <span class="o">-</span><span class="mf">4.902616</span><span class="p">,</span>           <span class="mf">1.06500</span><span class="p">,</span>               <span class="mf">0.737305</span><span class="p">,</span>            <span class="mf">0.053125</span>
-<span class="n">N2H4</span>      <span class="o">-</span><span class="mf">6.7779260205203515</span><span class="p">,</span> <span class="mf">0.031241419877672347</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.75576214157275</span><span class="p">,</span>   <span class="o">-</span><span class="mf">0.6791935603862034</span>
-<span class="n">N2O4</span>      <span class="o">-</span><span class="mf">8.437950623751371</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.7198359775967993</span><span class="p">,</span>    <span class="mf">3.2683044393949223</span><span class="p">,</span> <span class="mf">12.45086649764585</span>
-<span class="n">A50</span>       <span class="o">-</span><span class="mf">7.641659365830601</span><span class="p">,</span>  <span class="mf">3.2061563372352757</span><span class="p">,</span>   <span class="o">-</span><span class="mf">2.9346526057929907</span><span class="p">,</span>  <span class="mf">2.9995620039010578</span>
-<span class="n">MHF3</span>      <span class="o">-</span><span class="mf">4.430400554283357</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.289202857522381</span><span class="p">,</span>     <span class="mf">0.4548211727181293</span><span class="p">,</span>  <span class="mf">1.9771250142385894</span>
-<span class="n">MMH</span>       <span class="o">-</span><span class="mf">6.700466713713631</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.09747624183487236</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.7874544884949485</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.37220831093827</span>
-<span class="n">UDMH</span>      <span class="o">-</span><span class="mf">7.335910621921567</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.07120599848815566</span><span class="p">,</span>   <span class="mf">1.0118500681251754</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.504291228049002</span>
-<span class="n">MON10</span>     <span class="o">-</span><span class="mf">8.859867572622312</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.23569425311772815</span><span class="p">,</span>  <span class="o">-</span><span class="mf">1.21511310516509</span><span class="p">,</span>   <span class="o">-</span><span class="mf">2.7924844994111235</span>
-<span class="n">MON25</span>     <span class="o">-</span><span class="mf">8.626779322479342</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2877745218667564</span><span class="p">,</span>   <span class="o">-</span><span class="mf">1.2609528745852392</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.1994074964463137</span>
-<span class="n">MON30</span>     <span class="o">-</span><span class="mf">8.394164877030429</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3811184987718641</span><span class="p">,</span>   <span class="o">-</span><span class="mf">1.1304799873211373</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5220091386630217</span>
-<span class="n">IRFNA</span>     <span class="o">-</span><span class="mf">6.198317212258754</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.187645737139488</span><span class="p">,</span>     <span class="mf">4.993054204407724</span><span class="p">,</span> <span class="o">-</span><span class="mf">14.807512940520226</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="edalat">
-<span id="edalat-source"></span><h3>Edalat<a class="headerlink" href="#edalat" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.vapor_pressure.html#thermo.vapor_pressure.Edalat">Edalat Vapor Pressure equation</a>
-can estimate vapor pressure over a range of temperatures. It is taken from the
-<a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
-project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
-and Contributors (2016-2020).</p>
-<p>It can be used to scale a sparse set of vapor pressure data (e.g. normal boiling point) or
-when no vapor pressure data is available, it can estimate the full range of vapor pressure.</p>
-<img alt="_images/psat_edalat_eqn.jpg" src="_images/psat_edalat_eqn.jpg" />
-</div>
-</div>
-<div class="section" id="density">
-<h2>Density<a class="headerlink" href="#density" title="Permalink to this headline">¶</a></h2>
-<p>Density data will be extended using either the <strong>Rackett</strong> Equation,
-the <strong>Yamada and Gunn</strong> modification of the <strong>Rackett</strong> Equation or the <strong>Daubert</strong> Equation.</p>
-<p><a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
-defines those equations as follows.</p>
-<div class="section" id="rackett-scaling-source">
-<span id="rackett"></span><span id="id6"></span><h3>Rackett<a class="headerlink" href="#rackett-scaling-source" title="Permalink to this headline">¶</a></h3>
-<img alt="_images/rackett_eqn.jpg" src="_images/rackett_eqn.jpg" />
-<img alt="_images/yamada_and_gunn_eqn.jpg" src="_images/yamada_and_gunn_eqn.jpg" />
-</div>
-<div class="section" id="daubert-source">
-<span id="daubert"></span><span id="id7"></span><h3>Daubert<a class="headerlink" href="#daubert-source" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>Daubert</strong> Equation changed the physical quantities and constants of Eq.
-(4-11.1) into four adjustable parameters to give the equation below.
-The value of C is generally equal to Tc while
-A, B, and D are generally close to the values used in Eq. (4-11.3) above.
-For propellants like MON10, MON25 and MON30, the Daubert equation does a good
-job of fitting data without needing the temperature-dependent  pseudocritical properties of
-the mixtures.</p>
-<img alt="_images/daubert_eqn.jpg" src="_images/daubert_eqn.jpg" />
-<p>The constants A, B, C and D were curve fit for MON10, MON25 and MON30.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>             <span class="n">A</span>                  <span class="n">B</span>                   <span class="n">C</span>                   <span class="n">D</span>
-<span class="n">MON10</span> <span class="mf">184.6090958200138</span><span class="p">,</span> <span class="mf">97.08205370646357</span><span class="p">,</span> <span class="mf">852.8788442633142</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.30396612785737676</span>
-<span class="n">MON25</span> <span class="mf">148.1481569994554</span><span class="p">,</span> <span class="mf">79.40853919233791</span><span class="p">,</span> <span class="mf">871.4077962994412</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3164174025669882</span>
-<span class="n">MON30</span> <span class="mf">179.63314607505583</span><span class="p">,</span> <span class="mf">98.3583884965557</span><span class="p">,</span> <span class="mf">869.460001600849</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.29906872709771604</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="heat-capacity">
-<h2>Heat Capacity<a class="headerlink" href="#heat-capacity" title="Permalink to this headline">¶</a></h2>
-<p>Liquid heat capacity approximations often start by calculating a residual heat capacity.</p>
-<p>The residual heat capacity is the difference between the liquid and ideal gas
-heat capacities. The following excerpt from <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
-describes one such method.</p>
-<img alt="_images/cp_corr_states.jpg" src="_images/cp_corr_states.jpg" />
-<p>The above residual heat capacity can be added to the ideal gas heat capacity
-as calculated by the Joback method below.</p>
-<div class="section" id="joback">
-<span id="joback-source"></span><h3>Joback<a class="headerlink" href="#joback" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Joback_method">Joback method</a>
-(often named Joback/Reid method) predicts eleven important and
-commonly used pure component thermodynamic properties from molecular structure only.</p>
-<p>The approach for ideal gas is shown below.</p>
-<img alt="_images/joback_cp_calc.jpg" src="_images/joback_cp_calc.jpg" />
-</div>
-</div>
-<div class="section" id="viscosity">
-<h2>Viscosity<a class="headerlink" href="#viscosity" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="squires">
-<span id="squires-source"></span><h3>Squires<a class="headerlink" href="#squires" title="Permalink to this headline">¶</a></h3>
-<p>Figure 9-13 from <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a> displays the Lewis and Squires liquid
-viscosity vs temperature correlation. It leads to the scaling equation 9-10.3.</p>
-<p>Given a reference viscosity at a given temperature, the value at a different
-temperature may be calculated.</p>
-<img alt="_images/visc_squires_chart_v2.jpg" src="_images/visc_squires_chart_v2.jpg" />
-</div>
-</div>
-<div class="section" id="heat-of-vaporization">
-<h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="pitzer">
-<span id="pitzer-hvap-source"></span><h3>Pitzer<a class="headerlink" href="#pitzer" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.phase_change.html#thermo.phase_change.Pitzer">Pitzer Hvap equation</a>
-calculates enthalpy of vaporization at arbitrary temperatures. It is taken from the
-<a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
-project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
-and Contributors (2016-2020).</p>
-<img alt="_images/hvap_pitzer_eqn.jpg" src="_images/hvap_pitzer_eqn.jpg" />
-</div>
-</div>
-<div class="section" id="thermal-conductivity">
-<h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="nicola">
-<span id="nicola-source"></span><h3>Nicola<a class="headerlink" href="#nicola" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.thermal_conductivity.html#thermo.thermal_conductivity.Nicola_original">Nicola equation</a>
-is taken from the
-<a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
-project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
-and Contributors (2016-2020).</p>
-<p>It estimates the thermal conductivity of a liquid as a function of temperature using a
-CSP method. It is a statistically derived equation using the following correlated terms.</p>
-<img alt="_images/cond_nicola_eqn.jpg" src="_images/cond_nicola_eqn.jpg" />
-</div>
-</div>
-<div class="section" id="surface-tension">
-<h2>Surface Tension<a class="headerlink" href="#surface-tension" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="sastri-rao">
-<span id="sastri-rao-source"></span><h3>Sastri-Rao<a class="headerlink" href="#sastri-rao" title="Permalink to this headline">¶</a></h3>
-<p>Surface tension can be scaled using equation 12-4.1 from <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>.
-The value of n varies from 0.8 for alcohols in the Sastri-Rao method to 1.22, or 11/ 9 for
-other compounds.</p>
-<img alt="_images/surften_scaling_rao.jpg" src="_images/surften_scaling_rao.jpg" />
-<p>For propellants having some surface tension data, n was derived from curve fit.
-Those values are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="n">n</span>
-<span class="n">N2H4</span> <span class="o">=</span> <span class="mf">1.322137</span>
-<span class="n">N2O4</span> <span class="o">=</span> <span class="mf">0.960017</span>
-<span class="n">A50</span>  <span class="o">=</span> <span class="mf">1.000717</span>
-<span class="n">MHF3</span> <span class="o">=</span> <span class="mf">0.859508</span>
-<span class="n">MMH</span>  <span class="o">=</span> <span class="mf">0.846186</span>
-<span class="n">UDMH</span> <span class="o">=</span> <span class="mf">1.018771</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="pitzer-surf-source">
-<span id="id12"></span><h3>Pitzer<a class="headerlink" href="#pitzer-surf-source" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.interface.html#thermo.interface.Pitzer">Pitzer surface tension equation</a>
-is taken from the
-<a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
-project on <a class="reference external" href="https://pypi.org/">pypi.org</a> developed by Caleb Bell
-and Contributors (2016-2020).</p>
-<p>For propellants with no surface tension data available, the
-<a class="reference external" href="https://thermo.readthedocs.io/en/latest/thermo.interface.html#thermo.interface.Pitzer">Pitzer surface tension equation</a>
-can be used to predict surface tension.</p>
-<img alt="_images/surften_pitzer_eqn.jpg" src="_images/surften_pitzer_eqn.jpg" />
-</div>
-</div>
-<div class="section" id="pseudocritical-properties">
-<h2>Pseudocritical Properties<a class="headerlink" href="#pseudocritical-properties" title="Permalink to this headline">¶</a></h2>
-<p>For propellants that are mixtures of other propellants (like A50, MHF3, MON10, MON25 or MON30)
-the critical properties are not pure fluid properties, but a combination of the constituent properties.</p>
-<div class="section" id="tc-mixture">
-<span id="id16"></span><h3>Tc Mixture<a class="headerlink" href="#tc-mixture" title="Permalink to this headline">¶</a></h3>
-<p>For pseudocritical temperature,
-<a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
-recommends the simplest mixing rule; a mole fraction average method.
-This rule is often called one of Kay's rules.</p>
-<p>Comparison of Tcm from Eq. (5-3.1) with values determined from other,
-more complicated rules shows that the differences in Tcm are usually less
-than 2% if, for all components the pure component critical properties are not extremely different.</p>
-<img alt="_images/kays_rule_eqn.jpg" src="_images/kays_rule_eqn.jpg" />
-</div>
-<div class="section" id="pc-mixture">
-<span id="id17"></span><h3>Pc Mixture<a class="headerlink" href="#pc-mixture" title="Permalink to this headline">¶</a></h3>
-<p>From <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
-for  the pseudocritical pressure, Pcm, a mole-fraction average of pure-component
-critical pressures is normally unsatisfactory. This is because the critical pressure for
-most systems goes through a maximum or minimum with composition. The only
-exceptions are if all components of the mixture have quite similar critical pressures
-and/ or critical volumes. The simplest rule which can give acceptable Pcm values
-for two-parameter or three-parameter CSP is the modified rule of Prausnitz and
-Gunn (1958)</p>
-<img alt="_images/prausnitz_and_gunn_eqn.jpg" src="_images/prausnitz_and_gunn_eqn.jpg" />
-<p>where <strong>all of the mixture pseudocriticals Zcm , Tcm , and Vcm are given by mole-fraction
-averages</strong> (Kay's rule) and R is the universal gas constant of <strong>Table 4-1</strong>.</p>
-<img alt="_images/table_4-1.jpg" src="_images/table_4-1.jpg" />
-</div>
-<div class="section" id="omega-mixture">
-<span id="id18"></span><h3>Omega Mixture<a class="headerlink" href="#omega-mixture" title="Permalink to this headline">¶</a></h3>
-<p>According to
-<a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>,
-the mixture pseudo acentric factor is commonly given
-by a mole fraction average (Joffe, 1971)</p>
-<img alt="_images/omega_mixture_eqn.jpg" src="_images/omega_mixture_eqn.jpg" />
-</div>
-</div>
-</div>
-
-
-          </div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -395,12 +404,13 @@ by a mole fraction average (Joffe, 1971)</p>
         <li class="right" >
           <a href="sources.html" title="Sources"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.2 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Models</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
     </div>
   </body>
 </html>

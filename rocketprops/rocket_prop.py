@@ -48,10 +48,18 @@ __status__ = "4 - Beta" # "3 - Alpha", "4 - Beta", "5 - Production/Stable"
 #
 # import statements here. (built-in first, then 3rd party, then yours)
 #
-from math import exp, log
+from math import exp, log, log10
 import importlib
 from rocketprops.unit_conv_data import get_value
 from rocketprops.prop_names import prop_names
+# from rocketprops.prop_from_dict import get_prop_from_dict
+from rocketprops.mixing_functions import isMMH_N2H4_Blend, isMON_Ox, isFLOX_Ox, isN2H4_UDMH_Blend
+from rocketprops.unit_conv_data import get_value
+from rocketprops.InterpProp_scipy import InterpProp
+
+from scipy import optimize
+from rocketprops.mixing_functions import Li_Tcm, mixing_simple, DIPPR9H_cond, Filippov_cond
+from rocketprops.mixing_functions import Mnn_Freeze_terp, MON_Freeze_terp  #, ScaledGasZ
 
 
 TREF_K = get_value( 20.0, 'degC', 'degK')
@@ -70,6 +78,9 @@ def get_prop( name, suppress_warning=False ):
     """
     pname = prop_names.get_primary_name( name )
     if pname is None:
+        if isMMH_N2H4_Blend(name) or isMON_Ox(name) or isFLOX_Ox(name) or isN2H4_UDMH_Blend(name):
+            return build_mixture( name )
+
         if not suppress_warning:
             print('WARNING... propellant "%s" is not recognized.'%name)
         return None
@@ -680,11 +691,521 @@ class Propellant(object):
         
         return SG_dense
 
+class Prop( Propellant ):
+    
+    def __init__(self, valueD=None):
+        """Use an input dictionary to initialize Propellant object
+
+        Args:
+            valueD (dict, optional): holds all required values for "set_std_state" call. Defaults to None.
+        """
+        self.valueD = valueD
+        Propellant.__init__(self, name=valueD['prop_name'])
+
+    def set_std_state(self):
+        """Set properties and standard state of Propellant"""
+        
+        self.dataSrc = self.valueD['dataSrc']
+        self.T       = self.valueD['T'] # degR
+        self.P       = self.valueD['P'] # psia
+        self.Pvap    = self.valueD['Pvap'] # psia
+        self.Pc      = self.valueD['Pc'] # psia
+        self.Tc      = self.valueD['Tc'] # degR
+        self.Zc      = self.valueD['Zc'] # Z at critical pt
+        self.omega   = self.valueD['omega'] # omega  = -1.0 - log10( Pvap(0.7 * Tc) / Pc )
+        self.SG      = self.valueD['SG'] # SG
+        self.visc    = self.valueD['visc'] # poise
+        self.cond    = self.valueD['cond'] # BTU/hr/ft/delF
+        self.Tnbp    = self.valueD['Tnbp'] # degR
+        self.Tfreeze = self.valueD['Tfreeze'] # degR
+        self.Ttriple = self.valueD['Ttriple'] # degR
+        self.Cp      = self.valueD['Cp'] # BTU/lbm/delF
+        self.MolWt   = self.valueD['MolWt'] # g/gmole
+        self.Hvap    = self.valueD['Hvap'] # BTU/lbm
+        self.surf    = self.valueD['surf'] # lbf/in
+    
+        # ======= saturation curves =========
+        self.NsatPts = self.valueD['NsatPts']
+        self.trL = self.valueD['trL']
+        self.tL = self.valueD['tL']
+        
+        self.log10pL  = self.valueD['log10pL']
+        self.log10viscL = self.valueD['log10viscL']
+        self.condL = self.valueD['condL']
+        self.cpL = self.valueD['cpL']
+        self.hvapL = self.valueD['hvapL']
+        self.surfL = self.valueD['surfL']    
+        self.SG_liqL = self.valueD['SG_liqL']
+        self.log10SG_vapL = self.valueD['log10SG_vapL']
+        
+        # ========== save dataSrc for each value ===========
+        data_srcD = dict() # index=parameter, value=data source
+        data_srcD["main"]    = self.valueD['dataSrc']
+        data_srcD["T"]       = self.valueD['dataSrc'] # degR
+        data_srcD["P"]       = self.valueD['dataSrc'] # psia
+        data_srcD["Pvap"]    = self.valueD['dataSrc'] # psia
+        data_srcD["Pc"]      = self.valueD['dataSrc'] # psia
+        data_srcD["Tc"]      = self.valueD['dataSrc'] # degR
+        data_srcD["Zc"]      = self.valueD['dataSrc'] # Z at critical pt
+        data_srcD["omega"]   = self.valueD['dataSrc'] # define: omega = -1.0 - log10( Pvap(0.7 * Tc) / Pc )
+        data_srcD["SG"]      = self.valueD['dataSrc'] # SG
+        data_srcD["visc"]    = self.valueD['dataSrc'] # poise
+        data_srcD["cond"]    = self.valueD['dataSrc'] # BTU/hr/ft/delF
+        data_srcD["Tnbp"]    = self.valueD['dataSrc'] # degR
+        data_srcD["Tfreeze"] = self.valueD['dataSrc'] # degR
+        data_srcD["Ttriple"] = self.valueD['dataSrc'] # degR
+        data_srcD["Cp"]      = self.valueD['dataSrc'] # BTU/lbm/delF
+        data_srcD["MolWt"]   = self.valueD['dataSrc'] # g/gmole
+        data_srcD["Hvap"]    = self.valueD['dataSrc'] # BTU/lbm
+        data_srcD["surf"]    = self.valueD['dataSrc'] # lbf/in
+
+        data_srcD["trL"]     = self.valueD['dataSrc']
+        data_srcD["tL"]      = self.valueD['dataSrc']
+
+        data_srcD["log10pL"]      = self.valueD['dataSrc']
+        data_srcD["log10viscL"]   = self.valueD['dataSrc']
+        data_srcD["condL"]        = self.valueD['dataSrc']
+        data_srcD["cpL"]          = self.valueD['dataSrc']
+        data_srcD["hvapL"]        = self.valueD['dataSrc']
+        data_srcD["surfL"]        = self.valueD['dataSrc']    
+        data_srcD["SG_liqL"]      = self.valueD['dataSrc']
+        data_srcD["log10SG_vapL"] = self.valueD['dataSrc']
+        self.data_srcD = data_srcD
+        
+        # ========== initialize saturation interpolators ===========
+        self.log10p_terp = InterpProp(self.trL, self.log10pL, extrapOK=False)
+        try:
+            self.log10visc_terp = InterpProp(self.trL, self.log10viscL, extrapOK=False)
+        except:
+            pass
+        try:
+            self.cond_terp = InterpProp(self.trL, self.condL, extrapOK=False)
+        except:
+            pass
+        self.cp_terp = InterpProp(self.trL, self.cpL, extrapOK=False)
+        self.hvap_terp = InterpProp(self.trL, self.hvapL, extrapOK=False)
+        self.surf_terp = InterpProp(self.trL, self.surfL, extrapOK=False)
+        self.SG_liq_terp = InterpProp(self.trL, self.SG_liqL, extrapOK=False)
+        self.log10SG_vap_terp = InterpProp(self.trL, self.log10SG_vapL, extrapOK=False)
+    
+        # calculate omega from definition (make self-consistent with Pvap.)
+        self.omega = -1.0 - log10( self.PvapAtTr(0.7) / self.Pc )
+
+
+def solve_Tnbp( tL, pvapL ):
+    """
+    Given Temperature list, tL and Vapor Pressure list, pvapL, solve for Tnpb
+    tL = temperature list, degR
+    pvapL = vapor pressure list, psia
+    Return:
+    Tnbp = normal boiling point, degR
+    """
+    
+    Pvap_terp = InterpProp( tL, pvapL, extrapOK=True)
+    
+    def func( T ):
+        return 14.6959 - max(0.0, Pvap_terp( T ))
+    
+    sol = optimize.root_scalar(func, bracket=[tL[0], tL[-1]], method='brentq')
+    # print( 'sol.root=',sol.root )
+    return sol.root
+
+
+def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
+    """
+    Build a mixture of MMH + N2H4 (e.g. M20), N2O4 + NO (e.g. MON25) or LOX + F2 (e.g. FLOX70)
+
+    Args:
+
+    Returns: Propellant object of mixture
+    """
+    # prop_objL  list of Propellant objects to be mixed. 
+    # mass_fracL list of WEIGHT Fractions for each Propellant object.
+
+    mmhPcent = isMMH_N2H4_Blend( prop_name )
+    noPcent  = isMON_Ox( prop_name )
+    f2Pcent  = isFLOX_Ox( prop_name )
+    n2h4Pcent = isN2H4_UDMH_Blend( prop_name )
+
+    if not prop_names.is_primary_name( prop_name ):
+        prop_names.add_primary_name( prop_name )
+
+    if mmhPcent:
+        prop_names.add_associated_name( prop_name, f"{mmhPcent}% MMH + {100-mmhPcent}% N2H4" )
+
+        Tfreeze = Mnn_Freeze_terp( mmhPcent )
+
+        """  
+        #         mass_fracL calculation
+        # To get percentage goal (p3) from starting percentages (p1 and P2)
+        # Use fraction (f) of p1 and unit value of p2
+        (f*p1 + p2) / (f + 1) = p3
+        f*p1 + p2 = f*p3 + p3
+        p2 - p3 = f*(p3 - p1)
+        f = (p2 - p3) / (p3 - p1)
+        """
+        if mmhPcent <= 86.0:
+            mmh_lo_prop = get_prop('N2H4')
+            mmh_hi_prop = get_prop('MHF3')
+            # mass_fracL=[noPcent, 100-noPcent]
+            mass_fracL=[(86-mmhPcent)/(mmhPcent), 1.0]
+        else:
+            mmh_lo_prop = get_prop('MHF3')
+            mmh_hi_prop = get_prop('MMH')
+            mass_fracL=[(100-mmhPcent)/(mmhPcent-86), 1.0]
+
+        prop_objL=[mmh_lo_prop, mmh_hi_prop]  # will normalize below
+        print( 'mmh_lo_prop.name =', mmh_lo_prop.name)
+        print( 'mmh_hi_prop.name =', mmh_hi_prop.name)
+
+    elif n2h4Pcent:
+        prop_names.add_associated_name( prop_name, f"{n2h4Pcent}% N2H4 + {100-n2h4Pcent}% UDMH" )
+
+        print( 'ERROR... must correct Tfreeze for Axx mixtures')
+        Tfreeze = Mnn_Freeze_terp( n2h4Pcent )
+
+        if n2h4Pcent <= 50.0:
+            mmh_lo_prop = get_prop('UDMH')
+            mmh_hi_prop = get_prop('A50')
+            # mass_fracL=[noPcent, 100-noPcent]
+            mass_fracL=[(50-n2h4Pcent)/(n2h4Pcent), 1.0]
+        else:
+            mmh_lo_prop = get_prop('A50')
+            mmh_hi_prop = get_prop('N2H4')
+            mass_fracL=[(100-n2h4Pcent)/(n2h4Pcent-50), 1.0]
+
+        prop_objL=[mmh_lo_prop, mmh_hi_prop]  # will normalize below
+        print( 'mmh_lo_prop.name =', mmh_lo_prop.name)
+        print( 'mmh_hi_prop.name =', mmh_hi_prop.name)
+
+    elif noPcent:
+        # if a well-documented MON, return the file-based version
+        prop_str = 'MON%g'%noPcent
+        if prop_str in ['MON10', 'MON25', 'MON30']:
+            return get_prop( prop_str )
+
+        prop_names.add_associated_name( prop_name, f"{noPcent}% NO + {100-noPcent}% N2O4" )
+
+
+        """  
+        #         mass_fracL calculation
+        # To get percentage goal (p3) from starting percentages (p1 and P2)
+        # Use fraction (f) of p1 and unit value of p2
+        (f*p1 + p2) / (f + 1) = p3
+        f*p1 + p2 = f*p3 + p3
+        p2 - p3 = f*(p3 - p1)
+        f = (p2 - p3) / (p3 - p1)
+        """
+        if noPcent <= 10.0:
+            mon_lo_prop = get_prop('N2O4')
+            mon_hi_prop = get_prop('MON10')
+            # mass_fracL=[noPcent, 100-noPcent]
+            mass_fracL=[(10-noPcent)/(noPcent), 1.0]
+        elif noPcent <= 25.0:
+            mon_lo_prop = get_prop('MON10')
+            mon_hi_prop = get_prop('MON25')
+            mass_fracL=[(25-noPcent)/(noPcent-10), 1.0]
+        elif noPcent <= 30.0:
+            mon_lo_prop = get_prop('MON25')
+            mon_hi_prop = get_prop('MON30')
+            mass_fracL=[(30-noPcent)/(noPcent-25), 1.0]
+        else:
+            raise Exception('Maximum MON value is MON30.')
+
+        prop_objL=[mon_lo_prop, mon_hi_prop]  # will normalize below
+        print( 'mon_lo_prop.name =', mon_lo_prop.name)
+        print( 'mon_hi_prop.name =', mon_hi_prop.name)
+
+        Tfreeze = MON_Freeze_terp( noPcent )
+        # raise Exception('MON logic needs work')
+    elif f2Pcent:
+        lox_prop = get_prop('LOX')
+        lf2_prop = get_prop('LF2')
+        prop_objL=[lf2_prop, lox_prop]
+        mass_fracL=[f2Pcent, 100-f2Pcent]  # will normalize below
+
+        prop_names.add_associated_name( prop_name, f"{f2Pcent}% LF2 + {100-f2Pcent}% LOX" )
+
+        # Assume we don't need an accurate freeze temperature
+        Tfreeze = (f2Pcent*lf2_prop.Tfreeze + (100.0-f2Pcent)*lox_prop.Tfreeze) / 100.0
+    else:
+        raise Exception('Mixtures only implemented for MMH+N2H4 or MON oxidizer or FLOX oxidizer')
+
+
+    if len(prop_objL) > 2:
+        raise Exception('ONLY Binary mixtures allowed.')
+
+    # Change reference fluids to allow extrapolation
+    def change_terp_extrap( terp_obj ):
+        terp_obj.extrapOK = 1
+        terp_obj.linear = 1
+        if terp_obj.linear:
+            terp_obj.Nterp = 1
+        else:
+            terp_obj.Nterp = 2
+
+    for Pobj in prop_objL:
+        
+        change_terp_extrap( Pobj.log10p_terp )
+        change_terp_extrap( Pobj.log10visc_terp )
+        change_terp_extrap( Pobj.cond_terp )
+        change_terp_extrap( Pobj.cp_terp )
+        change_terp_extrap( Pobj.hvap_terp )
+        change_terp_extrap( Pobj.surf_terp )
+        change_terp_extrap( Pobj.SG_liq_terp )
+        change_terp_extrap( Pobj.log10SG_vap_terp )
+
+    def pTr(Pobj, T, Tr):
+        """Make a pseudo temperature for each object to smooth high Tr values"""
+        limit = 0.7
+        # Tr_p = max(limit, min(1.0, T / Pobj.Tc))
+        Tr_p =  T / Pobj.Tc
+        if Tr_p < limit:
+            return Tr_p
+        
+        Tc_mix = T / Tr
+        T_at_limit = limit * Pobj.Tc
+        Tr_mix_at_Tr_p_limit = T_at_limit / Tc_mix
+
+        Tr_range = 1.0 - limit
+
+        return limit + Tr_range * (Tr-Tr_mix_at_Tr_p_limit)/(1.0-Tr_mix_at_Tr_p_limit)
+
+
+    # Normalize mass_fracL to make sure it adds up to 1.0
+    total = sum( mass_fracL )
+    mass_fracL = [ f/total for f in mass_fracL ]
+
+    # calculate mole fractions
+    moleL = [ f_mass/Pobj.MolWt for (f_mass, Pobj) in zip(mass_fracL, prop_objL) ]
+    mole_total = sum( moleL )
+    mole_fracL = [m/mole_total for m in moleL]
+    print( 'mole_fracL =', mole_fracL)
+    print( 'mass_fracL =', mass_fracL)
+
+    tmpD = {} # index=parameter name, value=string or numeric value
+
+    dataSrc = 'Mixture Rules'     
+
+    # Properties of Liquids and Gases 5th Ed. Eqn 5-3.3
+    omega = mixing_simple(mole_fracL, [Pobj.omega for Pobj in prop_objL]) 
+    tmpD['omega'] = omega
+
+    tmpD['dataSrc'] = dataSrc
+    # tmpD['class_name'] = prop_name 
+    tmpD['prop_name'] = prop_name 
+
+    MolWt = sum( [mole_frac*Pobj.MolWt for (mole_frac,Pobj) in zip(mole_fracL, prop_objL)] )
+    tmpD['MolWt'] = MolWt
+
+    # make mixture reference point the mole average of constituents
+    T = mixing_simple(mole_fracL, [Pobj.T for Pobj in prop_objL])
+    tmpD['T'] = T  # degR
+    tmpD['P'] = mixing_simple(mole_fracL, [Pobj.P for Pobj in prop_objL])  # psia
+
+    # Vc = MolWt / SGc # (cm**3/gmole)
+    VcL = [ Pobj.MolWt/Pobj.SGc for Pobj in prop_objL ]
+
+    # Properties of Liquids and Gases 5th Ed. Eqn 5-3.1
+    # Switch to Li method from mixing_simple:  tmpD['Tc'] = mixing_simple(mole_fracL, [Pobj.Tc for Pobj in prop_objL])  # degR
+
+    # thermo package: https://thermo.readthedocs.io/
+    TcL = [Pobj.Tc for Pobj in prop_objL]
+
+    # if prop_name.startswith('MON'):
+    #     Tc = mixing_simple(mole_fracL, TcL)  # degR
+    # else:
+    Tc = Li_Tcm(mole_fracL, TcL, VcL)
+    # Tc = mixing_simple(mole_fracL, TcL)  # degR
+    print( 'Tc =', Tc)
+
+    tmpD['Tc'] = Tc # (zs, Tcs, Vcs)
+
+    Tr = T / Tc
+
+    # Zc is the mechanical compressibility for mixtures as well as pure fluids
+    Zc = mixing_simple(mole_fracL, [Pobj.Zc for Pobj in prop_objL])
+    tmpD['Zc'] = Zc
+
+
+    # get mixture critical volume
+    Vcm =  mixing_simple( mole_fracL, VcL )
+    Vcm = get_value( Vcm, 'cm**3', 'inch**3')
+
+    # Properties of Liquids and Gases 5th Ed. Eqn 5-3.2
+    R = 18540.0 / 453.59237 # psi-in**3 / gmole-degR (i.e. 453.59 converts lbmole to gmole)
+    Pc = Zc  * R * Tc / Vcm 
+    tmpD['Pc'] = Pc
+
+
+    # get Pvap at T
+    Pvap = sum( [y* Pobj.PvapAtTr( pTr(Pobj, T, Tr) ) for (y,Pobj) in zip(mole_fracL, prop_objL)] )
+    tmpD['Pvap'] = Pvap
+
+    # Vm = MolWt / SG # (cm**3/gmole)
+    VmL = [ Pobj.MolWt/Pobj.SGLiqAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL ]
+    Vm = mixing_simple( mole_fracL, VmL )
+    # Amgat mixing rule from thermo package: https://thermo.readthedocs.io/
+    tmpD['SG'] = MolWt / Vm  
+
+
+    tmpD['Cp']   = mixing_simple(mole_fracL, [Pobj.CpAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL])
+    tmpD['Hvap'] = mixing_simple(mole_fracL, [Pobj.HvapAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL])
+    
+    tmp_condL = [Pobj.CondAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
+    if len(mass_fracL) == 2:
+        # Recommended in Perry Handbook 8th Ed. page 2-512
+        tmpD['cond'] =  Filippov_cond( mass_fracL, tmp_condL )
+    else:
+        tmpD['cond'] =  DIPPR9H_cond( mass_fracL, tmp_condL )
+
+    # sigmas_TbL = [Pobj.SurfAtTr( Pobj.Tnbp ) for Pobj in prop_objL]
+    # TbsL = [Pobj.Tnbp for Pobj in prop_objL]
+    # tmpD['surf'] =  Diguilio_Teja_surften(T, mole_fracL, sigmas_TbL, TbsL, TcL)
+
+    surfL = [Pobj.SurfAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
+    tmpD['surf'] =  mixing_simple( mass_fracL, surfL )
+
+    #  D. Perry's Chemical Engineering Handbook. 6th Ed
+    viscL = [Pobj.ViscAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
+    tmpD['visc'] = mixing_simple( mass_fracL, viscL)
+
+    tmpD['Tfreeze'] = Tfreeze
+    tmpD['Ttriple'] = Tfreeze
+
+
+
+    # start building the arrays of values
+    NsatPts = 21
+
+    # Use Raoult's Law to calculate vapor pressure vs temperature
+    TfreezeL = [Pobj.Tfreeze for Pobj in prop_objL]
+    Tlo = Tfreeze
+    Thi = max( TcL )
+    if Thi > Tc:
+        Thi = Tc
+    dT = (Thi - Tlo) / (NsatPts - 1)
+
+    
+    trL = []
+    tL  = []
+    pL  = []
+    viscL = []
+    condL = []
+    cpL = []
+    hvapL = []
+    surfL = []    
+    SG_liqL = []
+    SG_vapL = []
+
+    # print( 'Tlo=%g,  Thi=%g'%(Tlo, Thi))
+
+    # iterate over temperature range
+    for i in range( NsatPts ):
+        T =  Tlo + i*dT
+        Tr = T / Tc
+        if i == NsatPts-1:
+            T = Thi
+            Tr = 1.0
+
+        tL.append( T )
+        trL.append( T/Tc )
+        pL.append( sum( [y* Pobj.PvapAtTr( pTr(Pobj, T, Tr) ) for (y,Pobj) in zip(mole_fracL, prop_objL)] ) ) # Raoult's Law
+
+        cpL.append( mixing_simple(mole_fracL, [ Pobj.CpAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
+
+        hvapL.append( mixing_simple(mole_fracL, [ Pobj.HvapAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
+        
+        surfL.append( mixing_simple(mass_fracL, [ Pobj.SurfAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
+        
+        viscL.append( mixing_simple(mass_fracL, [ Pobj.ViscAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
+        
+        # thermal conductivity
+        tmp_condL = [Pobj.CondAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
+        if len(mass_fracL) == 2:
+            # Recommended in Perry Handbook 8th Ed. page 2-512
+            condL.append(  Filippov_cond( mass_fracL, tmp_condL ) )
+        else:
+            condL.append(   DIPPR9H_cond( mass_fracL, tmp_condL ) )
+
+        # liquid density
+        VmL = [ Pobj.MolWt/Pobj.SGLiqAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL ]
+        
+        Vm = mixing_simple( mole_fracL, VmL )
+        # Amgat mixing rule from thermo package: https://thermo.readthedocs.io/
+        SG_liqL.append( MolWt / Vm )
+
+        Z = mixing_simple(mole_fracL, [Pobj.ZVapAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL])
+
+        MW = sum( [y*Pobj.MolWt* Pobj.PvapAtTr( pTr(Pobj, T, Tr) ) \
+                   for (y,Pobj) in zip(mole_fracL, prop_objL)] ) / pL[-1]
+
+        # print( 'MW =',MW, '  MolWt =', MolWt)
+        SGg = pL[-1] * MW / (18540.0 * T * (Z/27.67990471)) # g/ml
+        # SGg = pL[-1] * MolWt / (18540.0 * T * (Z/27.67990471)) # g/ml
+        
+        SG_vapL.append( SGg )
+
+
+
+    tmpD['Tnbp'] = solve_Tnbp( tL, pL )
+
+    tmpD['NsatPts'] = NsatPts
+    tmpD['trL'] = trL
+    tmpD['tL'] = tL
+    tmpD['log10pL'] =  [log10(p) for p in pL]
+    
+    tmpD['log10viscL'] =  [log10(v) for v in viscL]
+    tmpD['condL'] = condL
+    tmpD['cpL'] = cpL
+    tmpD['hvapL'] = hvapL
+    tmpD['surfL'] = surfL
+    tmpD['SG_liqL'] = SG_liqL
+    tmpD['log10SG_vapL'] =  [log10(v) for v in SG_vapL]
+
+
+    # =============== Temporary output =====================
+    if 0:
+        kL = sorted( tmpD.keys(), key=str.lower )
+        for k in kL:
+            try:
+                print( '%20s'%k, tmpD[k][:2], tmpD[k][-2:] )
+            except:
+                print( '%20s'%k, tmpD[k] )
+
+        # show T limits
+        print( 'Tlo=%g,  Thi=%g'%(Tlo, Thi))
+        print( 'Tfreeze of pure propellants:', TfreezeL, '  of blend =', Tfreeze)
+        print( 'Tc of pure propellants:', TcL, '  of blend =', Tc)
+        # src = template.format( **tmpD )
+        # print( src )
+
+        # from math import log10
+        # from rocketprops.rocket_prop import Propellant
+        # from rocketprops.unit_conv_data import get_value
+        # from rocketprops.InterpProp_scipy import InterpProp
+
+        # exec( src )
+        print()
+        # print( repr(tmpD) )
+
+    # use tmpD values to build mixture Propellant object
+    return Prop( valueD=tmpD )
+
+
+
 
 if __name__ == '__main__':
+    from rocketprops.plot_multi_props import make_plots
     
-    C = get_prop('Ethane')
-    if C:
-        C.summ_print()
-        C.plot_sat_props()
+    C = get_prop('A60')
+    C.summ_print()
+    # if C:
+    #     C.summ_print()
+    #     C.plot_sat_props()
     
+    # make_plots( prop_nameL=['MHF3', 'MMH', 'N2H4'], prop_objL=[C], 
+    #             abs_T=1, ref_scaled=False, Tmin=450, Tmax=700)
+
+    make_plots( prop_nameL=['A50', 'UDMH', 'N2H4'], prop_objL=[C], 
+                abs_T=1, ref_scaled=False, Tmin=450, Tmax=700)

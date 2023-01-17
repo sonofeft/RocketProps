@@ -38,6 +38,22 @@ def is_blend( name, blend_prefix, verbose=False ):
     
     return False
 
+def isN2H4_UDMH_Blend( name, verbose=False ):
+    # check for a N2H4 + UDMH blend
+    
+    # must start with capital "A"    
+    n2h4Pcent = is_blend( name, 'A', verbose=verbose )
+    if n2h4Pcent:
+        if verbose:
+            print('"%s"'%name, 'IS "A" Blend', 'n2h4Pcent =', n2h4Pcent )
+        return n2h4Pcent
+    else:
+        if verbose:
+            print('"%s"'%name, 'NOT Blend' )
+
+    return False
+
+
 def isMMH_N2H4_Blend( name, verbose=False ):
     # check for an MMH + N2H4 blend
     
@@ -45,7 +61,7 @@ def isMMH_N2H4_Blend( name, verbose=False ):
     mmhPcent = is_blend( name, 'M', verbose=verbose )
     if mmhPcent:
         if verbose:
-            print('"%s"'%name, 'IS Blend', 'mmhPcent =', mmhPcent )
+            print('"%s"'%name, 'IS "M" Blend', 'mmhPcent =', mmhPcent )
         return mmhPcent
     else:
         if verbose:
@@ -61,7 +77,7 @@ def isMON_Ox( name, verbose=False ):
     noPcent = is_blend( name, 'MON', verbose=verbose )
     if noPcent:
         if verbose:
-            print('"%s"'%name, 'IS Blend', 'noPcent =', noPcent )
+            print('"%s"'%name, 'IS "MON" Blend', 'noPcent =', noPcent )
         return noPcent
     else:
         if verbose:
@@ -75,7 +91,7 @@ def isFLOX_Ox( name, verbose=False ):
     f2Pcent = is_blend( name, 'FLOX', verbose=verbose )
     if f2Pcent:
         if verbose:
-            print('"%s"'%name, 'IS Blend', 'f2Pcent =', f2Pcent )
+            print('"%s"'%name, 'IS "FLOX" Blend', 'f2Pcent =', f2Pcent )
         return f2Pcent
     else:
         if verbose:
@@ -481,6 +497,12 @@ if __name__ == "__main__":
     for name in ['M20', "FLOX25", "FLOX82.5", "flox5.5", "FLOX20 "]:
         isFLOX_Ox( name, verbose=True )
         isFLOX_Ox( name )
+        
+    print( '-'*22 )
+
+    for name in ['M20', "A25", "A82.5", "a5.5", "A20 "]:
+        isN2H4_UDMH_Blend( name, verbose=True )
+        isN2H4_UDMH_Blend( name )
 
 
 def ScaledGasZ( TdegR, Ppsia, Tc, Pc, Zc, omega ):

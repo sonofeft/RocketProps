@@ -12,7 +12,8 @@ def get_marker(i):
 def get_color(i):
     return COLORL[ i % len(COLORL) ]
 
-def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False):
+def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
+                Tmin=None, Tmax=None):
     
     propL = []
     if prop_nameL is not None:
@@ -20,12 +21,31 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False):
     if prop_objL is not None:
         propL.extend( prop_objL )
 
+    if Tmin is None:
+        Tmin = min( [prop.tL[0] for prop in propL] )
+    if Tmax is None:
+        Tmax = max( [prop.tL[-1] for prop in propL])
+
+    Tr_min = min( [Tmin/prop.Tc for prop in propL] )
+    Tr_max = max( [Tmax/prop.Tc for prop in propL] )
+
     trLL = [] # list of trL 
     TLL = []  # list of TL
     for prop in propL:
-        trL = [prop.trL[0] + i*(prop.trL[-1]-prop.trL[0])/200.0 for i in range(201) ]
-        trLL.append( trL )
-        TLL.append( [tr*prop.Tc for tr in trL] )
+        if abs_T:
+            t_start = max(Tmin, prop.tL[0])
+            t_end   = min(Tmax, prop.tL[-1])
+            tL = [t_start + i*(t_end-t_start)/200.0 for i in range(201) ]
+            TLL.append( tL )
+            trLL.append( [t/prop.Tc for t in tL] )
+        else:
+            tr_start = max(Tr_min, prop.trL[0])
+            tr_end = min(Tr_max, prop.trL[-1])
+
+            # trL = [prop.trL[0] + i*(prop.trL[-1]-prop.trL[0])/200.0 for i in range(201) ]
+            trL = [tr_start + i*(tr_end-tr_start)/200.0 for i in range(201) ]
+            trLL.append( trL )
+            TLL.append( [tr*prop.Tc for tr in trL] )
     
     name_set = set([prop.name for prop in propL])
     name_str = ', '.join( name_set )
@@ -44,11 +64,27 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False):
             ax.set_ylabel( '%s %s'%(name, units) )
     
     def get_xy_plot_lists( i, prop_name, list_name, func_name ):
+        # e.g. get_xy_plot_lists( i, 'T', 'tL', 'TAtTr' )
         prop = propL[i]
         trL = trLL[i]
         TL = TLL[i]
+        print( 'TL[0]=%g, TL[-1]=%g'%(TL[0], TL[-1]))
+
+        i_start = 0
+        for i in range( len(prop.tL) ):
+            i_start = i
+            if prop.tL[i] >= Tmin:
+                break
+            
+        i_end = len(prop.tL) - 1
+        for i in range( len(prop.tL) ):
+            if prop.tL[i] > Tmax:
+                i_end = i 
+                break
+
         # make reference point
-        if hasattr( prop, prop_name ):
+        if hasattr( prop, prop_name ) and prop.T>=Tmin and prop.T<=Tmax:
+            
             y_refL = [ getattr( prop, prop_name ) ]
             if abs_T:
                 x_refL = [ prop.T ]
@@ -60,14 +96,14 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False):
                 
         # make full data list
         if hasattr( prop, list_name ):
-            y_dataL = getattr( prop, list_name )
+            y_dataL = getattr( prop, list_name )[i_start: i_end]
             if list_name.startswith('log10'):
                 y_dataL = [10.0**y for y in y_dataL]
                 
             if abs_T:
-                x_dataL = prop.tL 
+                x_dataL = prop.tL[i_start: i_end]
             else:
-                x_dataL = prop.trL 
+                x_dataL = prop.trL[i_start: i_end]
         else:
             x_dataL, y_dataL = None, None
                 
@@ -270,7 +306,7 @@ if __name__ == '__main__':
     
 
     
-    make_plots( ['M20_scaled', 'MMH', 'N2H4'], abs_T=0, ref_scaled=False)
+    make_plots( ['M20', 'MMH', 'N2H4'], abs_T=1, ref_scaled=False, Tmin=480, Tmax=600)
     #make_plots( ['A50_scaled', 'A50'], abs_T=0, ref_scaled=False)
     # make_plots( ['MMH', 'N2H4'], abs_T=0, ref_scaled=True)
     

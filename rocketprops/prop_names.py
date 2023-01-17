@@ -67,9 +67,9 @@ class PropNames:
         
     def get_primary_name(self, name):
         """Get the primary name for the input propellant name."""
-        pname = self.primary_lowerD.get( name.lower(), None )
+        pname = self.primary_lowerD.get( str(name).lower(), None )
         if pname is None:
-            pname = self.alternate_lowerD.get( name.lower(), None )
+            pname = self.alternate_lowerD.get( str(name).lower(), None )
         return pname
         
     def add_associated_name(self, primary, associated):

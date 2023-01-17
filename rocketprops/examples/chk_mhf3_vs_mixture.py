@@ -15,5 +15,6 @@ print('  T_data_range=',C.T_data_range())
 print('  P_data_range=', C.P_data_range())
 
 # C.plot_sat_props()
-make_plots( prop_nameL=['MHF3', 'MMH', 'N2H4'], prop_objL=[C], abs_T=1, ref_scaled=False)
+make_plots( prop_nameL=['MHF3', 'MMH', 'N2H4'], prop_objL=[C], 
+            abs_T=1, ref_scaled=False, show_gas_dens=False)
 

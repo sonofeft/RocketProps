@@ -13,7 +13,7 @@ def get_color(i):
     return COLORL[ i % len(COLORL) ]
 
 def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
-                Tmin=None, Tmax=None):
+                Tmin=None, Tmax=None, show_gas_dens=False):
     
     propL = []
     if prop_nameL is not None:
@@ -68,7 +68,6 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
         prop = propL[i]
         trL = trLL[i]
         TL = TLL[i]
-        print( 'TL[0]=%g, TL[-1]=%g'%(TL[0], TL[-1]))
 
         i_start = 0
         for i in range( len(prop.tL) ):
@@ -288,10 +287,11 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
         ax2.plot( x_terpL, y_terpL, '-', color=get_color(i) )
         ax2.plot( x_refL, y_refL, marker=get_marker(i), color=get_color(i), markersize=10, linewidth=0, markeredgecolor='k', alpha=.5 )
         
-        x_refL, y_refL, x_dataL, y_dataL, x_terpL, y_terpL = get_xy_plot_lists( i, '', 'log10SG_vapL', 'SGVapAtTr' )
+        if show_gas_dens:
+            x_refL, y_refL, x_dataL, y_dataL, x_terpL, y_terpL = get_xy_plot_lists( i, '', 'log10SG_vapL', 'SGVapAtTr' )
 
-        ax2.plot( x_dataL, y_dataL, marker=get_marker(i), color=get_color(i), linewidth=0 )
-        ax2.plot( x_terpL, y_terpL, '-', color=get_color(i) )
+            ax2.plot( x_dataL, y_dataL, marker=get_marker(i), color=get_color(i), linewidth=0 )
+            ax2.plot( x_terpL, y_terpL, '-', color=get_color(i) )
             
     ax2.legend()
     fig.tight_layout()

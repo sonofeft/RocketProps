@@ -1198,14 +1198,14 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
 if __name__ == '__main__':
     from rocketprops.plot_multi_props import make_plots
     
-    C = get_prop('A60')
+    C = get_prop('M20')
     C.summ_print()
     # if C:
     #     C.summ_print()
     #     C.plot_sat_props()
     
-    # make_plots( prop_nameL=['MHF3', 'MMH', 'N2H4'], prop_objL=[C], 
-    #             abs_T=1, ref_scaled=False, Tmin=450, Tmax=700)
+    make_plots( prop_nameL=['MHF3', 'MMH', 'N2H4'], prop_objL=[C], 
+                abs_T=0, ref_scaled=False, Tmin=450, Tmax=700)
 
-    make_plots( prop_nameL=['A50', 'UDMH', 'N2H4'], prop_objL=[C], 
-                abs_T=1, ref_scaled=False, Tmin=450, Tmax=700)
+    # make_plots( prop_nameL=['A50', 'UDMH', 'N2H4'], prop_objL=[C], 
+    #             abs_T=1, ref_scaled=False, Tmin=450, Tmax=700)

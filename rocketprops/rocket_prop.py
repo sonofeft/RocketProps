@@ -913,7 +913,7 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
             mon_hi_prop = get_prop('MON30')
             mass_fracL=[(30-noPcent)/(noPcent-25), 1.0]
         else:
-            raise Exception('Maximum MON value is MON30.')
+            raise Exception('Maximum MON value allowed in RocketProps is MON30.')
 
         prop_objL=[mon_lo_prop, mon_hi_prop]  # will normalize below
         print( 'mon_lo_prop.name =', mon_lo_prop.name)

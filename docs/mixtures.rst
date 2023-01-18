@@ -23,13 +23,15 @@ Note that all percentages are by weight.
 MMH + N2H4
 ----------
 
-To create a mixture of MMH and N2H4, use a propellant name such as "M20".
+To create a mixture of MMH (monomethyl hydrazine) and N2H4 (hydrazine) in RocketProps, use a propellant name such as "M20".
 
 The number following th "M" indicates the weight percentage of MMH added to N2H4.
 
 An advantage of adding MMH to N2H4 is a reduction in freezing point.
 
 The following python code will create an M20 mixture.
+
+.. _Example Mixture Summary:
 
 .. code-block:: python 
 
@@ -75,6 +77,28 @@ Plots of M20 can be compared to MMH and N2H4 with the following code:
 .. image:: ./_static/MMH_M20_N2H4_ViscCond.png
 
 
+Aerozine 
+--------
+
+The most common mixture of UDMH and N2H4 is A50, a 50-50 mixture by weight.
+A50 has a long flight history on Titan vehicles.
+
+A somewhat similar mixture, UH25 (75% UDMH + 25% hydrazine hydrate) was developed for the European Ariane launch vehicles.
+
+As with MMH/N2H4 mixtures, an advantage of adding UDMH to N2H4 is a reduction in freezing point.
+
+
+.. code-block:: python 
+
+    from rocketprops.plot_multi_props import make_plots
+
+    make_plots( ['UDMH','A25', 'A50', 'N2H4'], abs_T=1,
+                Tmin=130, Tmax=170, save_figures=True)
+
+
+.. image:: ./_static/UDMH_A25_A50_N2H4_SurfSG.png
+
+
 Mixed Oxides of Nitrogen
 ------------------------
 
@@ -103,7 +127,8 @@ Mixtures of liquid fluorine and liquid oxygen have been studied and tested in th
 For example FLOX70 with Kerosene was tested in Atlas rocket engines in the 1950's and 1960's.
 
 The fluorine adds Isp performance and increases propellant density. 
-A comparative plot is created by the code below.
+Ideally, the LOX combines with carbon in the fuel to make CO and the LF2 combines with hydrogen to make HF.
+A comparative plot of LF2, FLOX70 and LOX is created by the code below.
 
 .. code-block:: python 
 
@@ -114,24 +139,3 @@ A comparative plot is created by the code below.
 
 
 .. image:: ./_static/F2_FLOX70_Oxygen_SurfSG.png
-
-Aerozine 
---------
-
-The most common mixture of UDMH and N2H4 is A50, a 50-50 mixture by weight.
-A50 has a long flight history on Titan vehicles.
-
-A somewhat similar mixture, UH25 (75% UDMH + 25% hydrazine hydrate) was developed for the European Ariane launch vehicles.
-
-As with MMH/N2H4 mixtures, an advantage of adding UDMH to N2H4 is a reduction in freezing point.
-
-
-.. code-block:: python 
-
-    from rocketprops.plot_multi_props import make_plots
-
-    make_plots( ['UDMH','A25', 'A50', 'N2H4'], abs_T=1,
-                Tmin=130, Tmax=170, save_figures=True)
-
-
-.. image:: ./_static/UDMH_A25_A50_N2H4_SurfSG.png

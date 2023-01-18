@@ -21,6 +21,7 @@ Contents:
    high_press
    mixtures
    mixture_freeze
+   mixture_rules
    a50_prop   
    clf5_prop
    ethane_prop

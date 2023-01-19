@@ -83,10 +83,9 @@ and are combined with an appropriate mixing rule to compute the mixture referenc
 Critical Temperature
 --------------------
 
-
-Calculation of the mixture critical temperature (:math:`\text{T}_{cm}`) uses the Li correlation from
+Calculation of mixture critical temperature (:math:`\text{T}_{cm}`) uses the Li correlation from
 Caleb Bell, Yoel Rene Cortes-Pena, and Contributors (2016-2021). Chemicals: Chemical properties component of Chemical Engineering Design Library (ChEDL)
-https://github.com/CalebBell/chemicals.
+https://chemicals.readthedocs.io/chemicals.critical.html#critical-temperature-of-mixtures.
 
 Although Kay's rule Eqn 5-3.1 from :ref:`Gas&Liq 5th Ed Source` (i.e. simple mole fraction mixing rule) 
 is often sufficient. Better accuracy can usually be expected from the Li correlation.
@@ -129,4 +128,88 @@ for vapor pressure.
 
 .. math::
     \text{P}_{vapm} = \sum_i \text{mole_frac}_i \cdot \text{P}_{vapi}    
+
+Heat Capacity
+-------------
+
+Mixture heat capacity :math:`\text{C}_{pm}` can be estimated with a simple mixing rule as noted in Eqn 2-55 
+of `Perry's Chemical Engineers' Handbook 8th Edition by Don Green and Robert Perry <https://www.accessengineeringlibrary.com/content/book/9780071422949>`_
+
+Note that in Perry's, the Cp has units of energy/mole and therefore uses mole fraction in the simple mixing equation. 
+Since RocketProps uses energy/mass, mass fraction is used in the simple mixing equation.
+
+.. math::
+    \text{C}_{pm} = \sum_i \text{mass_frac}_i \cdot \text{C}_{pi}    
+
+Heat of Vaporization
+--------------------
+
+Mixture heat of vaporization :math:`\text{H}_{vapm}` is "tricky". Also note that, like heat capacity :math:`\text{C}_{pm}`, heat of vaporization, :math:`\text{H}_{vapm}` in RocketProps 
+uses energy/mass for :math:`\text{H}_{vapm}` and is therefore based on mass fraction, not mole fraction.
+
+The most common use of :math:`\text{H}_{vapm}` is in evaluating propellant droplet evaporation in a thrust chamber
+in order to calculate thrust chamber performance and combustion stability.
+
+When a droplet first begins to evaporate, the instantaneous :math:`\text{H}_{vapm}` is based on the mass fraction of vapor given off
+for each of the mixtures constituents, not the liquid mass fractions. After a droplet has completely evaporated, the net  :math:`\text{H}_{vapm}` 
+is based on the starting liquid droplet mass fraction.
+
+Calculating the energy release characteristics in a thrust chamber is well beyond the scope of RocketProps.
+For that reason, RocketProps assumes complete droplet evaporation and calculates mixture heat of vaporization :math:`\text{H}_{vapm}`
+based on initial droplet mass fraction.
+
+
+.. math::
+    \text{H}_{vapm} = \sum_i \text{mass_frac}_i \cdot \text{H}_{vapi}    
+
+Thermal Conductivity
+--------------------
+
+
+Calculation of mixture thermal conductivity (:math:`\lambda_m`) uses the Filippov correlation from
+Caleb Bell, Yoel Rene Cortes-Pena, and Contributors (2016-2021). 
+Chemicals: Chemical properties component of Chemical Engineering Design Library (ChEDL)
+https://chemicals.readthedocs.io/chemicals.thermal_conductivity.html#liquid-mixing-rules.
+
+Note that the Filippov correlation applies to binary mixtures only and that RocketProps currently only supports binary mixtures.
+
+.. math::
+    \lambda_m = w_1 \lambda_1 + w_2\lambda_2
+    - 0.72 w_1 w_2(\lambda_2-\lambda_1)
+
+For future RocketProps mixtures that might move beyond binary mixtures, the DIPPR9H correlation, 
+also from the ChEDL, is included.
+
+
+.. math::
+    \lambda_m^{-2} = \frac{\sum_i z_i {MW}_i \lambda_i^{-2}}
+    {\sum_i z_i {MW}_i}
+
+Surface Tension
+---------------
+
+Calculation of mixture surface tension (:math:`\sigma_m`) uses the Winterfeld_Scriven_Davis correlation from
+Caleb Bell, Yoel Rene Cortes-Pena, and Contributors (2016-2021). 
+Chemicals: Chemical properties component of Chemical Engineering Design Library (ChEDL)
+https://chemicals.readthedocs.io/chemicals.interface.html#mixing-rules.
+
+
+.. math::
+    \sigma_m = \sum_i \sum_j \frac{1}{V_L^{L2}}\left(x_i V_i \right)
+    \left( x_jV_j\right)\sqrt{\sigma_i\cdot \sigma_j}
+
+
+Viscosity
+---------
+
+The Chemical Engineering Design Library (ChEDL) for liquid mixture viscosity (:math:`\mu_m`)
+recommends logarithmic mixing with weight fractions
+https://chemicals.readthedocs.io/chemicals.viscosity.html#liquid-mixing-rules is:
+
+With that in mind, mixture viscosity in RocketProps is calculated as:
+
+
+
+.. math::
+    \mu_m = \sum_i \text{massfrac}_i \cdot \ln(\mu_i)
 

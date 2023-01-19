@@ -1,5 +1,7 @@
-from math import sqrt
+from math import sqrt, exp, log
 from rocketprops.InterpProp_scipy import InterpProp
+from rocketprops.unit_conv_data import get_value
+
     
 # Freezing point of mixture of MMH with N2H4
 wtPcentMMHL =       [0.0,    16.1057,26.3705,35.4891,43.3123,50.8364,59.9052, 86.0,    100.0]
@@ -163,6 +165,51 @@ def mixing_simple(fracs, props):
 
     return sum( [fracs[i]*props[i] for i in range(len(fracs))] )
 
+def trunc_log(x, trunc=-744.4400719213812):
+    # 5e-324 is the smallest floating point number above zero and its log is -744.4400719213812
+    if x == 0.0:
+        return trunc
+    return log(x)
+
+def mixing_logarithmic(fracs, props):
+    r'''Simple function calculates a property based on weighted averages of
+    logarithmic properties.
+
+    .. math::
+        y = \sum_i \text{frac}_i \cdot \ln(\text{prop}_i)
+
+    Parameters
+    ----------
+    fracs : array-like
+        Fractions of a mixture
+    props: array-like
+        Properties
+
+    Returns
+    -------
+    prop : value
+        Calculated property
+
+    Notes
+    -----
+    Does not work on negative values.
+    Returns None if any fractions or properties are missing or are not of the
+    same length.
+
+    Examples
+    --------
+    >>> mixing_logarithmic([0.1, 0.9], [0.01, 0.02])
+    0.01866065983073615
+    '''
+    try:
+        tot = 0.0
+        for i in range(len(fracs)):
+            tot += fracs[i]*trunc_log(props[i])
+        return exp(tot)
+    except:
+        return None
+
+
 
 def COSTALD_Vmolar(T, Tc, Vc, omega):
     r'''Calculate saturation liquid density using the COSTALD CSP method.
@@ -293,29 +340,29 @@ def COSTALD_mixture_Vmolar(xs, T, Tcs, Vcs, omegas):
 
 
 
-def Rackett_mixture(T, xs, MWs, Tcs, Pcs, Zrs):
+def Rackett_mixture_Vm(T, xs, MWs, Tcs, Pcs, Zrs):
     r'''Calculate mixture liquid density using the Rackett-derived mixing rule
     as shown in [2]_.
 
     Parameters
     ----------
     T : float
-        Temperature of liquid [K]
+        Temperature of liquid [K] <--- degR
     xs: list
         Mole fractions of each component, []
     MWs : list
         Molecular weights of each component [g/mol]
     Tcs : list
-        Critical temperatures of each component [K]
+        Critical temperatures of each component [K] <--- degR
     Pcs : list
-        Critical pressures of each component [Pa]
+        Critical pressures of each component [Pa] <--- psia
     Zrs : list
         Rackett parameters of each component []
 
     Returns
     -------
     Vm : float
-        Mixture liquid volume [m^3/mol]
+        Mixture liquid volume [m^3/mol] ---> cm**/gmole
 
     Notes
     -----
@@ -345,6 +392,11 @@ def Rackett_mixture(T, xs, MWs, Tcs, Pcs, Zrs):
     .. [2] Danner, Ronald P, and Design Institute for Physical Property Data.
        Manual for Predicting Chemical Process Design Data. New York, N.Y, 1982.
     '''
+    T = T/1.8
+    Tcs = [_t/1.8 for _t in Tcs]
+
+    Pcs = [get_value(_p, 'psia', 'Pa') for _p in Pcs]
+
     bigsum, Tc, Zr, MW = 0.0, 0.0, 0.0, 0.0
 
     R = 8.3144598 # J/mol-K  =  m^3-Pa / mol-K  =  J/mol-K
@@ -357,7 +409,7 @@ def Rackett_mixture(T, xs, MWs, Tcs, Pcs, Zrs):
         MW += MWs[i]*xs[i]
         bigsum += x0/(Pcs[i]*MWs[i])
     Tr = T/Tc
-    return (R*bigsum*Zr**(1.0 + (1.0 - Tr)**(2.0/7.0)))*MW
+    return (R*bigsum*Zr**(1.0 + (1.0 - Tr)**(2.0/7.0)))*MW * 1e6 # convert [m^3/mol] to cm**3/gmole
 
 
 
@@ -419,6 +471,87 @@ def Li_Tcm(zs, Tcs, Vcs):
     for i in range(N):
         Tcm += zs[i]*Vcs[i]*Tcs[i]*denominator_inv
     return Tcm
+
+
+def Winterfeld_Scriven_Davis_surf(xs, sigmas, rhoms):
+    r'''Calculates surface tension of a liquid mixture according to
+    mixing rules in [1]_ and also in [2]_.
+
+    .. math::
+        \sigma_M = \sum_i \sum_j \frac{1}{V_L^{L2}}\left(x_i V_i \right)
+        \left( x_jV_j\right)\sqrt{\sigma_i\cdot \sigma_j}
+
+    Parameters
+    ----------
+    xs : array-like
+        Mole fractions of all components, [-]
+    sigmas : array-like
+        Surface tensions of all components, [N/m] <--- lbf/in
+    rhoms : array-like
+        Molar densities of all components, [mol/m^3] <--- (cm**3/gmole)
+
+    Returns
+    -------
+    sigma : float
+        Air-liquid surface tension of mixture, [N/m]
+
+    Notes
+    -----
+    DIPPR Procedure 7C: Method for the Surface Tension of Nonaqueous Liquid
+    Mixtures
+
+    Becomes less accurate as liquid-liquid critical solution temperature is
+    approached. DIPPR Evaluation:  3-4% AARD, from 107 nonaqueous binary
+    systems, 1284 points. Internally, densities are converted to kmol/m^3. The
+    Amgat function is used to obtain liquid mixture density in this equation.
+
+    Raises a ZeroDivisionError if either molar volume are zero, and a
+    ValueError if a surface tensions of a pure component is negative.
+
+    Examples
+    --------
+    >>> Winterfeld_Scriven_Davis([0.1606, 0.8394], [0.01547, 0.02877],
+    ... [8610., 15530.])
+    0.02496738845043982
+
+    References
+    ----------
+    .. [1] Winterfeld, P. H., L. E. Scriven, and H. T. Davis. "An Approximate
+       Theory of Interfacial Tensions of Multicomponent Systems: Applications
+       to Binary Liquid-Vapor Tensions." AIChE Journal 24, no. 6
+       (November 1, 1978): 1010-14. doi:10.1002/aic.690240610.
+    .. [2] Danner, Ronald P, and Design Institute for Physical Property Data.
+       Manual for Predicting Chemical Process Design Data. New York, N.Y, 1982.
+    '''
+    rhoms = [_r/1e6 for _r in rhoms] # convert cm**/gmole to [m^3/mol]
+    sigmas = [ get_value(s, 'lbf/in', 'N/m') for s in sigmas]
+
+    N = len(xs)
+    Vms = [0.0]*N
+    rho = 0.0
+    for i in range(N):
+        Vms[i] = 1e3/rhoms[i]
+        rho += xs[i]*Vms[i]
+#    rho = 1./rho
+    root_two = 1.4142135623730951
+    rho = root_two/rho # factor out rt2
+    # For speed, transform the Vms array to contain
+#    xs[i]*Vms[i]*sigmas_05[i]*rho
+    tot = 0.0
+    for i in range(N):
+        val = sqrt(sigmas[i])*xs[i]*rho*Vms[i]
+        Vms[i] = val
+        tot += val*val
+    tot *= 0.5
+    for i in range(N):
+        # Symmetric - can be slightly optimized
+        temp = 0.0
+        for j in range(i):
+            temp += Vms[j]
+        tot += Vms[i]*temp
+
+    return get_value(tot, 'N/m', 'lbf/in')
+    # return tot
 
 
 

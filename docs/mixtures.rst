@@ -52,14 +52,14 @@ and create the following output.
     Tc      =      1150.96 degR
     SGliq   =     0.980694 g/cc
     SGvap   =  3.16643e-05 g/cc
-    visc    =    0.0100782 poise
+    visc    =    0.0100714 poise
     cond    =     0.270383 BTU/hr/ft/delF
     Tnbp    =       686.45 degR
     Tfreeze =       483.55 degR
-    Cp      =     0.734094 BTU/lbm/delF
+    Cp      =     0.733093 BTU/lbm/delF
     MolWt   =      34.1231 g/gmole
-    Hvap    =      544.064 BTU/lbm
-    surf    =  0.000343891 lbf/in
+    Hvap    =      533.465 BTU/lbm
+    surf    =  0.000359821 lbf/in
 
 Plots of M20 can be compared to MMH and N2H4 with the following code:
 

@@ -54,11 +54,11 @@ from rocketprops.unit_conv_data import get_value
 from rocketprops.prop_names import prop_names
 # from rocketprops.prop_from_dict import get_prop_from_dict
 from rocketprops.mixing_functions import isMMH_N2H4_Blend, isMON_Ox, isFLOX_Ox, isN2H4_UDMH_Blend
-from rocketprops.unit_conv_data import get_value
 from rocketprops.InterpProp_scipy import InterpProp
 
 from scipy import optimize
-from rocketprops.mixing_functions import Li_Tcm, mixing_simple, DIPPR9H_cond, Filippov_cond
+from rocketprops.mixing_functions import Li_Tcm, mixing_simple, DIPPR9H_cond, Filippov_cond, \
+                                         Winterfeld_Scriven_Davis_surf, mixing_logarithmic
 from rocketprops.mixing_functions import Mnn_Freeze_terp, MON_Freeze_terp, Axx_Freeze_terp
 
 
@@ -76,10 +76,13 @@ def get_prop( name, suppress_warning=False ):
     :return: Propellant object for named propellant
     :rtype: Propellant
     """
+    if isMMH_N2H4_Blend(name) or isMON_Ox(name) or isFLOX_Ox(name) or isN2H4_UDMH_Blend(name):
+        # print( 'building Blend', name)
+        if name not in ['A50', 'MHF3', 'MON10', 'MON25', 'MON30']:
+            return build_mixture( name )
+
     pname = prop_names.get_primary_name( name )
     if pname is None:
-        if isMMH_N2H4_Blend(name) or isMON_Ox(name) or isFLOX_Ox(name) or isN2H4_UDMH_Blend(name):
-            return build_mixture( name )
 
         if not suppress_warning:
             print('WARNING... propellant "%s" is not recognized.'%name)
@@ -859,8 +862,8 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
             mass_fracL=[(100-mmhPcent)/(mmhPcent-86), 1.0]
 
         prop_objL=[mmh_lo_prop, mmh_hi_prop]  # will normalize below
-        print( 'mmh_lo_prop.name =', mmh_lo_prop.name)
-        print( 'mmh_hi_prop.name =', mmh_hi_prop.name)
+        # print( 'mmh_lo_prop.name =', mmh_lo_prop.name)
+        # print( 'mmh_hi_prop.name =', mmh_hi_prop.name)
 
     elif n2h4Pcent:
         prop_names.add_associated_name( prop_name, f"{n2h4Pcent}% N2H4 + {100-n2h4Pcent}% UDMH" )
@@ -983,8 +986,8 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     moleL = [ f_mass/Pobj.MolWt for (f_mass, Pobj) in zip(mass_fracL, prop_objL) ]
     mole_total = sum( moleL )
     mole_fracL = [m/mole_total for m in moleL]
-    print( 'mole_fracL =', mole_fracL)
-    print( 'mass_fracL =', mass_fracL)
+    # print( 'mole_fracL =', mole_fracL)
+    # print( 'mass_fracL =', mass_fracL)
 
     tmpD = {} # index=parameter name, value=string or numeric value
 
@@ -1020,7 +1023,7 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     # else:
     Tc = Li_Tcm(mole_fracL, TcL, VcL)
     # Tc = mixing_simple(mole_fracL, TcL)  # degR
-    print( 'Tc =', Tc)
+    # print( 'Tc =', Tc)
 
     tmpD['Tc'] = Tc # (zs, Tcs, Vcs)
 
@@ -1052,8 +1055,8 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     tmpD['SG'] = MolWt / Vm  
 
 
-    tmpD['Cp']   = mixing_simple(mole_fracL, [Pobj.CpAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL])
-    tmpD['Hvap'] = mixing_simple(mole_fracL, [Pobj.HvapAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL])
+    tmpD['Cp']   = mixing_simple(mass_fracL, [Pobj.CpAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL])
+    tmpD['Hvap'] = mixing_simple(mass_fracL, [Pobj.HvapAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL])
     
     tmp_condL = [Pobj.CondAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
     if len(mass_fracL) == 2:
@@ -1067,11 +1070,15 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
     # tmpD['surf'] =  Diguilio_Teja_surften(T, mole_fracL, sigmas_TbL, TbsL, TcL)
 
     surfL = [Pobj.SurfAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
-    tmpD['surf'] =  mixing_simple( mass_fracL, surfL )
+    # tmpD['surf'] =  mixing_simple( mass_fracL, surfL )
+
+    tmpD['surf'] = Winterfeld_Scriven_Davis_surf(mole_fracL, surfL, VmL)
 
     #  D. Perry's Chemical Engineering Handbook. 6th Ed
     viscL = [Pobj.ViscAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
-    tmpD['visc'] = mixing_simple( mass_fracL, viscL)
+    # tmpD['visc'] = mixing_simple( mass_fracL, viscL)
+
+    tmpD['visc'] = mixing_logarithmic( mass_fracL, viscL) # ChEDL recommendation
 
     tmpD['Tfreeze'] = Tfreeze
     tmpD['Ttriple'] = Tfreeze
@@ -1113,15 +1120,24 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
 
         tL.append( T )
         trL.append( T/Tc )
+        # liquid density
+        VmL = [ Pobj.MolWt/Pobj.SGLiqAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL ]
+
         pL.append( sum( [y* Pobj.PvapAtTr( pTr(Pobj, T, Tr) ) for (y,Pobj) in zip(mole_fracL, prop_objL)] ) ) # Raoult's Law
 
-        cpL.append( mixing_simple(mole_fracL, [ Pobj.CpAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
+        cpL.append( mixing_simple(mass_fracL, [ Pobj.CpAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
 
-        hvapL.append( mixing_simple(mole_fracL, [ Pobj.HvapAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
+        hvapL.append( mixing_simple(mass_fracL, [ Pobj.HvapAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
         
-        surfL.append( mixing_simple(mass_fracL, [ Pobj.SurfAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
+        # surfL.append( mixing_simple(mass_fracL, [ Pobj.SurfAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
+        sL = [ Pobj.SurfAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
+        if Tr < 1.0:
+            surfL.append( Winterfeld_Scriven_Davis_surf(mole_fracL, sL, VmL) )
+        else:
+            surfL.append( 0.0 )
         
-        viscL.append( mixing_simple(mass_fracL, [ Pobj.ViscAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
+        # viscL.append( mixing_simple     (mass_fracL, [ Pobj.ViscAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
+        viscL.append( mixing_logarithmic(mass_fracL, [ Pobj.ViscAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]) )
         
         # thermal conductivity
         tmp_condL = [Pobj.CondAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL]
@@ -1131,8 +1147,6 @@ def build_mixture( prop_name=''): #, prop_objL=None, mass_fracL=None):
         else:
             condL.append(   DIPPR9H_cond( mass_fracL, tmp_condL ) )
 
-        # liquid density
-        VmL = [ Pobj.MolWt/Pobj.SGLiqAtTr( pTr(Pobj, T, Tr) ) for Pobj in prop_objL ]
         
         Vm = mixing_simple( mole_fracL, VmL )
         # Amgat mixing rule from thermo package: https://thermo.readthedocs.io/

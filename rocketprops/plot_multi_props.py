@@ -21,6 +21,9 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
     if prop_objL is not None:
         propL.extend( prop_objL )
 
+    # print( 'prop_nameL =', prop_nameL)
+    # print( 'prop_objL =', prop_objL)
+
     if Tmin is None:
         Tmin = min( [prop.tL[0] for prop in propL] )
     if Tmax is None:

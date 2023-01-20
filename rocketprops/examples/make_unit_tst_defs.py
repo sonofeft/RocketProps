@@ -43,7 +43,7 @@ for fname in propL:
     if prop_name not in ['__init__.py', 'M20_scaled', 'A50_scaled']:
     
         add('    def test_%s_ref_pts(self):'%prop_name )
-        add('        """Test %s reference points with interpolater calls"""'%prop_name)
+        add('        """Test %s reference points with interpolator calls"""'%prop_name)
         
         prop = get_prop( prop_name )
         add('        prop = get_prop( "%s" )'%prop_name)

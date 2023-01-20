@@ -67,7 +67,7 @@ class MyTest(unittest.TestCase):
 
 
     def test_A50_ref_pts(self):
-        """Test A50 reference points with interpolater calls"""
+        """Test A50 reference points with interpolator calls"""
         prop = get_prop( "A50" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -116,7 +116,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.89075e-05)
 
     def test_CLF5_ref_pts(self):
-        """Test CLF5 reference points with interpolater calls"""
+        """Test CLF5 reference points with interpolator calls"""
         prop = get_prop( "CLF5" )
         self.assertAlmostEqual(prop.T, 468.208, places=None, delta=0.0468208)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -165,7 +165,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.35491e-05)
 
     def test_Ethane_ref_pts(self):
-        """Test Ethane reference points with interpolater calls"""
+        """Test Ethane reference points with interpolator calls"""
         prop = get_prop( "Ethane" )
         self.assertAlmostEqual(prop.T, 332.224, places=None, delta=0.0332224)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -214,7 +214,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.66596e-05)
 
     def test_Ethanol_ref_pts(self):
-        """Test Ethanol reference points with interpolater calls"""
+        """Test Ethanol reference points with interpolator calls"""
         prop = get_prop( "Ethanol" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 0.85928, places=None, delta=8.5928e-05)
@@ -263,7 +263,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.96412e-05)
 
     def test_F2_ref_pts(self):
-        """Test F2 reference points with interpolater calls"""
+        """Test F2 reference points with interpolator calls"""
         prop = get_prop( "F2" )
         self.assertAlmostEqual(prop.T, 153.066, places=None, delta=0.0153066)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -312,7 +312,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.65488e-05)
 
     def test_IRFNA_ref_pts(self):
-        """Test IRFNA reference points with interpolater calls"""
+        """Test IRFNA reference points with interpolator calls"""
         prop = get_prop( "IRFNA" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -361,7 +361,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.87445e-05)
 
     def test_LOX_ref_pts(self):
-        """Test LOX reference points with interpolater calls"""
+        """Test LOX reference points with interpolator calls"""
         prop = get_prop( "LOX" )
         self.assertAlmostEqual(prop.T, 162.338, places=None, delta=0.0162338)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -410,7 +410,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.68167e-05)
 
     def test_Methane_ref_pts(self):
-        """Test Methane reference points with interpolater calls"""
+        """Test Methane reference points with interpolator calls"""
         prop = get_prop( "Methane" )
         self.assertAlmostEqual(prop.T, 201.001, places=None, delta=0.0201001)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -459,7 +459,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.64095e-05)
 
     def test_Methanol_ref_pts(self):
-        """Test Methanol reference points with interpolater calls"""
+        """Test Methanol reference points with interpolator calls"""
         prop = get_prop( "Methanol" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 1.89009, places=None, delta=0.000189009)
@@ -508,7 +508,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.78429e-05)
 
     def test_MHF3_ref_pts(self):
-        """Test MHF3 reference points with interpolater calls"""
+        """Test MHF3 reference points with interpolator calls"""
         prop = get_prop( "MHF3" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -557,7 +557,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.94904e-05)
 
     def test_MMH_ref_pts(self):
-        """Test MMH reference points with interpolater calls"""
+        """Test MMH reference points with interpolator calls"""
         prop = get_prop( "MMH" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -606,7 +606,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.94479e-05)
 
     def test_MMH_scaled_ref_pts(self):
-        """Test MMH_scaled reference points with interpolater calls"""
+        """Test MMH_scaled reference points with interpolator calls"""
         prop = get_prop( "MMH_scaled" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -655,7 +655,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.98455e-05)
 
     def test_MON10_ref_pts(self):
-        """Test MON10 reference points with interpolater calls"""
+        """Test MON10 reference points with interpolator calls"""
         prop = get_prop( "MON10" )
         self.assertAlmostEqual(prop.T, 527.7, places=None, delta=0.05277)
         self.assertAlmostEqual(prop.P, 24.2732, places=None, delta=0.00242732)
@@ -704,7 +704,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.53743e-05)
 
     def test_MON25_ref_pts(self):
-        """Test MON25 reference points with interpolater calls"""
+        """Test MON25 reference points with interpolator calls"""
         prop = get_prop( "MON25" )
         self.assertAlmostEqual(prop.T, 527.7, places=None, delta=0.05277)
         self.assertAlmostEqual(prop.P, 61.7133, places=None, delta=0.00617133)
@@ -753,7 +753,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.28225e-05)
 
     def test_MON30_ref_pts(self):
-        """Test MON30 reference points with interpolater calls"""
+        """Test MON30 reference points with interpolator calls"""
         prop = get_prop( "MON30" )
         self.assertAlmostEqual(prop.T, 527.7, places=None, delta=0.05277)
         self.assertAlmostEqual(prop.P, 86.3444, places=None, delta=0.00863444)
@@ -802,7 +802,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.33853e-05)
 
     def test_N2H4_ref_pts(self):
-        """Test N2H4 reference points with interpolater calls"""
+        """Test N2H4 reference points with interpolator calls"""
         prop = get_prop( "N2H4" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -851,7 +851,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.98451e-05)
 
     def test_N2O4_ref_pts(self):
-        """Test N2O4 reference points with interpolater calls"""
+        """Test N2O4 reference points with interpolator calls"""
         prop = get_prop( "N2O4" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -900,7 +900,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.76634e-05)
 
     def test_N2O_ref_pts(self):
-        """Test N2O reference points with interpolater calls"""
+        """Test N2O reference points with interpolator calls"""
         prop = get_prop( "N2O" )
         self.assertAlmostEqual(prop.T, 332.424, places=None, delta=0.0332424)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -949,7 +949,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.74142e-05)
 
     def test_NH3_ref_pts(self):
-        """Test NH3 reference points with interpolater calls"""
+        """Test NH3 reference points with interpolator calls"""
         prop = get_prop( "NH3" )
         self.assertAlmostEqual(prop.T, 431.681, places=None, delta=0.0431681)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -998,7 +998,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.73057e-05)
 
     def test_PH2_ref_pts(self):
-        """Test PH2 reference points with interpolater calls"""
+        """Test PH2 reference points with interpolator calls"""
         prop = get_prop( "PH2" )
         self.assertAlmostEqual(prop.T, 36.4878, places=None, delta=0.00364878)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -1047,7 +1047,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.05548e-05)
 
     def test_Propane_ref_pts(self):
-        """Test Propane reference points with interpolater calls"""
+        """Test Propane reference points with interpolator calls"""
         prop = get_prop( "Propane" )
         self.assertAlmostEqual(prop.T, 415.865, places=None, delta=0.0415865)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -1096,7 +1096,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.62937e-05)
 
     def test_RP1_ref_pts(self):
-        """Test RP1 reference points with interpolater calls"""
+        """Test RP1 reference points with interpolator calls"""
         prop = get_prop( "RP1" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -1145,7 +1145,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.99632e-05)
 
     def test_UDMH_ref_pts(self):
-        """Test UDMH reference points with interpolater calls"""
+        """Test UDMH reference points with interpolator calls"""
         prop = get_prop( "UDMH" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 14.6959, places=None, delta=0.00146959)
@@ -1194,7 +1194,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.82956e-05)
 
     def test_Water_ref_pts(self):
-        """Test Water reference points with interpolater calls"""
+        """Test Water reference points with interpolator calls"""
         prop = get_prop( "Water" )
         self.assertAlmostEqual(prop.T, 527.67, places=None, delta=0.052767)
         self.assertAlmostEqual(prop.P, 0.339289, places=None, delta=3.39289e-05)

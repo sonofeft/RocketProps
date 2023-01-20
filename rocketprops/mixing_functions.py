@@ -176,7 +176,7 @@ def mixing_logarithmic(fracs, props):
     logarithmic properties.
 
     .. math::
-        y = \sum_i \text{frac}_i \cdot \ln(\text{prop}_i)
+        y = exp(\sum_i \text{frac}_i \cdot \ln(\text{prop}_i))
 
     Parameters
     ----------

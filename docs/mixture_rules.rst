@@ -211,5 +211,5 @@ With that in mind, mixture viscosity in RocketProps is calculated as:
 
 
 .. math::
-    \mu_m = \sum_i \text{massfrac}_i \cdot \ln(\mu_i)
+    \mu_m = exp(\sum_i \text{massfrac}_i \cdot \ln(\mu_i))
 

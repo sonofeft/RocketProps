@@ -173,4 +173,9 @@ if __name__ == "__main__": #Self Test
     plt.plot(xL, dydxL, '--')
     plt.plot( q.x, q.y, 'o-' )
     plt.grid()
-    plt.show()
+
+    try:
+        if __file__ == sys.argv[0]:
+            plt.show()
+    except:
+        pass

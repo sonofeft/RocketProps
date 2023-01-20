@@ -138,46 +138,46 @@ def Pitzer_Hvap(T, Tc, MW, omega):
     return hvap_JperM * 0.429923 / MW # BTU/lbm
 
 
-def Edalat_Pvap(T, Tc, Pc, omega):
-    r'''
-    This code taken from thermo package: https://thermo.readthedocs.io/
+# def Edalat_Pvap(T, Tc, Pc, omega):
+#     r'''
+#     This code taken from thermo package: https://thermo.readthedocs.io/
     
-    Calculates vapor pressure of a fluid at arbitrary temperatures using a
-    CSP relationship by [1]_. Requires a chemical's critical temperature,
-    pressure, and acentric factor. Claimed to have a higher accuracy than the
-    Lee-Kesler CSP relationship.
+#     Calculates vapor pressure of a fluid at arbitrary temperatures using a
+#     CSP relationship by [1]_. Requires a chemical's critical temperature,
+#     pressure, and acentric factor. Claimed to have a higher accuracy than the
+#     Lee-Kesler CSP relationship.
 
-    Parameters
-    ----------
-    T : float
-        Temperature of fluid [K] <-- input degR converted to degK
-    Tc : float
-        Critical temperature of fluid [K] <-- input degR converted to degK
-    Pc : float
-        Critical pressure of fluid [Pa] <-- input psia converted to Pa
-    omega : float
-        Acentric factor [-]
+#     Parameters
+#     ----------
+#     T : float
+#         Temperature of fluid [K] <-- input degR converted to degK
+#     Tc : float
+#         Critical temperature of fluid [K] <-- input degR converted to degK
+#     Pc : float
+#         Critical pressure of fluid [Pa] <-- input psia converted to Pa
+#     omega : float
+#         Acentric factor [-]
 
-    Returns
-    -------
-    Psat : float
-        Vapor pressure, [Pa] --> psia
+#     Returns
+#     -------
+#     Psat : float
+#         Vapor pressure, [Pa] --> psia
 
-    found an average error of 6.06% on 94 compounds and 1106 data points.
-    '''
-    T = get_value(T, 'degR', 'degK')
-    Tc = get_value(Tc, 'degR', 'degK')
-    Pc = get_value(Pc, 'psia', 'Pa')
-    tau = 1. - T/Tc
-    a = -6.1559 - 4.0855*omega
-    c = -0.8747 - 7.8874*omega
-    d = 1./(-0.4893 - 0.9912*omega + 3.1551*omega**2)
-    b = 1.5737 - 1.0540*omega - 4.4365E-3*d
-    lnPr = (a*tau + b*tau**1.5 + c*tau**3 + d*tau**6)/(1.-tau)
-    #print('exp( lnPr ) =',exp( lnPr ))
-    Psat_Pa = exp( lnPr ) * Pc
+#     found an average error of 6.06% on 94 compounds and 1106 data points.
+#     '''
+#     T = get_value(T, 'degR', 'degK')
+#     Tc = get_value(Tc, 'degR', 'degK')
+#     Pc = get_value(Pc, 'psia', 'Pa')
+#     tau = 1. - T/Tc
+#     a = -6.1559 - 4.0855*omega
+#     c = -0.8747 - 7.8874*omega
+#     d = 1./(-0.4893 - 0.9912*omega + 3.1551*omega**2)
+#     b = 1.5737 - 1.0540*omega - 4.4365E-3*d
+#     lnPr = (a*tau + b*tau**1.5 + c*tau**3 + d*tau**6)/(1.-tau)
+#     #print('exp( lnPr ) =',exp( lnPr ))
+#     Psat_Pa = exp( lnPr ) * Pc
 
-    return get_value(Psat_Pa, 'Pa', 'psia')
+#     return get_value(Psat_Pa, 'Pa', 'psia')
 
 
 def Rackett_SG( TdegR, Tc, SGc, omega ):
@@ -308,70 +308,70 @@ def Squires_visc( TdegR, Tref, PoiseRef ):
     cp = vtopow ** (-1.0/.2661)
     return cp / 100.0 # return poise from cp
 
-def Przedziecki_Sridhar_visc(T, Tm, Tc, Pc, Vc, Vm, omega, MW):
-    r'''Calculates the viscosity of a liquid using an empirical formula
-    developed in [1]_.
+# def Przedziecki_Sridhar_visc(T, Tm, Tc, Pc, Vc, Vm, omega, MW):
+#     r'''Calculates the viscosity of a liquid using an empirical formula
+#     developed in [1]_.
 
-    Parameters
-    ----------
-    T : float
-        Temperature of the fluid [K] <-- degR
-    Tm : float
-        Melting point of fluid [K] <-- degR
-    Tc : float
-        Critical temperature of the fluid [K] <-- degR
-    Pc : float
-        Critical pressure of the fluid [Pa] <-- psia
-    Vc : float
-        Critical volume of the fluid [m^3/mol]
-    Vm : float
-        Molar volume of the fluid at temperature [K]
-    omega : float
-        Acentric factor of compound
-    MW : float
-        Molecular weight of fluid [g/mol]
+#     Parameters
+#     ----------
+#     T : float
+#         Temperature of the fluid [K] <-- degR
+#     Tm : float
+#         Melting point of fluid [K] <-- degR
+#     Tc : float
+#         Critical temperature of the fluid [K] <-- degR
+#     Pc : float
+#         Critical pressure of the fluid [Pa] <-- psia
+#     Vc : float
+#         Critical volume of the fluid [m^3/mol]
+#     Vm : float
+#         Molar volume of the fluid at temperature [K]
+#     omega : float
+#         Acentric factor of compound
+#     MW : float
+#         Molecular weight of fluid [g/mol]
 
-    Returns
-    -------
-    mu_l : float
-        Viscosity of liquid, [Pa*s]
+#     Returns
+#     -------
+#     mu_l : float
+#         Viscosity of liquid, [Pa*s]
 
-    Notes
-    -----
-    A test by Reid (1983) is used, but only mostly correct.
-    This function is not recommended.
-    Internal units are bar and mL/mol.
+#     Notes
+#     -----
+#     A test by Reid (1983) is used, but only mostly correct.
+#     This function is not recommended.
+#     Internal units are bar and mL/mol.
 
-    Examples
-    --------
-    >>> Przedziecki_Sridhar(383., 178., 591.8, 41E5, 316E-6, 95E-6, .263, 92.14)
-    0.00021981479956033846
+#     Examples
+#     --------
+#     >>> Przedziecki_Sridhar(383., 178., 591.8, 41E5, 316E-6, 95E-6, .263, 92.14)
+#     0.00021981479956033846
 
-    References
-    ----------
-    .. [1] Przedziecki, J. W., and T. Sridhar. "Prediction of Liquid
-       Viscosities." AIChE Journal 31, no. 2 (February 1, 1985): 333-35.
-       doi:10.1002/aic.690310225.
-    '''
-    T = get_value(T, 'degR', 'degK')
-    Tm = get_value(Tm, 'degR', 'degK')
-    Tc = get_value(Tc, 'degR', 'degK')
-    Pc = get_value(Pc, 'psia', 'Pa')    
+#     References
+#     ----------
+#     .. [1] Przedziecki, J. W., and T. Sridhar. "Prediction of Liquid
+#        Viscosities." AIChE Journal 31, no. 2 (February 1, 1985): 333-35.
+#        doi:10.1002/aic.690310225.
+#     '''
+#     T = get_value(T, 'degR', 'degK')
+#     Tm = get_value(Tm, 'degR', 'degK')
+#     Tc = get_value(Tc, 'degR', 'degK')
+#     Pc = get_value(Pc, 'psia', 'Pa')    
 
 
-    Pc = Pc*1e-5  # Pa to atm
-    Vm, Vc = Vm*1E6, Vc*1E6  # m^3/mol to mL/mol
-    Tc_inv = 1.0/Tc
-    Tr = T*Tc_inv
+#     Pc = Pc*1e-5  # Pa to atm
+#     Vm, Vc = Vm*1E6, Vc*1E6  # m^3/mol to mL/mol
+#     Tc_inv = 1.0/Tc
+#     Tr = T*Tc_inv
 
-    Tr2 = Tr*Tr
-    Gamma = 0.29607 - 0.09045*Tr - 0.04842*Tr2
-    VrT = 0.33593 - 0.33953*Tr + 1.51941*Tr2 - 2.02512*Tr*Tr2 + 1.11422*Tr2*Tr2
-    V = VrT*(1.0 - omega*Gamma)*Vc
+#     Tr2 = Tr*Tr
+#     Gamma = 0.29607 - 0.09045*Tr - 0.04842*Tr2
+#     VrT = 0.33593 - 0.33953*Tr + 1.51941*Tr2 - 2.02512*Tr*Tr2 + 1.11422*Tr2*Tr2
+#     V = VrT*(1.0 - omega*Gamma)*Vc
 
-    Vo = 0.0085*omega*Tc - 2.02 + Vm/(0.342*(Tm*Tc_inv) + 0.894)  # checked
-    E = -1.12 + Vc/(12.94 + 0.1*MW - 0.23*Pc + 0.0424*Tm - 11.58*(Tm*Tc_inv))
-    return Vo/(E*(V-Vo))*1e-3
+#     Vo = 0.0085*omega*Tc - 2.02 + Vm/(0.342*(Tm*Tc_inv) + 0.894)  # checked
+#     E = -1.12 + Vc/(12.94 + 0.1*MW - 0.23*Pc + 0.0424*Tm - 11.58*(Tm*Tc_inv))
+#     return Vo/(E*(V-Vo))*1e-3
 
 
 if __name__ == "__main__":

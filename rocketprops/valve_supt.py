@@ -101,6 +101,7 @@ def kv_valve_dp( pObj, Kv=1.0, wdotPPS=0.5, TdegR=530.0, Ppsia=1000.0):
     
     
 if __name__ == "__main__":
+    import sys 
     from rocketprops.rocket_prop import get_prop
     pObj = get_prop('hydrazine')
     

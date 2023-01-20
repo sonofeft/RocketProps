@@ -113,6 +113,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZLiqAtTr( Tr ), places=None, delta=2.95199e-09)
         Z = 9.142739e-01
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.14274e-05)
+        self.assertAlmostEqual(prop.SG_compressed(prop.T, prop.P), prop.SG, places=None, delta=9.80694e-05)
 
     def test_M90_ref_pts(self):
         """Test M90 reference points with interpolator calls"""
@@ -162,6 +163,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZLiqAtTr( Tr ), places=None, delta=1.04255e-08)
         Z = 9.951411e-01
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.95141e-05)
+        self.assertAlmostEqual(prop.SG_compressed(prop.T, prop.P), prop.SG, places=None, delta=8.90483e-05)
 
     def test_MON5_ref_pts(self):
         """Test MON5 reference points with interpolator calls"""
@@ -211,6 +213,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZLiqAtTr( Tr ), places=None, delta=3.39219e-07)
         Z = 9.718135e-01
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.71814e-05)
+        self.assertAlmostEqual(prop.SG_compressed(prop.T, prop.P), prop.SG, places=None, delta=0.00014299)
 
     def test_MON20_ref_pts(self):
         """Test MON20 reference points with interpolator calls"""
@@ -260,6 +263,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZLiqAtTr( Tr ), places=None, delta=8.19673e-07)
         Z = 9.483973e-01
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.48397e-05)
+        self.assertAlmostEqual(prop.SG_compressed(prop.T, prop.P), prop.SG, places=None, delta=0.000140021)
 
     def test_MON27_ref_pts(self):
         """Test MON27 reference points with interpolator calls"""
@@ -309,6 +313,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZLiqAtTr( Tr ), places=None, delta=1.1756e-06)
         Z = 9.322846e-01
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.32285e-05)
+        self.assertAlmostEqual(prop.SG_compressed(prop.T, prop.P), prop.SG, places=None, delta=0.000138647)
 
     def test_A25_ref_pts(self):
         """Test A25 reference points with interpolator calls"""
@@ -358,6 +363,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZLiqAtTr( Tr ), places=None, delta=4.05158e-08)
         Z = 9.789142e-01
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.78914e-05)
+        self.assertAlmostEqual(prop.SG_compressed(prop.T, prop.P), prop.SG, places=None, delta=8.4322e-05)
 
     def test_A75_ref_pts(self):
         """Test A75 reference points with interpolator calls"""
@@ -407,6 +413,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZLiqAtTr( Tr ), places=None, delta=1.22434e-08)
         Z = 8.834862e-01
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=8.83486e-05)
+        self.assertAlmostEqual(prop.SG_compressed(prop.T, prop.P), prop.SG, places=None, delta=9.53844e-05)
 
     def test_FLOX70_ref_pts(self):
         """Test FLOX70 reference points with interpolator calls"""
@@ -456,7 +463,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(Z, prop.ZLiqAtTr( Tr ), places=None, delta=3.82283e-07)
         Z = 9.477847e-01
         self.assertAlmostEqual(Z, prop.ZVapAtTr( Tr ), places=None, delta=9.47785e-05)
-
+        self.assertAlmostEqual(prop.SG_compressed(prop.T, prop.P), prop.SG, places=None, delta=0.00013717)
         
 
 if __name__ == '__main__':

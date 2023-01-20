@@ -19,40 +19,40 @@ wtPcentUdmhL = [0.0,  0.509356, 5.5297, 10.5275, 15.5006, 20.4669, 25.3909, 30.2
 Axx_Freeze_degRL = [494.42, 494.973, 494.6094, 493.9272, 492.9858, 491.8734, 490.4586, 488.8638, 487.0782, 485.0856, 482.8608, 480.4902, 477.9126, 475.0776, 388.73]
 Axx_Freeze_terp = InterpProp( wtPcentUdmhL, Axx_Freeze_degRL )
 
-def tfreeze_udmh_in_n2h4( wt_pcent_udmh ):
-    '''
-    Curve Fit Results from XYmath 07/20/2020
-    Can be called with wt_pcent_udmh=float or wt_pcent_udmh=numpy array
+# def tfreeze_udmh_in_n2h4( wt_pcent_udmh ):
+#     '''
+#     Curve Fit Results from XYmath 07/20/2020
+#     Can be called with wt_pcent_udmh=float or wt_pcent_udmh=numpy array
 
-    y = c0 + c1*wt_pcent_udmh + c2*wt_pcent_udmh**2
-        c0 = 275.0284644722944
-        c1 = -0.033382796654452374
-        c2 = -0.0026244277482150996
-        wt_pcent_udmh = wt_pcent_udmh
-        y = Tfreeze
-        Correlation Coefficient = 0.9999904489898558
-        Standard Deviation = 0.015507810687155406
-        Percent Standard Deviation = 0.005716790173686035%
-    y = 275.0284644722944 - 0.033382796654452374*wt_pcent_udmh - 0.0026244277482150996*wt_pcent_udmh**2
+#     y = c0 + c1*wt_pcent_udmh + c2*wt_pcent_udmh**2
+#         c0 = 275.0284644722944
+#         c1 = -0.033382796654452374
+#         c2 = -0.0026244277482150996
+#         wt_pcent_udmh = wt_pcent_udmh
+#         y = Tfreeze
+#         Correlation Coefficient = 0.9999904489898558
+#         Standard Deviation = 0.015507810687155406
+#         Percent Standard Deviation = 0.005716790173686035%
+#     y = 275.0284644722944 - 0.033382796654452374*wt_pcent_udmh - 0.0026244277482150996*wt_pcent_udmh**2
 
-     (x,y) Data Pairs from 07/20/2020 Used in Curve Fit 
-     (x,y) = (0.509356,274.985),(5.5297,274.783),(10.5275,274.404),
-        (15.5006,273.881),(20.4669,273.263),(25.3909,272.477),(30.2954,271.591),
-        (35.169,270.599),(40.0084,269.492),(44.8015,268.256),(49.5659,266.939),
-        (54.2762,265.507),(58.9317,263.932)
+#      (x,y) Data Pairs from 07/20/2020 Used in Curve Fit 
+#      (x,y) = (0.509356,274.985),(5.5297,274.783),(10.5275,274.404),
+#         (15.5006,273.881),(20.4669,273.263),(25.3909,272.477),(30.2954,271.591),
+#         (35.169,270.599),(40.0084,269.492),(44.8015,268.256),(49.5659,266.939),
+#         (54.2762,265.507),(58.9317,263.932)
 
-    '''
-    try:
-        if wt_pcent_udmh<0 or wt_pcent_udmh>60:
-            print( 'WARNING... wt_pcent_udmh is outside range in tfreeze_udmh_in_n2h4' )
-            print( '  wt_pcent_udmh =',wt_pcent_udmh,' wt_pcent_udmh range = (0 to 60)' )
-    except:
-        if np.min(wt_pcent_udmh)<0 or np.max(wt_pcent_udmh)>60:
-            print( 'WARNING... wt_pcent_udmh array contains elements outside data range in tfreeze_udmh_in_n2h4' )
-            outsideArr = wt_pcent_udmh[ (wt_pcent_udmh<0) | (wt_pcent_udmh>60) ]
-            print( '  wt_pcent_udmh violations =',outsideArr,' wt_pcent_udmh range = (0 to 60)' )
+#     '''
+#     try:
+#         if wt_pcent_udmh<0 or wt_pcent_udmh>60:
+#             print( 'WARNING... wt_pcent_udmh is outside range in tfreeze_udmh_in_n2h4' )
+#             print( '  wt_pcent_udmh =',wt_pcent_udmh,' wt_pcent_udmh range = (0 to 60)' )
+#     except:
+#         if np.min(wt_pcent_udmh)<0 or np.max(wt_pcent_udmh)>60:
+#             print( 'WARNING... wt_pcent_udmh array contains elements outside data range in tfreeze_udmh_in_n2h4' )
+#             outsideArr = wt_pcent_udmh[ (wt_pcent_udmh<0) | (wt_pcent_udmh>60) ]
+#             print( '  wt_pcent_udmh violations =',outsideArr,' wt_pcent_udmh range = (0 to 60)' )
     
-    return 1.8*(275.0284644722944 - 0.033382796654452374*wt_pcent_udmh - 0.0026244277482150996*wt_pcent_udmh**2)
+#     return 1.8*(275.0284644722944 - 0.033382796654452374*wt_pcent_udmh - 0.0026244277482150996*wt_pcent_udmh**2)
 
 
 
@@ -679,45 +679,46 @@ if __name__ == "__main__":
         isN2H4_UDMH_Blend( name )
 
 
-def ScaledGasZ( TdegR, Ppsia, Tc, Pc, Zc, omega ):
-    """Based on BVirial_Pitzer_Curl from thermo.
-    see: https://study.com/academy/answer/using-the-correlation-for-the-second-virial-coefficient-pitzer-correlation-find-the-molar-volume-of-1-propanol-vapour-at-508-8-k-and-12-bar-giving-your-answer-to-the-nearest-cm-3-mol-the-critical.html
-    """
-    
-    Tr = TdegR / Tc 
-    Pr = Ppsia / Pc
-    
-    def calc_b0b1( Tr ):
-        # Pitzer_Curl
-        B0 = 0.1445 - 0.33/Tr - 0.1385/Tr**2 - 0.0121/Tr**3
-        B1 = 0.073 + 0.46/Tr - 0.5/Tr**2 - 0.097/Tr**3 - 0.0073/Tr**8
+    def ScaledGasZ( TdegR, Ppsia, Tc, Pc, Zc, omega ):
+        """Based on BVirial_Pitzer_Curl from thermo.
+        see: https://study.com/academy/answer/using-the-correlation-for-the-second-virial-coefficient-pitzer-correlation-find-the-molar-volume-of-1-propanol-vapour-at-508-8-k-and-12-bar-giving-your-answer-to-the-nearest-cm-3-mol-the-critical.html
+        """
         
-        # Tsonopoulos
-        #B0 = 0.1445 - 0.33/Tr - 0.1385/Tr**2 - 0.0121/Tr**3 - 0.000607/Tr**8
-        #B1 = 0.0637 + 0.331/Tr**2 - 0.423/Tr**3 - 0.008/Tr**8        
+        Tr = TdegR / Tc 
+        Pr = Ppsia / Pc
         
-        # Abbot version of second virial const.
-        #B0 = 0.083 - 0.422/Tr**1.6
-        #B1 = 0.139 - 0.172/Tr**4.2
-        
-        return B0, B1
-        
-    def calc_B( Tr, omega ):
-        B0, B1 = calc_b0b1( Tr )
-        B = B0 + omega * B1
-        return B
+        def calc_b0b1( Tr ):
+            # Pitzer_Curl
+            B0 = 0.1445 - 0.33/Tr - 0.1385/Tr**2 - 0.0121/Tr**3
+            B1 = 0.073 + 0.46/Tr - 0.5/Tr**2 - 0.097/Tr**3 - 0.0073/Tr**8
             
-    def calc_z( Tr, Pr, omega ):
+            # Tsonopoulos
+            #B0 = 0.1445 - 0.33/Tr - 0.1385/Tr**2 - 0.0121/Tr**3 - 0.000607/Tr**8
+            #B1 = 0.0637 + 0.331/Tr**2 - 0.423/Tr**3 - 0.008/Tr**8        
+            
+            # Abbot version of second virial const.
+            #B0 = 0.083 - 0.422/Tr**1.6
+            #B1 = 0.139 - 0.172/Tr**4.2
+            
+            return B0, B1
+            
+        def calc_B( Tr, omega ):
+            B0, B1 = calc_b0b1( Tr )
+            B = B0 + omega * B1
+            return B
+                
+        def calc_z( Tr, Pr, omega ):
+            B = calc_B( Tr, omega )
+            Z = 1.0 + B * Pr / Tr
+            return Z
+        
+        Bc_calc = calc_B( 1.0, omega )
+        Bc_inp = Zc - 1.0
+        scale_fact = Bc_inp / Bc_calc
+        
         B = calc_B( Tr, omega )
-        Z = 1.0 + B * Pr / Tr
+        Z = 1.0 + scale_fact * B * Pr / Tr
         return Z
-    
-    Bc_calc = calc_B( 1.0, omega )
-    Bc_inp = Zc - 1.0
-    scale_fact = Bc_inp / Bc_calc
-    
-    B = calc_B( Tr, omega )
-    Z = 1.0 + scale_fact * B * Pr / Tr
-    return Z
 
-
+    Z = ScaledGasZ( 527.67, 14.7, 776, 1441, .3, .3 )
+    print( 'Z =', Z)

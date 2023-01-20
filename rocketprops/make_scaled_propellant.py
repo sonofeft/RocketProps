@@ -1,9 +1,9 @@
 import os
 from math import log10
 from rocketprops.scaling_funcs import ambrose_Psat, solve_omega, Rowlinson_Poling_Cp, \
-                                      Pitzer_Hvap, Edalat_Pvap, Rackett_SG, ScaledRackett_SG, \
-                                      Pitzer_surften, Nicola_thcond, Squires_visc, \
-                                      Przedziecki_Sridhar_visc
+                                      Pitzer_Hvap, ScaledRackett_SG, \
+                                      Pitzer_surften, Nicola_thcond, Squires_visc
+
 from rocketprops._prop_template import template
 from rocketprops.PR_eos import PReos
 from rocketprops.rocket_prop import here
@@ -16,7 +16,6 @@ def solve_omega( Tc, Pc, Psat_ref, Tref )
 def Rowlinson_Poling_Cp(T, Tc, omega, Cpgm, MW)
 def Pitzer_Hvap(T, Tc, MW, omega)
 def Edalat_Pvap(T, Tc, Pc, omega)
-def Rackett_SG( TdegR, Tc, SGc, omega )
 def ScaledRackett_SG( TdegR, Tc, omega, Tref, SGref )
 def Pitzer_surften(T, Tc, Pc, omega)
 def Nicola_thcond(T, M, Tc, Pc, omega)
@@ -38,7 +37,8 @@ def add_propellant( prop_name='A50',
                     Tnbp_degR     = 617.6700000000001, # degR
                     Tfreeze_degR  = 481.67, # degR
                     Ttriple_degR  = 481.67, # degR
-                    MolWt    = 41.802): # g/gmole
+                    MolWt    = 41.802, # g/gmole
+                    save_file=False):
 
     tmpD = {} # index=template name, value=string or numeric value
 
@@ -179,10 +179,11 @@ def add_propellant( prop_name='A50',
     # print( src )
     fname = prop_name + '_scaled_prop.py'
 
-    save_path = os.path.join( here, 'props', fname)
-    print( 'Saving "%s"'%save_path )
-    with open(save_path, 'w') as fOut:
-        fOut.write( src )
+    if save_file:
+        save_path = os.path.join( here, 'props', fname)
+        print( 'Saving "%s"'%save_path )
+        with open(save_path, 'w') as fOut:
+            fOut.write( src )
 
 
 if __name__ == "__main__":

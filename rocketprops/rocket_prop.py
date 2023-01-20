@@ -302,7 +302,7 @@ class Propellant(object):
         Phi = 10.0**( self.log10pL[-1] )
         return Plo, Phi
 
-    def plot_sat_props(self, save_figures=False):
+    def plot_sat_props(self, save_figures=False, show_plot=True):
         """Create and launch matplotlib plots of all saturation properties."""
         import matplotlib.pyplot as plt
 
@@ -423,7 +423,8 @@ class Propellant(object):
         
         
         # ========================================================
-        plt.show()
+        if show_plot:
+            plt.show()
 
     def Visc_compressed(self, TdegR, Ppsia):
         r'''Adjusts viscosity of a liquid for high pressure  using an empirical

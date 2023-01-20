@@ -13,7 +13,8 @@ def get_color(i):
     return COLORL[ i % len(COLORL) ]
 
 def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
-                Tmin=None, Tmax=None, show_gas_dens=False, save_figures=False):
+                Tmin=None, Tmax=None, show_gas_dens=False, save_figures=False,
+                show_plots=True):
     
     propL = []
     if prop_nameL is not None:
@@ -324,7 +325,8 @@ def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
     
     
     # ========================================================
-    plt.show()
+    if show_plots:
+        plt.show()
 
 if __name__ == '__main__':
 
@@ -347,4 +349,4 @@ if __name__ == '__main__':
     #             Tmin=480, Tmax=600, save_figures=False)
 
     make_plots( ['UDMH','A25', 'A50', 'N2H4'], abs_T=1,
-                Tmin=430, Tmax=560, save_figures=True)
+                Tmin=430, Tmax=560, save_figures=False)

@@ -85,7 +85,7 @@ def colebrook_ffact(roughness, diam, ReNum):
 
 
 if __name__ == "__main__":
-    
+    import sys
     import matplotlib.pyplot as plt
     
     fig = plt.figure()
@@ -111,7 +111,7 @@ if __name__ == "__main__":
                 ReNum = ReBase * cyVal
                 ff = colebrook_ffact(e,diam,ReNum)
                 #print( ReNum, ff )
-                #print( ffact(e/diam, ReNum) - ff )
+                print( ffact(e/diam, ReNum) - ff )
                 xRe.append( ReNum )
                 yFF.append( ff )
                 
@@ -130,5 +130,8 @@ if __name__ == "__main__":
     
     plt.xlim( (1.0E3, 1.0E8) )
 
-    plt.show()
- 
+    try:
+        if __file__ == sys.argv[0]:
+            plt.show()
+    except:
+        pass

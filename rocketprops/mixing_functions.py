@@ -8,7 +8,16 @@ wtPcentMMHL =       [0.0,    16.1057,26.3705,35.4891,43.3123,50.8364,59.9052, 86
 #pcentMMH_FreezeKL = [274.678,269.95, 266.316,262.641,259.168,255.493,250.647, 219.261, 220.761] # degK
 pcentMMH_FreezeRL = [494.4204, 485.91, 479.3688, 472.7538, 466.5024, 459.8874, 451.1646, 394.6698, 397.3698] # degR
 #                   N2H4                                                              MMH
-Mnn_Freeze_terp = InterpProp( wtPcentMMHL, pcentMMH_FreezeRL )
+
+Mnn_Freeze_terp_lo = InterpProp( wtPcentMMHL[:-1], pcentMMH_FreezeRL[:-1] )
+Mnn_Freeze_terp_hi = InterpProp( wtPcentMMHL[-2:], pcentMMH_FreezeRL[-2:] )
+
+
+def Mnn_Freeze_terp( wtPcentMMH ): #= InterpProp( wtPcentMMHL, pcentMMH_FreezeRL )
+    if wtPcentMMH <= 86.0:
+        return Mnn_Freeze_terp_lo( wtPcentMMH )
+    else:
+        return Mnn_Freeze_terp_hi( wtPcentMMH )
 
 wtPcentONL       = [0.0,    2.54567, 5.03106,7.51645,10.0684,12.5477,15.0717,17.0373,18.8689,20.0974,22.0183,22.6214,23.8275,25.1454,26.6196,27.6917,28.8085,29.7913,30.7294,31.5335,32.293,33.0077,33.7895,35.018,37.5197,40.0213]
 MONfreezeL_degRL = [471.241,466.135, 461.159,455.529,449.709,443.27,436.026,429.945,423.596,418.23,409.824,406.336,399.897,391.223,380.223,370.297,360.281,350.354,340.338,330.054,320.306,310.111,298.486,303.315,308.502,310.737]

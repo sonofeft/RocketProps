@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: rocketprops
-Version: 0.1.4
+Version: 0.1.5
 Summary: RocketProps models liquid rocket propellants.
 Home-page: http://rocketprops.readthedocs.org/en/latest/
 Download-URL: https://github.com/sonofeft/RocketProps
@@ -32,9 +32,9 @@ License-File: AUTHORS.rst
 
 .. image:: https://img.shields.io/pypi/v/RocketProps.svg
         
-.. image:: ./_static/python_version_badge.svg
+.. image:: https://github.com/sonofeft/RocketProps/blob/master/docs/_static/python_version_badge.svg
 
-.. image:: ./_static/coverage-badge.svg
+.. image:: https://github.com/sonofeft/RocketProps/blob/master/docs/_static/coverage-badge.svg
 
 .. image:: https://img.shields.io/pypi/l/RocketProps.svg
 

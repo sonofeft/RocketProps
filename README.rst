@@ -3,8 +3,7 @@
 
 .. image:: https://img.shields.io/pypi/v/RocketProps.svg
         
-.. image:: .. image:: https://img.shields.io/pypi/pyversions/rocketprops
-   :alt: PyPI - Python Version
+.. image:: https://img.shields.io/pypi/pyversions/rocketprops
 
 .. image:: https://img.shields.io/pypi/l/RocketProps.svg
 

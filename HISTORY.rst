@@ -6,6 +6,59 @@ History
 
 GitHub Log
 ----------
+* Jan 20, 2023
+    - (by: sonofeft)
+        - added many tests
+        - spell check corrections
+
+* Jan 19, 2023
+    - (by: sonofeft)
+        - added test generation file
+        - added tests
+        - more mixture documentation
+
+* Jan 18, 2023
+    - (by: sonofeft)
+        - doc additions
+
+* Jan 17, 2023
+    - (by: sonofeft)
+        - started mixture freezing pt docs
+
+* Jan 16, 2023
+    - (by: sonofeft)
+        - adding docs for mixtures
+        - some plot changes
+        - reorganized for circular reference in mixture_prop
+        - made mixture_prop return Propellant object
+
+* Jan 15, 2023
+    - (by: sonofeft)
+        - got MON mixtures working
+        - made pseudo Tr for Tr > limit
+        - good M20 mixture calc
+        - made working prop_from_dict
+
+* Jan 14, 2023
+    - (by: sonofeft)
+        - adding freeze correlations to mixture_prop.py
+
+* Jan 13, 2023
+    - (by: sonofeft)
+        - progress on mixture_prop.py
+
+* Jan 11, 2023
+    - (by: sonofeft)
+        - First working scaled propellant
+
+* Jan 10, 2023
+    - (by: sonofeft)
+        - added scaling functions
+
+* Oct 8, 2020
+    - (by: sonofeft)
+        - confirmed unit testing
+        - added LH2 and LF2 as recognized names and some doc updates
 
 * Aug 22, 2020
     - (by: sonofeft)

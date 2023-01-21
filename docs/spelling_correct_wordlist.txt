@@ -1,3 +1,11 @@
+Isp
+Ariane
+monomethyl
+Filippov
+Eqn
+cjce
+Yoel
+doi
 Cv
 travisci
 Rocketprops

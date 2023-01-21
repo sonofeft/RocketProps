@@ -5,6 +5,8 @@
         
 .. image:: ./_static/python_version_badge.svg
 
+.. image:: ./_static/coverage-badge.svg
+
 .. image:: https://img.shields.io/pypi/l/RocketProps.svg
 
 

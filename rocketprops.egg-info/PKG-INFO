@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: rocketprops
-Version: 0.1.3
+Version: 0.1.4
 Summary: RocketProps models liquid rocket propellants.
 Home-page: http://rocketprops.readthedocs.org/en/latest/
 Download-URL: https://github.com/sonofeft/RocketProps
@@ -15,11 +15,12 @@ Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: End Users/Desktop
 Classifier: Topic :: Software Development :: Build Tools
 Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
-Classifier: Programming Language :: Python :: 3
-Classifier: Programming Language :: Python :: 3.5
 Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
 Description-Content-Type: text/x-rst
 Provides-Extra: dev
 Provides-Extra: test
@@ -31,7 +32,9 @@ License-File: AUTHORS.rst
 
 .. image:: https://img.shields.io/pypi/v/RocketProps.svg
         
-.. image:: https://img.shields.io/badge/python-3.5|3.6|3.7|3.8-blue
+.. image:: ./_static/python_version_badge.svg
+
+.. image:: ./_static/coverage-badge.svg
 
 .. image:: https://img.shields.io/pypi/l/RocketProps.svg
 
@@ -47,7 +50,7 @@ See PyPI page at:`<https://pypi.python.org/pypi/rocketprops>`_
 
 
 RocketProps calculates the various liquid propellant properties required
-to analyse a liquid propellant thrust chamber. 
+to analyze a liquid propellant thrust chamber. 
 This includes density, viscosity, vapor pressure,
 heat of vaporization, surface tension, heat capacity and thermal conductivity. 
 Other properties such as critical temperature and pressure, normal boiling point, 

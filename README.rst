@@ -3,9 +3,9 @@
 
 .. image:: https://img.shields.io/pypi/v/RocketProps.svg
         
-.. image:: ./_static/python_version_badge.svg
+.. image:: https://github.com/sonofeft/RocketProps/blob/master/docs/_static/python_version_badge.svg
 
-.. image:: ./_static/coverage-badge.svg
+.. image:: https://github.com/sonofeft/RocketProps/blob/master/docs/_static/coverage-badge.svg
 
 .. image:: https://img.shields.io/pypi/l/RocketProps.svg
 

@@ -81,6 +81,7 @@ rocketprops/examples/compare_comp_liq.py
 rocketprops/examples/example_1.py
 rocketprops/examples/make_unit_tst_defs.py
 rocketprops/examples/make_unit_tst_mix_defs.py
+rocketprops/examples/n2h4_mixture_freeze_pts.png
 rocketprops/examples/n2h4_tank.py
 rocketprops/examples/new_scaled_prop.py
 rocketprops/examples/plot_comp_err.py

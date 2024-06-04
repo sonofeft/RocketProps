@@ -6,6 +6,19 @@ History
 
 GitHub Log
 ----------
+* Jun 4, 2024
+    - (by: Charlie)
+        - version with float64 from numpy
+
+* May 17, 2024
+    - (by: Charlie)
+        - Merge pull request #3 from alessio26gas/patch-1
+        - Update InterpProp_scipy.py
+
+* May 17, 2024
+    - (by: Alessio)
+        - Updated InterProp_scipy.py
+
 * Jan 20, 2023
     - (by: sonofeft)
         - added many tests

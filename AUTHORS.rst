@@ -13,7 +13,7 @@ Development Lead
 Patches and Ideas
 -----------------
 
- *Your Name Here*
+ * `Alessio Improta <https://github.com/alessio26gas>`_
 
 Initial Project Layout
 ----------------------

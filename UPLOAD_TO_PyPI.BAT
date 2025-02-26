@@ -16,7 +16,7 @@ if "%do_the_upload%" == "TRUE" (
 ) else (
     echo ...................... CHECK LIST .............................
     echo ...............................................................
-    echo Install from local source afer all changes made
+    echo Install from local source after all changes made
     echo pip install .
     echo ...............................................................
     echo RUN pytest
@@ -27,7 +27,7 @@ if "%do_the_upload%" == "TRUE" (
     echo ...............................................................
     echo COMMIT all files in git
     echo        AND Tag IF a new version release
-    echo        git tag -a v1.x.x -m "RocketCEA 1.x.x"
+    echo        git tag -a v1.x.x -m "RocketProps 1.x.x"
     echo        git push --follow-tags
     echo ...............................................................
     echo Make sure that "python -m build" has been executed

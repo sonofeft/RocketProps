@@ -55,8 +55,12 @@ class InterpProp:
             self.linear = 1
             
         # calculate a small step in x 
-        diffs = np.diff(sorted(self.x))
-        self.eps = np.min(diffs) / 1000.0
+        try:
+            diffs = np.diff(sorted(self.x))
+            self.eps = np.min(diffs) / 1000.0
+        except:
+            self.eps = 1.0E-12
+        
             
         if linear:
             self.Nterp = 1
@@ -181,7 +185,7 @@ class InterpProp:
             plt.show()
     
           
-if __name__ == "__main__": #Self Test
+def dev_tests( do_show=True ): #Self Test
     
 
     x = [1,2,6,4,5]
@@ -228,5 +232,9 @@ if __name__ == "__main__": #Self Test
     y = [7.2,7.1,6.,5.,3.5,5.]
     
     q = InterpProp( x, y, linear=1)
-    q.plot( do_show=False )
+    q.plot( do_show=do_show )
+
+    
+if __name__ == "__main__":
+    dev_tests()
 

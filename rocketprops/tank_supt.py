@@ -36,7 +36,7 @@ def calc_tank_volume( pObj, kg_expelled=50.0,
 
     return cc_Total, kg_loaded, kg_residual
 
-if __name__ == "__main__":
+def dev_tests():    
     from rocketprops.rocket_prop import get_prop
     """
     Calculate the required volume of a Hydrazine (N2H4) tank.
@@ -64,4 +64,6 @@ if __name__ == "__main__":
     cc_expelled = 50.0 * 1000.0 / SGhot
     print('cc_expelled =',cc_expelled, '  mass expelled = %g g'%(SGhot*cc_expelled,) )
     print('cc_expelled / cc_Total =', cc_expelled / cc_Total)
-    
+
+if __name__ == "__main__":
+    dev_tests()

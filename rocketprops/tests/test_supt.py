@@ -32,24 +32,16 @@ with self.assertRaises(KeyError):
     blah...blah...blah
 
 Test if __name__ == "__main__":
-
-
     def test__main__(self):
-        if sys.version_info.major == 3 and sys.version_info.minor <= 6:
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import imp
-            runpy = imp.load_source('__main__', os.path.join(up_one, 'filename.py') )
+        # Change bottom of source file to call "dev_tests"
+        
+         def dev_tests():
+            pass
 
-        elif sys.version_info.major == 3 and sys.version_info.minor > 6:
-            # for python >= 3.7
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import types
-            from importlib.machinery import SourceFileLoader
-
-            script_path = os.path.abspath( os.path.join(up_one, 'filename.py') )
-            loader = SourceFileLoader("__main__", script_path)
-            mod = types.ModuleType(loader.name)
-            loader.exec_module(mod)
+         if __name__ == "__main__":
+            dev_tests()
+            
+        # then test by calling <name>.dev_tests()
 
 
 See:
@@ -69,10 +61,24 @@ if up_one not in sys.path[:2]:
     sys.path.insert(0, up_one)
 
 from rocketprops.tank_supt import calc_tank_volume
+from rocketprops.tank_supt import dev_tests as tank_supt_dev_tests
+
 from rocketprops.rocket_prop import get_prop
+# from rocketprops.rocket_prop import dev_tests as get_prop_dev_tests
+
 from rocketprops.line_supt import calc_line_id_dp, calc_line_vel_dp
+from rocketprops.line_supt import dev_tests as line_supt_dev_tests
+
 from rocketprops.valve_supt import cv_valve_dp, kv_valve_dp
+from rocketprops.valve_supt import dev_tests as valve_supt_dev_tests
+
 from rocketprops.injector_supt import calc_inj_velocity, calc_orifice_flow_rate
+from rocketprops.injector_supt import dev_tests as injector_supt_dev_tests
+
+from rocketprops.colebrook import dev_tests as colebrook_dev_tests
+from rocketprops.InterpProp_scipy import dev_tests as InterpProp_scipy_dev_tests
+from rocketprops.mixing_functions import dev_tests as mixing_functions_dev_tests
+
 
 class MyTest(unittest.TestCase):
 
@@ -135,129 +141,60 @@ class MyTest(unittest.TestCase):
 
     def test_tank_vol__main__(self):
         """Test the __main__ section at the bottom of the file"""
-        if sys.version_info.major == 3 and sys.version_info.minor <= 6:
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import imp
-            runpy = imp.load_source('__main__', os.path.join(up_one, 'tank_supt.py') )
 
-        elif sys.version_info.major == 3 and sys.version_info.minor > 6:
-            # for python >= 3.7
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import types
-            from importlib.machinery import SourceFileLoader
+        try:
+            tank_supt_dev_tests()
+        except:
+            raise Exception('ERROR... failed in tank_supt __main__ routine')
 
-            script_path = os.path.abspath( os.path.join(up_one, 'tank_supt.py') )
-            loader = SourceFileLoader("__main__", script_path)
-            mod = types.ModuleType(loader.name)
-            loader.exec_module(mod)
 
     def test_line_vol__main__(self):
         """Test the __main__ section at the bottom of the file"""
-        if sys.version_info.major == 3 and sys.version_info.minor <= 6:
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import imp
-            runpy = imp.load_source('__main__', os.path.join(up_one, 'line_supt.py') )
 
-        elif sys.version_info.major == 3 and sys.version_info.minor > 6:
-            # for python >= 3.7
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import types
-            from importlib.machinery import SourceFileLoader
+        try:
+            line_supt_dev_tests()
+        except:
+            raise Exception('ERROR... failed in line_supt __main__ routine')
 
-            script_path = os.path.abspath( os.path.join(up_one, 'line_supt.py') )
-            loader = SourceFileLoader("__main__", script_path)
-            mod = types.ModuleType(loader.name)
-            loader.exec_module(mod)
 
     def test_valve_vol__main__(self):
         """Test the __main__ section at the bottom of the file"""
-        if sys.version_info.major == 3 and sys.version_info.minor <= 6:
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import imp
-            runpy = imp.load_source('__main__', os.path.join(up_one, 'valve_supt.py') )
 
-        elif sys.version_info.major == 3 and sys.version_info.minor > 6:
-            # for python >= 3.7
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import types
-            from importlib.machinery import SourceFileLoader
-
-            script_path = os.path.abspath( os.path.join(up_one, 'valve_supt.py') )
-            loader = SourceFileLoader("__main__", script_path)
-            mod = types.ModuleType(loader.name)
-            loader.exec_module(mod)
+        try:
+            valve_supt_dev_tests()
+        except:
+            raise Exception('ERROR... failed in valve_supt __main__ routine')
 
     def test_injector_vol__main__(self):
         """Test the __main__ section at the bottom of the file"""
-        if sys.version_info.major == 3 and sys.version_info.minor <= 6:
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import imp
-            runpy = imp.load_source('__main__', os.path.join(up_one, 'injector_supt.py') )
 
-        elif sys.version_info.major == 3 and sys.version_info.minor > 6:
-            # for python >= 3.7
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import types
-            from importlib.machinery import SourceFileLoader
-
-            script_path = os.path.abspath( os.path.join(up_one, 'injector_supt.py') )
-            loader = SourceFileLoader("__main__", script_path)
-            mod = types.ModuleType(loader.name)
-            loader.exec_module(mod)
+        try:
+            injector_supt_dev_tests()
+        except:
+            raise Exception('ERROR... failed in injector_supt __main__ routine')
 
     def test_colbrook__main__(self):
         """Test the __main__ section at the bottom of the file"""
-        if sys.version_info.major == 3 and sys.version_info.minor <= 6:
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import imp
-            runpy = imp.load_source('__main__', os.path.join(up_one, 'colebrook.py') )
 
-        elif sys.version_info.major == 3 and sys.version_info.minor > 6:
-            # for python >= 3.7
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import types
-            from importlib.machinery import SourceFileLoader
-
-            script_path = os.path.abspath( os.path.join(up_one, 'colebrook.py') )
-            loader = SourceFileLoader("__main__", script_path)
-            mod = types.ModuleType(loader.name)
-            loader.exec_module(mod)
+        try:
+            colebrook_dev_tests( do_show=False )
+        except:
+            raise Exception('ERROR... failed in colebrook __main__ routine')
 
     def test_InterpProp_scipy__main__(self):
         """Test the __main__ section at the bottom of the file"""
-        if sys.version_info.major == 3 and sys.version_info.minor <= 6:
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import imp
-            runpy = imp.load_source('__main__', os.path.join(up_one, 'InterpProp_scipy.py') )
+        try:
+            InterpProp_scipy_dev_tests( do_show=False )
+        except:
+            raise Exception('ERROR... failed in InterpProp_scipy __main__ routine')
 
-        elif sys.version_info.major == 3 and sys.version_info.minor > 6:
-            # for python >= 3.7
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import types
-            from importlib.machinery import SourceFileLoader
-
-            script_path = os.path.abspath( os.path.join(up_one, 'InterpProp_scipy.py') )
-            loader = SourceFileLoader("__main__", script_path)
-            mod = types.ModuleType(loader.name)
-            loader.exec_module(mod)
 
     def test_mixing_functions__main__(self):
         """Test the __main__ section at the bottom of the file"""
-        if sys.version_info.major == 3 and sys.version_info.minor <= 6:
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import imp
-            runpy = imp.load_source('__main__', os.path.join(up_one, 'mixing_functions.py') )
-
-        elif sys.version_info.major == 3 and sys.version_info.minor > 6:
-            # for python >= 3.7
-            # loads and runs the bottom section: if __name__ == "__main__"
-            import types
-            from importlib.machinery import SourceFileLoader
-
-            script_path = os.path.abspath( os.path.join(up_one, 'mixing_functions.py') )
-            loader = SourceFileLoader("__main__", script_path)
-            mod = types.ModuleType(loader.name)
-            loader.exec_module(mod)
+        try:
+            mixing_functions_dev_tests()
+        except:
+            raise Exception('ERROR... failed in mixing_functions __main__ routine')
 
 
 

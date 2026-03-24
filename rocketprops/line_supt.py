@@ -96,7 +96,7 @@ def calc_line_vel_dp( pObj, TdegR=530.0, Ppsia=1000.0,
     return velFPS, deltaP
     
     
-if __name__ == "__main__":
+def dev_tests():
     from rocketprops.rocket_prop import get_prop
     pObj = get_prop('hydrazine')
 
@@ -111,4 +111,7 @@ if __name__ == "__main__":
     print( 'Velocity = %g ft/sec, Pressure Drop =%g psid'%(vel, deltaP) )
     
     
+if __name__ == "__main__":
+    dev_tests()
+
     

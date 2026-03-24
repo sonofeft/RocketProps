@@ -59,7 +59,7 @@ def calc_orifice_flow_rate(pObj, CdOrf=0.75, DiamInches=0.01,
     
     return wdotOrif # lbm/sec
     
-if __name__ == "__main__":
+def dev_tests():
     from rocketprops.rocket_prop import get_prop
 
     print("""
@@ -84,3 +84,9 @@ if __name__ == "__main__":
     wdot = calc_orifice_flow_rate(pObj, CdOrf=0.75, DiamInches=0.01,
                            dPpsia=dPpsia, TdegR=TdegR, Ppsia=Ppsia)
     print( 'Orifice flow rate = %g lbm/sec'%wdot )
+
+    
+    
+if __name__ == "__main__":
+    dev_tests()
+

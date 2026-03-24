@@ -681,7 +681,7 @@ def DIPPR9H_cond(ws, ks):
     return 1.0/sqrt(kl)
 
     
-if __name__ == "__main__":
+def dev_tests():
     print(  'isMMH_N2H4_Blend'.center(30, '.') )
     for name in ['M20', "20M", 'MM2', 'm020', 'M10', 'm20 ', 'M101', 'M99']:
         isMMH_N2H4_Blend( name, verbose=True )
@@ -763,3 +763,7 @@ if __name__ == "__main__":
 
     Z = ScaledGasZ( 527.67, 14.7, 776, 1441, .3, .3 )
     print( 'Z =', Z)
+
+if __name__ == "__main__":
+    dev_tests()
+

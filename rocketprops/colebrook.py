@@ -84,7 +84,7 @@ def colebrook_ffact(roughness, diam, ReNum):
     return sol.root
 
 
-if __name__ == "__main__":
+def dev_tests( do_show=True ):
     import sys
     import matplotlib.pyplot as plt
     
@@ -131,7 +131,12 @@ if __name__ == "__main__":
     plt.xlim( (1.0E3, 1.0E8) )
 
     try:
-        if __file__ == sys.argv[0]:
+        if __file__ == sys.argv[0] and do_show:
             plt.show()
     except:
         pass
+
+    
+    
+if __name__ == "__main__":
+    dev_tests()

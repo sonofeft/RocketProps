@@ -100,7 +100,7 @@ def kv_valve_dp( pObj, Kv=1.0, wdotPPS=0.5, TdegR=530.0, Ppsia=1000.0):
     return deltaP
     
     
-if __name__ == "__main__":
+def dev_tests():
     import sys 
     from rocketprops.rocket_prop import get_prop
     pObj = get_prop('hydrazine')
@@ -132,3 +132,8 @@ if __name__ == "__main__":
                 cvmax = cvconst
         print( 'Cv =', cvconst,' * Kv ' )
     
+    
+    
+if __name__ == "__main__":
+    dev_tests()
+

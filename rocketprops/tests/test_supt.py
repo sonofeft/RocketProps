@@ -64,7 +64,6 @@ from rocketprops.tank_supt import calc_tank_volume
 from rocketprops.tank_supt import dev_tests as tank_supt_dev_tests
 
 from rocketprops.rocket_prop import get_prop
-# from rocketprops.rocket_prop import dev_tests as get_prop_dev_tests
 
 from rocketprops.line_supt import calc_line_id_dp, calc_line_vel_dp
 from rocketprops.line_supt import dev_tests as line_supt_dev_tests

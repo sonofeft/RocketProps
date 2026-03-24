@@ -311,8 +311,11 @@ class Propellant(object):
         Phi = 10.0**( self.log10pL[-1] )
         return Plo, Phi
 
-    def plot_sat_props(self, save_figures=False, show_plot=True):
+    def plot_sat_props(self, save_figures=False, show_plot=True, plt_backend=''):
         """Create and launch matplotlib plots of all saturation properties."""
+        if plt_backend:
+            import matplotlib
+            matplotlib.use( plt_backend )
         import matplotlib.pyplot as plt
 
         trL = [self.trL[0] + i*(self.trL[-1]-self.trL[0])/200.0 for i in range(201) ]
@@ -1416,8 +1419,11 @@ def make_peroxide_Prop( pname='Peroxide_70'):
 
 
 
-if __name__ == '__main__':
-    from rocketprops.plot_multi_props import make_plots
+def dev_tests( do_show=True, plt_backend='' ):
+
+    for pname in ['MHF3', 'MMH', 'N2H4','Peroxide_70','Peroxide_98']:
+        C = get_prop(pname)
+        C.summ_print()
     
     C = get_prop('Peroxide_70')
     C.summ_print()
@@ -1425,11 +1431,18 @@ if __name__ == '__main__':
     #     C.summ_print()
     #     C.plot_sat_props()
     
+    
+    from rocketprops.plot_multi_props import make_plots
     make_plots( prop_nameL=[ 'Peroxide_100', 'Peroxide_90', 'Peroxide_80'], prop_objL=[C], 
-                abs_T=1, ref_scaled=False, Tmin=420, Tmax=600)
+                abs_T=1, ref_scaled=False, Tmin=420, Tmax=600, show_plots=do_show, 
+                plt_backend=plt_backend )
     
     # make_plots( prop_nameL=['MHF3', 'MMH', 'N2H4'], prop_objL=[C], 
     #             abs_T=0, ref_scaled=False, Tmin=450, Tmax=700)
 
     # make_plots( prop_nameL=['A50', 'UDMH', 'N2H4'], prop_objL=[C], 
     #             abs_T=1, ref_scaled=False, Tmin=450, Tmax=700)
+
+if __name__ == "__main__":
+    dev_tests()
+

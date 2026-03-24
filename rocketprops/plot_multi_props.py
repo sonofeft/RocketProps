@@ -1,5 +1,5 @@
 """Plot multiple propellants on same chart for comparison"""
-import matplotlib.pyplot as plt
+
 from rocketprops.rocket_prop import get_prop
 
 MARKERL = ['o','v','^','<','>','d','X','P','s','p','*','.']
@@ -14,7 +14,12 @@ def get_color(i):
 
 def make_plots( prop_nameL=None, prop_objL=None, abs_T=False, ref_scaled=False,
                 Tmin=None, Tmax=None, show_gas_dens=False, save_figures=False,
-                show_plots=True):
+                show_plots=True, plt_backend=''):
+    
+    if plt_backend:
+        import matplotlib
+        matplotlib.use( plt_backend )  # Must be done before importing pyplot
+    import matplotlib.pyplot as plt
     
     propL = []
     if prop_nameL is not None:

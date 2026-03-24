@@ -30,10 +30,19 @@ with self.assertRaises(Exception):
 with self.assertRaises(KeyError):
     blah...blah...blah
 
+
 Test if __name__ == "__main__":
     def test__main__(self):
-        # loads and runs the bottom section: if __name__ == "__main__"
-        runpy = imp.load_source('__main__', os.path.join(up_one, 'filename.py') )
+        # Change bottom of source file to call "dev_tests"
+        
+         def dev_tests():
+            pass
+
+         if __name__ == "__main__":
+            dev_tests()
+            
+        # then test by calling <name>.dev_tests()
+
 
 
 See:
@@ -53,6 +62,7 @@ if up_one not in sys.path[:2]:
     sys.path.insert(0, up_one)
 
 from rocketprops.rocket_prop import get_prop; 
+from rocketprops.rocket_prop import dev_tests as rocket_prop_dev_tests
 
 class MyTest(unittest.TestCase):
 
@@ -74,6 +84,15 @@ class MyTest(unittest.TestCase):
 
         # See if the self.myclass object exists
         self.assertTrue(result)
+
+    def test_rocket_prop__main__(self):
+        """Test the __main__ section at the bottom of the file"""
+
+        try:
+            rocket_prop_dev_tests( do_show=False, plt_backend='Agg' )
+        except:
+            raise Exception('ERROR... failed in rocket_prop __main__ routine')
+
 
 
 if __name__ == '__main__':

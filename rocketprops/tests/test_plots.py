@@ -78,7 +78,7 @@ class MyTest(unittest.TestCase):
         prop = get_prop( "MMH" )
 
         num_figures_before = plt.gcf().number
-        prop.plot_sat_props( show_plot=False )
+        prop.plot_sat_props( show_plot=False, plt_backend='Agg' )
         num_figures_after = plt.gcf().number
         assert num_figures_before < num_figures_after        
 
@@ -87,7 +87,7 @@ class MyTest(unittest.TestCase):
         """test multiplot"""
 
         num_figures_before = plt.gcf().number
-        make_plots( ['MMH', 'N2H4'], abs_T=0, ref_scaled=True, show_plots=False)
+        make_plots( ['MMH', 'N2H4'], abs_T=0, ref_scaled=True, show_plots=False, plt_backend='Agg')
         num_figures_after = plt.gcf().number
         assert num_figures_before < num_figures_after        
 
@@ -97,7 +97,7 @@ class MyTest(unittest.TestCase):
 
         num_figures_before = plt.gcf().number
         make_plots( ['MMH', 'N2H4'], prop_objL=[prop], abs_T=1, 
-                    ref_scaled=False, show_plots=False, show_gas_dens=True)
+                    ref_scaled=False, show_plots=False, show_gas_dens=True, plt_backend='Agg')
         num_figures_after = plt.gcf().number
         assert num_figures_before < num_figures_after        
 

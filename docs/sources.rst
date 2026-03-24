@@ -15,7 +15,7 @@ Gas&Liq 5th Ed
 
 `Properties of Gases and Liquids, Fifth Edition <https://www.accessengineeringlibrary.com/content/book/9780070116825>`_,
 also available as a
-`PDF <https://www.academia.edu/30133306/Poling_B_E_Prausnitz_J_M_OConnell_J_P_The_Properties_of_Gases_and_Liquids_5ed_MGH_2000_ISBN_0070116822_803s_>`_,
+`PDF <file:///D:/downloads/sweet.ua.pt_fsilva_PTDCFTT2980_Reidetal.2001ThePropertiesofGasesandLiquids.pdf>`_,
 is an all-inclusive, critical survey of the most reliable estimating methods in use 
 today written and organized by Bruce Poling, John Prausnitz, and John O'Connell.
 
@@ -130,6 +130,75 @@ An example page for Aerozine-50 is shown below.
 .. image:: ./_static/AJ_A50_page.jpg
    :width: 100%
 
+
+
+.. _CRC_ChemPhysHandbook:
+
+.. _CRC_ChemPhysHandbook Source:
+
+CRC Handbook
+------------
+
+The 84th Edition of the CRC Handbook of Chemistry and Physics (2003–2004), 
+edited by David R. Lide, is a definitive one-volume reference for scientists and engineers. 
+This edition remains a cornerstone for propellant researchers because it provides 
+the standardized physical constants required for high-accuracy modeling.
+
+.. image:: ./_static/crc_handbook_of_chem_phys_84th.jpg
+   :width: 40%
+
+
+
+.. _AFRPL-TR-67-144 Source:
+
+AFRPL-TR-67-144
+---------------
+
+AFRPL-TR-67-144 is the USAF Hydrogen Peroxide Handbook authored by the Rocketdyne Division of North American Aviation. 
+
+See: `AFRPL-TR-67-144 PDF <./_static/AFRPL_TR_67_144_peroxide_1967.pdf>`_
+
+It compiles decades of research—including the work of Schumb and Satterfield 
+(The recognized authorities on hydrogen peroxide during the mid-20th century)
+
+
+
+
+.. _Schumb-MIT Source:
+
+.. _Schumb-MIT:
+
+ASTIA Report No. 43
+-------------------
+
+ASTIA (Armed Services Technical Information Agency)
+
+This report represents a critical intermediate stage in the development of the 
+1955 ACS Monograph Schumb, W. C., Satterfield, C. N., & Wentworth, R. L. (1955).
+“Hydrogen Peroxide”.
+
+Titled “Hydrogen Peroxide, Part Two,” it was issued in 1953 by the MIT 
+Hydrogen Peroxide Laboratories under the sponsorship of the Office of Naval Research.
+
+It provides the experimental results and recommended values for density, viscosity, 
+surface tension, and vapor pressure.
+
+See: `ASTIA Report 43 PDF <./_static/ASTIA_hydrogen_peroxide_Schumb_et_al_1953.pdf>`_
+
+The 1955 Monograph itself: 
+
+   Schumb, W. C., Satterfield, C. N., & Wentworth, R. L. (1955). 
+   Hydrogen Peroxide. American Chemical Society Monograph Series, No. 128. New York: Reinhold Publishing Corporation.
+
+
+must be purchased, however a preview is available at `HathiTrust Digital Library <https://www.hathitrust.org/>`_ for:
+
+   `Monograph Cover Page <https://babel.hathitrust.org/cgi/pt?id=mdp.39015003708784&seq=7>`_
+
+   `Physical Properties Chapter 5 <https://babel.hathitrust.org/cgi/pt?id=mdp.39015003708784&seq=209>`_
+
+
+
 .. _AFRPL-TR-69-149 Source:
 
 AFRPL-TR-69-149
@@ -147,6 +216,8 @@ the properties of a variety of amine rocket fuels including:
 ammonia, Aerozine-50, hydrazine, UDMH, MMH and MHF3.
 
 .. _AFRPL-TR-76-76 Source:
+
+
 
 AFRPL-TR-76-76
 --------------
@@ -248,4 +319,60 @@ NIST is an agency of the U.S. Department of Commerce.
 The NIST Chemistry WebBook was developed in part with funds from the 
 Systems Integration for Manufacturing Applications (SIMA) program at NIST. 
 
+
+.. _Gemini Source:
+
+Gemini
+------
+
+`Gemini <https://gemini.google.com/>`_  was used to source data for peroxide (H2O2)
+
+Gemini provided physical property data for High Test Peroxide (HTP) at varying 
+concentrations. Data includes density, viscosity, phase change boundaries, and 
+safety thresholds.
+
+Schumb, W. C., Satterfield, C. N., & Wentworth, R. L. (1955). 
+*Hydrogen Peroxide*. ACS Monograph Series, Reinhold Publishing Corp. 
+(Primary source for Density, Viscosity, and Phase Change).
+
+NIST Chemistry WebBook (SRD 69). "Hydrogen Peroxide". 
+(Source for Critical Properties and Vapor Pressure correlations).
+
+NASA/TM—2004-213129. *Liquid Rocket Propellant Properties*. 
+(Source for Safety Data, Onset Temperatures, and Heat of Vaporization).
+
+FMC Corporation / PeroxyChem Technical Manuals. 
+(Industry standard data for HTP handling and Storage Stability).
+
+
+
+
+.. _Copilot Source:
+
+Copilot
+-------
+
+`Copilot <https://copilot.microsoft.com/>`_ was used to source data for peroxide (H2O2) from the following sources.
+
+
+Bureau of Mines
+
+The U.S. Bureau of Mines was a federal agency (established in 1910 and 
+operating until 1996) that conducted research on mining, mineral processing, 
+and materials science. It was known for:
+
+- Publishing comprehensive data on mineral properties and production
+- Conducting technical research on various chemicals and materials
+- Producing technical reports and databases on industrial chemicals like hydrogen peroxide
+- Being a primary source for industrial chemical specifications and safety data
+    
+
+USP Technologies
+
+USP Technologies is a major global producer and supplier of hydrogen peroxide and other specialty chemicals. They are known for:
+
+- Manufacturing high-purity hydrogen peroxide for industrial applications
+- Providing technical documentation and specifications for H2O2 products
+- Being a leading source for peroxide data in industrial contexts
+- Supplying various grades of hydrogen peroxide (from industrial to semiconductor-grade purity)
 

@@ -48,6 +48,7 @@ rocketprops/backup/dsat.py
 rocketprops/backup/eos.py
 rocketprops/backup/freeze_pt.py
 rocketprops/backup/goal.py
+rocketprops/backup/h2o2_props.txt
 rocketprops/backup/mixture_prop.py
 rocketprops/backup/mixture_prop_Tr.py
 rocketprops/backup/prolib.py
@@ -74,6 +75,7 @@ rocketprops/examples/Water_sg_compare.png
 rocketprops/examples/chk_ambrose_Psat.py
 rocketprops/examples/chk_costald_Vm.py
 rocketprops/examples/chk_flox.py
+rocketprops/examples/chk_h2o2.py
 rocketprops/examples/chk_m20.py
 rocketprops/examples/chk_mhf3_vs_mixture.py
 rocketprops/examples/chk_racket_vm.py
@@ -94,6 +96,7 @@ rocketprops/props/CLF5_prop.py
 rocketprops/props/Ethane_prop.py
 rocketprops/props/Ethanol_prop.py
 rocketprops/props/F2_prop.py
+rocketprops/props/H2O2_prop.py
 rocketprops/props/IRFNA_prop.py
 rocketprops/props/LOX_prop.py
 rocketprops/props/MHF3_prop.py

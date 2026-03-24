@@ -4,6 +4,7 @@
 
 from scipy import interpolate
 from numpy import float64, array
+import numpy as np
 
 class InterpProp:
     '''Interpolate tables of properties
@@ -18,7 +19,18 @@ class InterpProp:
         return 'InterpProp_scipy'
        
     def __init__(self, xInp=[0,1], yInp=[10,110], extrapOK=1, linear=0,
-        minY=None, maxY=None):
+        minY=None, maxY=None, terp_type='Pchip'):
+        """
+        terp_type options: see terp_descD
+        """
+        
+        self.terp_type = terp_type
+        self.terp_descD = {} # key=terp_type, value=description
+        self.terp_descD["Pchip"] = "PchipInterpolator"
+        self.terp_descD["not-a-knot"] = "CubicSpline with bc_type='not-a-knot'"
+        self.terp_descD["Cubic"] = "CubicSpline"
+        self.terp_descD['Akima1'] = "Akima1DInterpolator"
+        self.terp_descD['1D'] = "interp1d"
           
         # Sort Data to Make sure that x array is monotonically increasing
         a = map(float,xInp)  
@@ -42,6 +54,10 @@ class InterpProp:
         if len(self.x) <= 2:
             self.linear = 1
             
+        # calculate a small step in x 
+        diffs = np.diff(sorted(self.x))
+        self.eps = np.min(diffs) / 1000.0
+            
         if linear:
             self.Nterp = 1
         else:
@@ -53,12 +69,25 @@ class InterpProp:
                 
             #self.interpFunc = interpolate.UnivariateSpline(self.x, self.y,  k=self.Nterp, s=0)
             
-            # most smooth interpolation in my testing.
-            self.interpFunc = interpolate.PchipInterpolator(self.x, self.y)
+            if self.terp_type=='Pchip':
+                # most smooth interpolation in my testing.
+                self.interpFunc = interpolate.PchipInterpolator(self.x, self.y)
+            elif self.terp_type == "not-a-knot":
+                self.interpFunc = interpolate.CubicSpline(self.x, self.y, bc_type='not-a-knot')
+            elif self.terp_type == "Cubic":
+                self.interpFunc = interpolate.CubicSpline(self.x, self.y)
+            elif self.terp_type == 'Akima1':
+                self.interpFunc = interpolate.Akima1DInterpolator(self.x, self.y)
+            elif self.terp_type == '1D':
+                self.interpFunc = interpolate.interp1d(self.x, self.y, kind='linear', fill_value="extrapolate")
             
             #self.interpFunc = interpolate.Akima1DInterpolator(self.x, self.y)
             #self.interpFunc = interpolate.CubicSpline(self.x, self.y)
-            self.derivFunc = self.interpFunc.derivative()
+            try:
+                self.derivFunc = self.interpFunc.derivative()
+            except:
+                # if there is no derivative method, estimate derivative
+                self.derivFunc = lambda x :(self.interpFunc(x + self.eps) - self.interpFunc(x - self.eps)) / (2 * self.eps)
         else:
             self.interpFunc = lambda x : self.y[0]
             self.derivFunc = lambda X : 0.0
@@ -111,9 +140,49 @@ class InterpProp:
         # otherwise, make a rough estimate.
         dx = self.delX * stepFrac
         return (self(xval+dx) - self(xval-dx)) / 2.0 / dx
+        
+    def plot(self, Npts=100, do_show=True, new_fig=True,
+             title='Scipy Interpolator', xlabel='X', ylabel='Y', show_deriv=True):
+        import matplotlib.pyplot as plt
+
+        if new_fig:
+            plt.figure(figsize=(9, 6))
+        
+        xL = []
+        yL = []
+        dydxL = []
+        dx = (self.x[-1] - self.x[0]) / Npts
+        for i in range(Npts+1):
+            x = self.x[0] + i * dx
+            xL.append( x )
+            yL.append( self.getValue(x) )
+            if show_deriv:
+                dydxL.append( self.deriv( x ) )
+                
+        plt.plot( self.x, self.y, 'o:', label='%s Data'%ylabel, markersize=8 )
+        plt.plot(xL, yL, '-', label='%s Interpolation'%ylabel)
+        
+        if show_deriv:
+            plt.plot(xL, dydxL, '--', label='1st Derivative')
+
+        plt.title(title + '\n(%s)'%self.terp_descD[self.terp_type], fontsize=14)
+        plt.xlabel(xlabel, fontsize=12)
+        plt.ylabel(ylabel, fontsize=12)
+        plt.grid(True, which='both', linestyle='--', alpha=0.5)
+                
+        plt.legend()
+        plt.grid(True, which='both', linestyle='--', alpha=0.5)
+        
+        plt.tight_layout()
+        
+        plt.tight_layout()
+        
+        if do_show:
+            plt.show()
+    
           
 if __name__ == "__main__": #Self Test
-    from pylab import *
+    
 
     x = [1,2,6,4,5]
     y = [10,40,360,160,250]
@@ -159,23 +228,5 @@ if __name__ == "__main__": #Self Test
     y = [7.2,7.1,6.,5.,3.5,5.]
     
     q = InterpProp( x, y, linear=1)
-    
+    q.plot( do_show=False )
 
-    xL = []
-    yL = []
-    dydxL = []
-    Npts = 100
-    for i in range(Npts+1):
-        xL.append( 12.*i/Npts )
-        yL.append( q(xL[-1]) )
-        dydxL.append( q.deriv(xL[-1]) )
-    plt.plot(xL, yL, '-')
-    plt.plot(xL, dydxL, '--')
-    plt.plot( q.x, q.y, 'o-' )
-    plt.grid()
-
-    try:
-        if __file__ == sys.argv[0]:
-            plt.show()
-    except:
-        pass

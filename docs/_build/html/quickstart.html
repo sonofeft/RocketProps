@@ -1,19 +1,18 @@
 
+<!DOCTYPE html>
 
-<!doctype html>
-
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>QuickStart &#8212; RocketProps 0.1.8 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=5283bb3d" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/documentation_options.js?v=22607128"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -25,7 +24,7 @@
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -51,9 +50,9 @@
           <div class="body" role="main">
             
   <section id="quickstart">
-<h1>QuickStart<a class="headerlink" href="#quickstart" title="Permalink to this heading">¶</a></h1>
+<h1>QuickStart<a class="headerlink" href="#quickstart" title="Link to this heading">¶</a></h1>
 <section id="install-rocketprops">
-<h2>Install RocketProps<a class="headerlink" href="#install-rocketprops" title="Permalink to this heading">¶</a></h2>
+<h2>Install RocketProps<a class="headerlink" href="#install-rocketprops" title="Link to this heading">¶</a></h2>
 <p>The recommended way to install RocketProps is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">rocketprops</span>
 
@@ -68,7 +67,7 @@ in turn, depends on <a class="reference external" href="https://numpy.org/doc/st
 <a class="reference external" href="https://matplotlib.org/contents.html">matplotlib</a>.</p>
 </section>
 <section id="installation-from-source">
-<span id="internal-source-install"></span><h2>Installation From Source<a class="headerlink" href="#installation-from-source" title="Permalink to this heading">¶</a></h2>
+<span id="internal-source-install"></span><h2>Installation From Source<a class="headerlink" href="#installation-from-source" title="Link to this heading">¶</a></h2>
 <p>Much less common, but if installing from source, then
 <code class="docutils literal notranslate"><span class="pre">pip</span></code> is still a good option.</p>
 <p>After navigating to the directory holding RocketProps source code, do the following:</p>
@@ -84,7 +83,7 @@ in turn, depends on <a class="reference external" href="https://numpy.org/doc/st
 <p>This will execute the local <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file and install RocketProps.</p>
 </section>
 <section id="running-rocketprops">
-<h2>Running RocketProps<a class="headerlink" href="#running-rocketprops" title="Permalink to this heading">¶</a></h2>
+<h2>Running RocketProps<a class="headerlink" href="#running-rocketprops" title="Link to this heading">¶</a></h2>
 <p>Test the installation by copying and pasting the following terminal command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;from rocketprops.rocket_prop import get_prop; p=get_prop(&#39;N2O4&#39;); p.summ_print()&quot;</span>
 </pre></div>
@@ -111,18 +110,22 @@ in turn, depends on <a class="reference external" href="https://numpy.org/doc/st
 </div>
 </section>
 <section id="create-quick-plots">
-<h2>Create Quick Plots<a class="headerlink" href="#create-quick-plots" title="Permalink to this heading">¶</a></h2>
+<h2>Create Quick Plots<a class="headerlink" href="#create-quick-plots" title="Link to this heading">¶</a></h2>
 <p>The following example will generate plots for Propane (C3H8) of its various liquid properties as a function of reduced temperature (Tr = T/Tc).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rocketprops.rocket_prop</span> <span class="kn">import</span> <span class="n">get_prop</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rocketprops.rocket_prop</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_prop</span>
 
 <span class="n">p</span> <span class="o">=</span> <span class="n">get_prop</span><span class="p">(</span><span class="s1">&#39;c3h8&#39;</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">plot_sat_props</span><span class="p">(</span><span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/Propane_TandP.png"><img alt="_images/Propane_TandP.png" src="_images/Propane_TandP.png" style="width: 45%;" /></a>
-<a class="reference internal image-reference" href="_images/Propane_SurfSG.png"><img alt="_images/Propane_SurfSG.png" src="_images/Propane_SurfSG.png" style="width: 45%;" /></a>
-<a class="reference internal image-reference" href="_images/Propane_CpHvap.png"><img alt="_images/Propane_CpHvap.png" src="_images/Propane_CpHvap.png" style="width: 45%;" /></a>
-<a class="reference internal image-reference" href="_images/Propane_ViscCond.png"><img alt="_images/Propane_ViscCond.png" src="_images/Propane_ViscCond.png" style="width: 45%;" /></a>
+<a class="reference internal image-reference" href="_images/Propane_TandP.png"><img alt="_images/Propane_TandP.png" src="_images/Propane_TandP.png" style="width: 45%;" />
+</a>
+<a class="reference internal image-reference" href="_images/Propane_SurfSG.png"><img alt="_images/Propane_SurfSG.png" src="_images/Propane_SurfSG.png" style="width: 45%;" />
+</a>
+<a class="reference internal image-reference" href="_images/Propane_CpHvap.png"><img alt="_images/Propane_CpHvap.png" src="_images/Propane_CpHvap.png" style="width: 45%;" />
+</a>
+<a class="reference internal image-reference" href="_images/Propane_ViscCond.png"><img alt="_images/Propane_ViscCond.png" src="_images/Propane_ViscCond.png" style="width: 45%;" />
+</a>
 </section>
 </section>
 
@@ -131,10 +134,10 @@ in turn, depends on <a class="reference external" href="https://numpy.org/doc/st
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
+              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo of RocketProps"/>
             </a></p>
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
@@ -158,6 +161,7 @@ in turn, depends on <a class="reference external" href="https://numpy.org/doc/st
 <li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethanol_prop.html">Ethanol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="f2_prop.html">F2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="h2o2_prop.html">H2O2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="irfna_prop.html">IRFNA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lox_prop.html">LOX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="methane_prop.html">Methane</a></li>
@@ -200,7 +204,7 @@ in turn, depends on <a class="reference external" href="https://numpy.org/doc/st
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -208,13 +212,13 @@ in turn, depends on <a class="reference external" href="https://numpy.org/doc/st
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -234,8 +238,8 @@ in turn, depends on <a class="reference external" href="https://numpy.org/doc/st
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     </div>
   </body>
 </html>

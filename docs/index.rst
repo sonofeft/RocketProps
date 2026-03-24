@@ -26,7 +26,8 @@ Contents:
    clf5_prop
    ethane_prop
    ethanol_prop
-   f2_prop  
+   f2_prop
+   h2o2_prop
    irfna_prop 
    lox_prop 
    methane_prop

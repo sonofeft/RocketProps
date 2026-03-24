@@ -116,6 +116,8 @@ prop_names.add_primary_name('Propane')
 prop_names.add_primary_name('UDMH')
 prop_names.add_primary_name('RP1')
 prop_names.add_primary_name('Water')
+prop_names.add_primary_name('H2O2')
+prop_names.add_primary_name('Peroxide')
 
 
 prop_names.add_associated_name( 'A50', "50% N2H4 + 50% UDMH" )
@@ -159,6 +161,7 @@ prop_names.add_associated_name('Propane', 'C3H8')
 prop_names.add_associated_name('RP1', 'RP-1')
 prop_names.add_associated_name('UDMH', 'UnsymmetricDiMethylHydrazine')
 prop_names.add_associated_name('Water', 'H2O')
+prop_names.add_associated_name('H2O2', 'Hydrogen Peroxide')
 
 
 # look for scaled propellants

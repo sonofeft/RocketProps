@@ -1,19 +1,18 @@
 
+<!DOCTYPE html>
 
-<!doctype html>
-
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Models &#8212; RocketProps 0.1.8 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=5283bb3d" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/documentation_options.js?v=22607128"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -25,7 +24,7 @@
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -51,7 +50,7 @@
           <div class="body" role="main">
             
   <section id="models">
-<h1>Models<a class="headerlink" href="#models" title="Permalink to this heading">¶</a></h1>
+<h1>Models<a class="headerlink" href="#models" title="Link to this heading">¶</a></h1>
 <p>The models chosen for the propellant properties database are described below.</p>
 <p>In general, if a standard <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> fluid is available,
 then <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> will be used as the source of the model data.
@@ -63,7 +62,7 @@ from freezing point to critical point, so some extrapolation or interpolation of
 <a class="reference external" href="https://www.accessengineeringlibrary.com/content/book/9780070116825">Properties of Gases and Liquids, Fifth Edition</a>,
 will be used to select appropriate models to represent and extend the data.</p>
 <section id="vapor-pressure">
-<h2>Vapor Pressure<a class="headerlink" href="#vapor-pressure" title="Permalink to this heading">¶</a></h2>
+<h2>Vapor Pressure<a class="headerlink" href="#vapor-pressure" title="Link to this heading">¶</a></h2>
 <p>Vapor pressure data will be extended using the <strong>Wagner</strong> equation.</p>
 <p>For a number of published <a class="reference external" href="https://www.nist.gov/srd/refprop">REFPROP</a> fluids, the constants
 for the <strong>Wagner</strong> equation are published. It can be seen from the vapor pressure charts for those
@@ -73,7 +72,7 @@ propellants that <a class="reference external" href="https://www.nist.gov/srd/re
 recommends that the <strong>Wagner</strong> equation may be used down to a reduced temperature of 0.5, however,
 all of the REFPROP examples show its continued accuracy below that temperature.</p>
 <section id="wagner-fit-source">
-<span id="wagner"></span><span id="id5"></span><h3>Wagner<a class="headerlink" href="#wagner-fit-source" title="Permalink to this heading">¶</a></h3>
+<span id="wagner"></span><span id="id5"></span><h3>Wagner<a class="headerlink" href="#wagner-fit-source" title="Link to this heading">¶</a></h3>
 <p>The equation requires four constants to be fitted to fluid vapor pressure data.</p>
 <img alt="_images/wagner_eqn.jpg" src="_images/wagner_eqn.jpg" />
 <p>The values of a, b, c and d have been fitted to a number of propellants
@@ -100,7 +99,7 @@ for use in RocketProps.:</p>
 </div>
 </section>
 <section id="edalat">
-<span id="edalat-source"></span><h3>Edalat<a class="headerlink" href="#edalat" title="Permalink to this heading">¶</a></h3>
+<span id="edalat-source"></span><h3>Edalat<a class="headerlink" href="#edalat" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference external" href="https://thermo.readthedocs.io/thermo.vapor_pressure.html#thermo.vapor_pressure.Edalat">Edalat Vapor Pressure equation</a>
 can estimate vapor pressure over a range of temperatures. It is taken from the
 <a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
@@ -112,18 +111,18 @@ when no vapor pressure data is available, it can estimate the full range of vapo
 </section>
 </section>
 <section id="density">
-<h2>Density<a class="headerlink" href="#density" title="Permalink to this heading">¶</a></h2>
+<h2>Density<a class="headerlink" href="#density" title="Link to this heading">¶</a></h2>
 <p>Density data will be extended using either the <strong>Rackett</strong> Equation,
 the <strong>Yamada and Gunn</strong> modification of the <strong>Rackett</strong> Equation or the <strong>Daubert</strong> Equation.</p>
 <p><a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
 defines those equations as follows.</p>
 <section id="rackett-scaling-source">
-<span id="rackett"></span><span id="id6"></span><h3>Rackett<a class="headerlink" href="#rackett-scaling-source" title="Permalink to this heading">¶</a></h3>
+<span id="rackett"></span><span id="id6"></span><h3>Rackett<a class="headerlink" href="#rackett-scaling-source" title="Link to this heading">¶</a></h3>
 <img alt="_images/rackett_eqn.jpg" src="_images/rackett_eqn.jpg" />
 <img alt="_images/yamada_and_gunn_eqn.jpg" src="_images/yamada_and_gunn_eqn.jpg" />
 </section>
 <section id="daubert-source">
-<span id="daubert"></span><span id="id7"></span><h3>Daubert<a class="headerlink" href="#daubert-source" title="Permalink to this heading">¶</a></h3>
+<span id="daubert"></span><span id="id7"></span><h3>Daubert<a class="headerlink" href="#daubert-source" title="Link to this heading">¶</a></h3>
 <p>The <strong>Daubert</strong> Equation changed the physical quantities and constants of Eq.
 (4-11.1) into four adjustable parameters to give the equation below.
 The value of C is generally equal to Tc while
@@ -142,7 +141,7 @@ the mixtures.</p>
 </section>
 </section>
 <section id="heat-capacity">
-<h2>Heat Capacity<a class="headerlink" href="#heat-capacity" title="Permalink to this heading">¶</a></h2>
+<h2>Heat Capacity<a class="headerlink" href="#heat-capacity" title="Link to this heading">¶</a></h2>
 <p>Liquid heat capacity approximations often start by calculating a residual heat capacity.</p>
 <p>The residual heat capacity is the difference between the liquid and ideal gas
 heat capacities. The following excerpt from <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
@@ -151,7 +150,7 @@ describes one such method.</p>
 <p>The above residual heat capacity can be added to the ideal gas heat capacity
 as calculated by the Joback method below.</p>
 <section id="joback">
-<span id="joback-source"></span><h3>Joback<a class="headerlink" href="#joback" title="Permalink to this heading">¶</a></h3>
+<span id="joback-source"></span><h3>Joback<a class="headerlink" href="#joback" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Joback_method">Joback method</a>
 (often named Joback/Reid method) predicts eleven important and
 commonly used pure component thermodynamic properties from molecular structure only.</p>
@@ -160,9 +159,9 @@ commonly used pure component thermodynamic properties from molecular structure o
 </section>
 </section>
 <section id="viscosity">
-<h2>Viscosity<a class="headerlink" href="#viscosity" title="Permalink to this heading">¶</a></h2>
+<h2>Viscosity<a class="headerlink" href="#viscosity" title="Link to this heading">¶</a></h2>
 <section id="squires">
-<span id="squires-source"></span><h3>Squires<a class="headerlink" href="#squires" title="Permalink to this heading">¶</a></h3>
+<span id="squires-source"></span><h3>Squires<a class="headerlink" href="#squires" title="Link to this heading">¶</a></h3>
 <p>Figure 9-13 from <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a> displays the Lewis and Squires liquid
 viscosity vs temperature correlation. It leads to the scaling equation 9-10.3.</p>
 <p>Given a reference viscosity at a given temperature, the value at a different
@@ -171,9 +170,9 @@ temperature may be calculated.</p>
 </section>
 </section>
 <section id="heat-of-vaporization">
-<h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Permalink to this heading">¶</a></h2>
+<h2>Heat of Vaporization<a class="headerlink" href="#heat-of-vaporization" title="Link to this heading">¶</a></h2>
 <section id="pitzer">
-<span id="pitzer-hvap-source"></span><h3>Pitzer<a class="headerlink" href="#pitzer" title="Permalink to this heading">¶</a></h3>
+<span id="pitzer-hvap-source"></span><h3>Pitzer<a class="headerlink" href="#pitzer" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference external" href="https://thermo.readthedocs.io/thermo.phase_change.html#thermo.phase_change.Pitzer">Pitzer Hvap equation</a>
 calculates enthalpy of vaporization at arbitrary temperatures. It is taken from the
 <a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
@@ -183,9 +182,9 @@ and Contributors (2016-2020).</p>
 </section>
 </section>
 <section id="thermal-conductivity">
-<h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Permalink to this heading">¶</a></h2>
+<h2>Thermal Conductivity<a class="headerlink" href="#thermal-conductivity" title="Link to this heading">¶</a></h2>
 <section id="nicola">
-<span id="nicola-source"></span><h3>Nicola<a class="headerlink" href="#nicola" title="Permalink to this heading">¶</a></h3>
+<span id="nicola-source"></span><h3>Nicola<a class="headerlink" href="#nicola" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference external" href="https://thermo.readthedocs.io/thermo.thermal_conductivity.html#thermo.thermal_conductivity.Nicola_original">Nicola equation</a>
 is taken from the
 <a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
@@ -197,9 +196,9 @@ CSP method. It is a statistically derived equation using the following correlate
 </section>
 </section>
 <section id="surface-tension">
-<h2>Surface Tension<a class="headerlink" href="#surface-tension" title="Permalink to this heading">¶</a></h2>
+<h2>Surface Tension<a class="headerlink" href="#surface-tension" title="Link to this heading">¶</a></h2>
 <section id="sastri-rao">
-<span id="sastri-rao-source"></span><h3>Sastri-Rao<a class="headerlink" href="#sastri-rao" title="Permalink to this heading">¶</a></h3>
+<span id="sastri-rao-source"></span><h3>Sastri-Rao<a class="headerlink" href="#sastri-rao" title="Link to this heading">¶</a></h3>
 <p>Surface tension can be scaled using equation 12-4.1 from <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>.
 The value of n varies from 0.8 for alcohols in the Sastri-Rao method to 1.22, or 11/ 9 for
 other compounds.</p>
@@ -217,7 +216,7 @@ Those values are:</p>
 </div>
 </section>
 <section id="pitzer-surf-source">
-<span id="id12"></span><h3>Pitzer<a class="headerlink" href="#pitzer-surf-source" title="Permalink to this heading">¶</a></h3>
+<span id="id12"></span><h3>Pitzer<a class="headerlink" href="#pitzer-surf-source" title="Link to this heading">¶</a></h3>
 <p>The <a class="reference external" href="https://thermo.readthedocs.io/thermo.interface.html#thermo.interface.Pitzer">Pitzer surface tension equation</a>
 is taken from the
 <a class="reference external" href="https://pypi.org/project/thermo/">thermo</a>  project which is an open-source
@@ -230,22 +229,22 @@ can be used to predict surface tension.</p>
 </section>
 </section>
 <section id="pseudocritical-properties">
-<h2>Pseudocritical Properties<a class="headerlink" href="#pseudocritical-properties" title="Permalink to this heading">¶</a></h2>
+<h2>Pseudocritical Properties<a class="headerlink" href="#pseudocritical-properties" title="Link to this heading">¶</a></h2>
 <p>For propellants that are mixtures of other propellants (like A50, MHF3, MON10, MON25 or MON30)
 the critical properties are not pure fluid properties, but a combination of the constituent properties.</p>
 <section id="tc-mixture">
-<span id="id16"></span><h3>Tc Mixture<a class="headerlink" href="#tc-mixture" title="Permalink to this heading">¶</a></h3>
+<span id="id16"></span><h3>Tc Mixture<a class="headerlink" href="#tc-mixture" title="Link to this heading">¶</a></h3>
 <p>For pseudocritical temperature,
 <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
 recommends the simplest mixing rule; a mole fraction average method.
-This rule is often called one of Kay's rules.</p>
+This rule is often called one of Kay’s rules.</p>
 <p>Comparison of Tcm from Eq. (5-3.1) with values determined from other,
 more complicated rules shows that the differences in Tcm are usually less
 than 2% if, for all components the pure component critical properties are not extremely different.</p>
 <img alt="_images/kays_rule_eqn.jpg" src="_images/kays_rule_eqn.jpg" />
 </section>
 <section id="pc-mixture">
-<span id="id17"></span><h3>Pc Mixture<a class="headerlink" href="#pc-mixture" title="Permalink to this heading">¶</a></h3>
+<span id="id17"></span><h3>Pc Mixture<a class="headerlink" href="#pc-mixture" title="Link to this heading">¶</a></h3>
 <p>From <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>
 for  the pseudocritical pressure, Pcm, a mole-fraction average of pure-component
 critical pressures is normally unsatisfactory. This is because the critical pressure for
@@ -256,11 +255,11 @@ for two-parameter or three-parameter CSP is the modified rule of Prausnitz and
 Gunn (1958)</p>
 <img alt="_images/prausnitz_and_gunn_eqn.jpg" src="_images/prausnitz_and_gunn_eqn.jpg" />
 <p>where <strong>all of the mixture pseudocriticals Zcm , Tcm , and Vcm are given by mole-fraction
-averages</strong> (Kay's rule) and R is the universal gas constant of <strong>Table 4-1</strong>.</p>
+averages</strong> (Kay’s rule) and R is the universal gas constant of <strong>Table 4-1</strong>.</p>
 <img alt="_images/table_4-1.jpg" src="_images/table_4-1.jpg" />
 </section>
 <section id="omega-mixture">
-<span id="id18"></span><h3>Omega Mixture<a class="headerlink" href="#omega-mixture" title="Permalink to this heading">¶</a></h3>
+<span id="id18"></span><h3>Omega Mixture<a class="headerlink" href="#omega-mixture" title="Link to this heading">¶</a></h3>
 <p>According to
 <a class="reference internal" href="sources.html#gas-liq-5th-ed-source"><span class="std std-ref">Gas&amp;Liq 5th Ed</span></a>,
 the mixture pseudo acentric factor is commonly given
@@ -275,10 +274,10 @@ by a mole fraction average (Joffe, 1971)</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo"/>
+              <img class="logo" src="_static/rocketprops_logo.svg" alt="Logo of RocketProps"/>
             </a></p>
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
@@ -335,6 +334,7 @@ by a mole fraction average (Joffe, 1971)</p>
 <li class="toctree-l1"><a class="reference internal" href="ethane_prop.html">Ethane</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ethanol_prop.html">Ethanol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="f2_prop.html">F2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="h2o2_prop.html">H2O2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="irfna_prop.html">IRFNA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lox_prop.html">LOX</a></li>
 <li class="toctree-l1"><a class="reference internal" href="methane_prop.html">Methane</a></li>
@@ -377,7 +377,7 @@ by a mole fraction average (Joffe, 1971)</p>
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -385,13 +385,13 @@ by a mole fraction average (Joffe, 1971)</p>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
+</search>
 <script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related" role="navigation" aria-label="Related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -411,8 +411,8 @@ by a mole fraction average (Joffe, 1971)</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    &#169; <a href="copyright.html">Copyright</a> 2015, Charlie Taylor.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     </div>
   </body>
 </html>

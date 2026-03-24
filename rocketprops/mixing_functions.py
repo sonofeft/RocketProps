@@ -150,7 +150,25 @@ def isFLOX_Ox( name, verbose=False ):
             print('"%s"'%name, 'NOT Blend' )
 
     return False
-    
+
+
+def isPeroxide_Ox( name, verbose=False ):
+    # check for Peroxide oxidizer (e.g. Peroxide_70 or Peroxide_98)
+    # must start with capital "Peroxide"    
+    # NOTE: Allow underscore in name, e.g. Peroxide_75
+
+    # Allow underscore in name, e.g. Peroxide_75
+    pcentH2O2 = is_blend( name.replace( '_', ''), 'Peroxide', verbose=verbose )
+    if not pcentH2O2 is False:
+        if verbose:
+            print('"%s"'%name, 'IS Aqueous Peroxide Blend', 'pcentH2O2 =', pcentH2O2 )
+        return pcentH2O2
+    else:
+        if verbose:
+            print('"%s"'%name, 'NOT Blend' )
+
+    return False
+
 
 def mixing_simple(fracs, props):
     r'''Calculates a property based on weighted averages of properties. 
@@ -664,12 +682,14 @@ def DIPPR9H_cond(ws, ks):
 
     
 if __name__ == "__main__":
+    print(  'isMMH_N2H4_Blend'.center(30, '.') )
     for name in ['M20', "20M", 'MM2', 'm020', 'M10', 'm20 ', 'M101', 'M99']:
         isMMH_N2H4_Blend( name, verbose=True )
         isMMH_N2H4_Blend( name )
         
     print( '-'*22 )
 
+    print( 'isMON_Ox'.center(30, '.')  )
     for name in ['M20', "MON25", "mon10", "MON5.5", "MON20 "]:
         isMON_Ox( name, verbose=True )
         isMON_Ox( name )
@@ -677,15 +697,27 @@ if __name__ == "__main__":
         
     print( '-'*22 )
 
+    print( 'isFLOX_Ox'.center(30, '.')  )
     for name in ['M20', "FLOX25", "FLOX82.5", "flox5.5", "FLOX20 "]:
         isFLOX_Ox( name, verbose=True )
         isFLOX_Ox( name )
         
     print( '-'*22 )
 
+    print( 'isN2H4_UDMH_Blend'.center(30, '.')  )
     for name in ['M20', "A25", "A82.5", "a5.5", "A20 "]:
         isN2H4_UDMH_Blend( name, verbose=True )
         isN2H4_UDMH_Blend( name )
+
+        
+    print( '-'*22 )
+
+    print( 'isPeroxide_Ox'.center(30, '.')  )
+    # NOTE: Peroxide_0 and Peroxide_100 are allowed (pure Water or H2O2)
+    for name in ['Peroxide80', "Peroxide_80", "Peroxide_0",  "Peroxide_100", "Perox_80", "Peroxide1.0", "Peroxide1000 "]:
+        isPeroxide_Ox( name, verbose=True )
+        isPeroxide_Ox( name )
+
 
 
     def ScaledGasZ( TdegR, Ppsia, Tc, Pc, Zc, omega ):

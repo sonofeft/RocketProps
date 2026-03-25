@@ -31,9 +31,9 @@ water_btuL = [get_value( float(cp), 'kJ/kg/delK', 'BTU/lbm/delF' ) for cp in wat
 temp_degC_H2O2_hiT = [140, 150, 200, 250, 300, 350, 400, 450]
 temp_degR_H2O2_hiT = [get_value(t, 'degC', 'degR') for t in temp_degC_H2O2_hiT]
 
-for t_R, cp in zip(temp_degR_H2O2_hiT, water_btuL):
-    if t_R < water_Tc:
-        print( 'TdegR=%g water cp=%g, cp_ref=%g'%(t_R, water_CpAtTdegR( t_R ), cp))
+# for t_R, cp in zip(temp_degR_H2O2_hiT, water_btuL):
+#     if t_R < water_Tc:
+#         print( 'TdegR=%g water cp=%g, cp_ref=%g'%(t_R, water_CpAtTdegR( t_R ), cp))
 
 # Specific Heat Capacity in kJ/(kg·K)
 # Note: 450C is an approximation of the asymptotic spike; 

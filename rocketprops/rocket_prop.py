@@ -1237,8 +1237,8 @@ def make_peroxide_Prop( pname='Peroxide_70'):
     if pname == "H2O2":
         pcent_H2O2 = 100
     else:
-        pcent_H2O2 = isPeroxide_Ox( pname, verbose=True)
-        print( 'pcent_H2O2 =', pcent_H2O2)
+        pcent_H2O2 = isPeroxide_Ox( pname, verbose=False)
+        # print( 'pcent_H2O2 =', pcent_H2O2)
 
         # if not prop_names.is_primary_name( 'Peroxide' ):
         #     prop_names.add_primary_name( 'Peroxide' )

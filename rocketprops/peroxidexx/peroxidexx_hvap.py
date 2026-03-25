@@ -1,13 +1,12 @@
 # from scipy.optimize import curve_fit
 from rocketprops.InterpProp_scipy import InterpProp
+import numpy as np
 from rocketprops.unit_conv_data import get_value
 
 from rocketprops.peroxidexx.peroxidexx_main_data import (perox_Tcrit_degC_terp, 
                                                           perox_freeze_pt_degC_terp,
                                                           get_molWt_mix)
 from rocketprops.peroxidexx.peroxidexx_main_data import set_ax2_degC
-
-
 
 # 2D Grid Data
 T_C_common = [0, 20, 40, 60, 80, 100, 120, 140]
@@ -126,7 +125,17 @@ class Hvap_Peroxide_Liquid:
         tk = t_c + 273.15
         tr = tk / self.Tc_K
         # We use (1-tr) because Hv must be 0 when tr=1
-        return A * (1 - tr)**n
+        
+        # We use (1-tr) because Hv must be 0 when tr=1
+        if isinstance(tr, np.ndarray):
+            # 2. Clip values: anything > 1 becomes 1.0
+            # None for the first argument means "no lower bound"
+            tr = np.clip(tr, None, 1.0)
+        else:
+            tr = min( tr, 1.0)
+
+        val = A * (1 - tr)**n
+        return val
 
     def get_hvap_at_TdegC(self, TdegC):
         """Return Hvap in units of kJ/kg for input temperature in degC"""

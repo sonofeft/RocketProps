@@ -1,4 +1,5 @@
 from scipy.optimize import curve_fit
+import numpy as np
 from rocketprops.InterpProp_scipy import InterpProp
 from rocketprops.unit_conv_data import get_value
 
@@ -106,8 +107,17 @@ class Surf_Peroxide_Liquid:
         """
         tk = t_c + 273.15
         tr = tk / self.Tc_K
+        
         # We use (1-tr) because Hv must be 0 when tr=1
-        return A * (1 - tr)**n
+        if isinstance(tr, np.ndarray):
+            # 2. Clip values: anything > 1 becomes 1.0
+            # None for the first argument means "no lower bound"
+            tr = np.clip(tr, None, 1.0)
+        else:
+            tr = min( tr, 1.0)
+
+        val = A * (1 - tr)**n
+        return val
 
     def get_surf_at_TdegC(self, TdegC):
         """Return surf in units mN/m"""

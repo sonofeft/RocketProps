@@ -19,7 +19,6 @@ This will execute the setup.py file and insure that its pip-specific commands ar
 from setuptools import setup, find_packages
 
 # To use a consistent encoding
-from codecs import open
 from os import path
 
 here = path.abspath(path.dirname(__file__))

@@ -79,6 +79,7 @@ rocketprops/examples/chk_h2o2.py
 rocketprops/examples/chk_m20.py
 rocketprops/examples/chk_mhf3_vs_mixture.py
 rocketprops/examples/chk_racket_vm.py
+rocketprops/examples/compare_SG_all_props.py
 rocketprops/examples/compare_comp_liq.py
 rocketprops/examples/example_1.py
 rocketprops/examples/make_unit_tst_defs.py
@@ -91,6 +92,17 @@ rocketprops/examples/plot_compressed_liq.py
 rocketprops/examples/plot_freeze_pts.py
 rocketprops/examples/plot_mon_freeze_pt.py
 rocketprops/examples/plot_multi_props.py
+rocketprops/examples/run_all_peroxide.py
+rocketprops/peroxidexx/__init__.py
+rocketprops/peroxidexx/peroxidexx_cond.py
+rocketprops/peroxidexx/peroxidexx_cp.py
+rocketprops/peroxidexx/peroxidexx_eng_units.py
+rocketprops/peroxidexx/peroxidexx_hvap.py
+rocketprops/peroxidexx/peroxidexx_main_data.py
+rocketprops/peroxidexx/peroxidexx_pvap.py
+rocketprops/peroxidexx/peroxidexx_sg.py
+rocketprops/peroxidexx/peroxidexx_surf.py
+rocketprops/peroxidexx/peroxidexx_visc.py
 rocketprops/props/A50_prop.py
 rocketprops/props/CLF5_prop.py
 rocketprops/props/Ethane_prop.py

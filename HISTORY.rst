@@ -6,6 +6,12 @@ History
 
 GitHub Log
 ----------
+* March 25, 2026
+    - (by: Charlie)
+        - version 0.1.9 with Hydrogen Peroxide
+        - changed __main__ tests to dev_tests format
+        - update docs to reflect changes
+
 * Jun 4, 2024
     - (by: Charlie)
         - version with float64 from numpy

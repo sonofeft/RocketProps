@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: rocketprops
-Version: 0.1.8
+Version: 0.1.9
 Summary: RocketProps models liquid rocket propellants.
 Home-page: http://rocketprops.readthedocs.org/en/latest/
 Download-URL: https://github.com/sonofeft/RocketProps
@@ -46,30 +46,30 @@ Dynamic: provides-extra
 Dynamic: requires-dist
 Dynamic: summary
 
-
-.. image:: https://travis-ci.org/sonofeft/RocketProps.svg?branch=master
-
-.. image:: https://img.shields.io/pypi/v/RocketProps.svg
-        
-.. image:: https://img.shields.io/pypi/pyversions/rocketprops
-
-.. image:: https://img.shields.io/pypi/l/RocketProps.svg
-
-
-Rocketprops Models Liquid Rocket Propellants
-
-
-See the Code at: `<https://github.com/sonofeft/RocketProps>`_
-
-See the Docs at: `<http://rocketprops.readthedocs.org/en/latest/>`_
-
-See PyPI page at:`<https://pypi.python.org/pypi/rocketprops>`_
-
-
-RocketProps calculates the various liquid propellant properties required
-to analyze a liquid propellant thrust chamber. 
-This includes density, viscosity, vapor pressure,
-heat of vaporization, surface tension, heat capacity and thermal conductivity. 
-Other properties such as critical temperature and pressure, normal boiling point, 
-molecular weight and freezing temperature are available.
-
+
+.. image:: https://travis-ci.org/sonofeft/RocketProps.svg?branch=master
+
+.. image:: https://img.shields.io/pypi/v/RocketProps.svg
+        
+.. image:: https://img.shields.io/pypi/pyversions/rocketprops
+
+.. image:: https://img.shields.io/pypi/l/RocketProps.svg
+
+
+Rocketprops Models Liquid Rocket Propellants
+
+
+See the Code at: `<https://github.com/sonofeft/RocketProps>`_
+
+See the Docs at: `<http://rocketprops.readthedocs.org/en/latest/>`_
+
+See PyPI page at:`<https://pypi.python.org/pypi/rocketprops>`_
+
+
+RocketProps calculates the various liquid propellant properties required
+to analyze a liquid propellant thrust chamber. 
+This includes density, viscosity, vapor pressure,
+heat of vaporization, surface tension, heat capacity and thermal conductivity. 
+Other properties such as critical temperature and pressure, normal boiling point, 
+molecular weight and freezing temperature are available.
+

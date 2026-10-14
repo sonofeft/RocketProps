@@ -1076,7 +1076,7 @@ class MyTest(unittest.TestCase):
         self.assertAlmostEqual(prop.Tc, 1217.67, places=None, delta=0.121767)
         self.assertAlmostEqual(prop.SG, 0.809954, places=None, delta=8.09954e-05)
         self.assertAlmostEqual(prop.visc, 0.0166858, places=None, delta=1.66858e-06)
-        self.assertAlmostEqual(prop.cond, 0.0786879, places=None, delta=7.86879e-06)
+        self.assertAlmostEqual(prop.cond, 0.0652355814, places=None, delta=7.86879e-06)
         self.assertAlmostEqual(prop.Tnbp, 881.67, places=None, delta=0.088167)
         self.assertAlmostEqual(prop.Tfreeze, 409.67, places=None, delta=0.040967)
         self.assertAlmostEqual(prop.Cp, 0.475379, places=None, delta=4.75379e-05)

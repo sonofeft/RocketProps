@@ -319,6 +319,31 @@ NIST is an agency of the U.S. Department of Commerce.
 The NIST Chemistry WebBook was developed in part with funds from the 
 Systems Integration for Manufacturing Applications (SIMA) program at NIST. 
 
+.. _NISTIR Source:
+
+NISTIR 6646
+-----------
+
+The `NISTIR 6646 Report <./_static/nistir6646.pdf>`_ titled: 
+**Thermophysical Properties Measurements and Models for Rocket Propellant RP-1: Phase I**
+contains the results of an extensive study of the thermal conductivity and density of RP-1
+the results of which were presented in 2003. 
+
+The NISTIR study was concerned with thermal 
+conductivity as a function of both temperature and pressure. 
+
+RocketProps currently only models thermal conductivity along the saturation curve 
+of the liquid propellant (i.e. only as a function of temperature).
+
+While the full data of the NISTIR 6646 report is shown below, RocketProps only uses 
+the portion along the saturation curve. In the image below, the saturation curve is
+the dashed line that had to be interpolated from the data set.
+
+.. image:: ./_static/fitted_NISTIR_6646.png
+
+The density data produced was over a narrow range of temperature and is shown below.
+
+.. image:: ./_static/nistir_6646_rp1_sg.jpg
 
 .. _Gemini Source:
 

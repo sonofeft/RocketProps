@@ -6,11 +6,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Sources &#8212; RocketProps 0.1.9 documentation</title>
+    <title>Sources &#8212; RocketProps 0.1.10 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=5283bb3d" />
     
-    <script src="_static/documentation_options.js?v=8618f531"></script>
+    <script src="_static/documentation_options.js?v=bafade30"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/bizstyle.js"></script>
@@ -39,7 +39,7 @@
         <li class="right" >
           <a href="examples.html" title="Examples"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.9 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.10 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Sources</a></li> 
       </ul>
     </div>  
@@ -260,6 +260,23 @@ selected on the basis of sound scientific judgment.</p>
 <p>The NIST Chemistry WebBook was developed in part with funds from the
 Systems Integration for Manufacturing Applications (SIMA) program at NIST.</p>
 </section>
+<section id="nistir-6646">
+<span id="nistir-source"></span><h2>NISTIR 6646<a class="headerlink" href="#nistir-6646" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference external" href="./_static/nistir6646.pdf">NISTIR 6646 Report</a> titled:
+<strong>Thermophysical Properties Measurements and Models for Rocket Propellant RP-1: Phase I</strong>
+contains the results of an extensive study of the thermal conductivity and density of RP-1
+the results of which were presented in 2003.</p>
+<p>The NISTIR study was concerned with thermal
+conductivity as a function of both temperature and pressure.</p>
+<p>RocketProps currently only models thermal conductivity along the saturation curve
+of the liquid propellant (i.e. only as a function of temperature).</p>
+<p>While the full data of the NISTIR 6646 report is shown below, RocketProps only uses
+the portion along the saturation curve. In the image below, the saturation curve is
+the dashed line that had to be interpolated from the data set.</p>
+<img alt="_images/fitted_NISTIR_6646.png" src="_images/fitted_NISTIR_6646.png" />
+<p>The density data produced was over a narrow range of temperature and is shown below.</p>
+<img alt="_images/nistir_6646_rp1_sg.jpg" src="_images/nistir_6646_rp1_sg.jpg" />
+</section>
 <section id="gemini">
 <span id="gemini-source"></span><h2>Gemini<a class="headerlink" href="#gemini" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://gemini.google.com/">Gemini</a>  was used to source data for peroxide (H2O2)</p>
@@ -330,6 +347,7 @@ and materials science. It was known for:</p>
 <li class="toctree-l2"><a class="reference internal" href="#vandenberg">Vandenberg</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rocketdyne">Rocketdyne</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nist-webbook">NIST Webbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nistir-6646">NISTIR 6646</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gemini">Gemini</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#copilot">Copilot</a></li>
 </ul>
@@ -416,7 +434,7 @@ and materials science. It was known for:</p>
         <li class="right" >
           <a href="examples.html" title="Examples"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.9 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RocketProps 0.1.10 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Sources</a></li> 
       </ul>
     </div>

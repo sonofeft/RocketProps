@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: rocketprops
-Version: 0.1.9
+Version: 0.1.10
 Summary: RocketProps models liquid rocket propellants.
 Home-page: http://rocketprops.readthedocs.org/en/latest/
 Download-URL: https://github.com/sonofeft/RocketProps
@@ -15,12 +15,12 @@ Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: End Users/Desktop
 Classifier: Topic :: Software Development :: Build Tools
 Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
-Classifier: Programming Language :: Python :: 3.6
-Classifier: Programming Language :: Python :: 3.7
-Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
 Description-Content-Type: text/x-rst
 License-File: LICENSE.txt
 License-File: AUTHORS.rst

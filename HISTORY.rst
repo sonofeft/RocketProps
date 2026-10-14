@@ -6,6 +6,10 @@ History
 
 GitHub Log
 ----------
+* Oct 14, 2026
+    - (by: Charlie)
+        - version 0.1.10 updated RP1 thermal conductivity
+
 * March 25, 2026
     - (by: Charlie)
         - version 0.1.9 with Hydrogen Peroxide

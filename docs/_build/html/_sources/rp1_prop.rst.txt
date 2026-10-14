@@ -53,14 +53,54 @@ RP1 == RP-1
     9.34361e-05 lbm/s/inch
     0.33637 lbm/hr/inch
     6.00688 kg/hr/m
-    0.0600688 kg/hr/cm">1.669e-02</td><td  title="0.0786879 BTU/hr/ft/delF
-    1.82148e-06 BTU/s/inch/delF
-    0.000325497 cal/s/cm/delC
-    0.0325497 cal/s/m/delC
-    0.00136188 W/cm/delC">0.0787</td><td  title="0.000165813 lbf/in
+    0.0600688 kg/hr/cm">1.669e-02</td><td  title="0.0652356 BTU/hr/ft/delF
+    1.51008e-06 BTU/s/inch/delF
+    0.000269851 cal/s/cm/delC
+    0.0269851 cal/s/m/delC
+    0.00112905 W/cm/delC">0.0652</td><td  title="0.000165813 lbf/in
     0.0290383 N/m
     29.0383 mN/m
     29.0383 dyne/cm">1.658e-04</td></tr>
+    <tr ><td><a class="reference external" href="./_static/nistir6646.pdf">NISTIR_6646</a></td><td  title="527.67 degR
+    293.15 degK
+    68 degF
+    20 degC">527.7</td><td  title="14.7 psia
+    1.00028 atm
+    1.01353 bar
+    0.101353 MPa">14.7</td><td  title="0.801431 SG
+    50.0317 lbm/ft**3
+    0.0289535 lbm/inch**3
+    801.431 kg/m**3">0.8014</td><td >---</td><td >---</td><td >---</td><td  title="0.0652376 BTU/hr/ft/delF
+    1.51013e-06 BTU/s/inch/delF
+    0.000269859 cal/s/cm/delC
+    0.0269859 cal/s/m/delC
+    0.00112909 W/cm/delC">0.0652</td><td >---</td></tr>
+    <tr ><td><a class="reference external" href="https://www.nist.gov/srd/refprop">RefProp</a></td><td  title="527.67 degR
+    293.15 degK
+    68 degF
+    20 degC">527.7</td><td  title="0.00927484 psia
+    0.000631115 atm
+    0.000639478 bar
+    6.39478e-05 MPa">0.0</td><td  title="0.804731 SG
+    50.2377 lbm/ft**3
+    0.0290727 lbm/inch**3
+    804.731 kg/m**3">0.8047</td><td  title="0.463598 BTU/lbm/F
+    0.463908 cal/g/C
+    0.000463908 kcal/g/C
+    1940.99 J/kg/K">0.464</td><td >---</td><td  title="0.0174028 poise
+    1.74028 cpoise
+    0.00174028 Pa*s
+    9.74509e-05 lbm/s/inch
+    0.350823 lbm/hr/inch
+    6.26499 kg/hr/m
+    0.0626499 kg/hr/cm">1.740e-02</td><td  title="0.0647245 BTU/hr/ft/delF
+    1.49825e-06 BTU/s/inch/delF
+    0.000267737 cal/s/cm/delC
+    0.0267737 cal/s/m/delC
+    0.00112021 W/cm/delC">0.0647</td><td  title="4.90355 lbf/in
+    858.743 N/m
+    858743 mN/m
+    858743 dyne/cm">4.904e+00</td></tr>
     <tr ><td><a class="reference external" href="./_static/Aerojet_Propellant_Properties.pdf">Aerojet</a></td><td  title="527.67 degR
     293.15 degK
     68 degF
@@ -135,6 +175,22 @@ RP1 == RP-1
     227.594 degK
     -50 degF
     -45.5556 degC">409.7</td><td>0.51236</td></tr>
+    <tr ><td><a class="reference external" href="https://www.nist.gov/srd/refprop">RefProp</a></td><td>180.000</td><td  title="1195.2 degR
+    664 degK
+    735.53 degF
+    390.85 degC">1195.2</td><td  title="269.915 psia
+    18.3666 atm
+    18.61 bar
+    1.861 MPa">269.9</td><td  title="0.226797 SG
+    14.1585 lbm/ft**3
+    0.00819356 lbm/inch**3
+    226.797 kg/m**3">0.2268</td><td>0.2676</td><td  title="856.152 degR
+    475.64 degK
+    396.482 degF
+    202.49 degC">856.2</td><td  title="419.748 degR
+    233.193 degK
+    -39.9222 degF
+    -39.9568 degC">419.7</td><td>0.37317</td></tr>
     <tr ><td><a class="reference external" href="./_static/Aerojet_Propellant_Properties.pdf">Aerojet</a></td><td>172.000</td><td  title="1217.67 degR
     676.483 degK
     758 degF
@@ -178,6 +234,7 @@ Vapor Pressure
     </div><div ><br><br>
 
 | RocketProps Selected Curve
+| :ref:`RefProp Source`
 | :ref:`Aerojet Source`
 | :ref:`Edalat Source`
 
@@ -211,8 +268,10 @@ Density
     </div><div ><br><br>
 
 | RocketProps Selected Curve
+| :ref:`RefProp Source`
 | :ref:`Aerojet Source`
 | :ref:`NIST Webbook`
+| :ref:`NISTIR Source`
 | :ref:`Rackett Scaling Source`
 
 
@@ -245,6 +304,7 @@ Heat Capacity
     </div><div ><br><br>
 
 | RocketProps Selected Curve
+| :ref:`RefProp Source`
 | :ref:`Aerojet Source`
 
 
@@ -277,6 +337,7 @@ Viscosity
     </div><div ><br><br>
 
 | RocketProps Selected Curve
+| :ref:`RefProp Source`
 | :ref:`Aerojet Source`
 | :ref:`Squires Source`
 
@@ -343,8 +404,11 @@ Thermal Conductivity
     </div><div ><br><br>
 
 | RocketProps Selected Curve
+| :ref:`RefProp Source`
 | :ref:`Aerojet Source`
 | :ref:`Nicola Source`
+| :ref:`NIST Webbook`
+| :ref:`NISTIR Source`
 
 
 .. raw:: html
@@ -379,7 +443,6 @@ Surface Tension
     </div><div ><br><br>
 
 | RocketProps Selected Curve
-| :ref:`Pitzer Surf Source`
 
 
 .. raw:: html
